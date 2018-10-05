@@ -29,7 +29,7 @@ const Header = () => {
 	return (
 		<div style={styles.header}>
 			<div style={styles.flexContainer}>
-				<h2 style={styles.heading}>Welcome to React / React Router / Sass</h2>
+				<h2 style={styles.heading}>Welcome to your new React Project</h2>
 				<h2 style={styles.subHeading}>Boilerplate</h2>
 			</div>
 		</div>
