@@ -1,4 +1,5 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
 	entry: {
@@ -12,16 +13,38 @@ module.exports = {
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
+				loader: 'babel-loader',
 				exclude: /node_modules/,
-				loader: 'babel-loader'
+				query: {
+					presets: [ '@babel/preset-env', '@babel/preset-react' ],
+					plugins: [
+						'@babel/plugin-proposal-class-properties',
+						'@babel/plugin-proposal-object-rest-spread',
+						'@babel/plugin-transform-runtime'
+					]
+				}
 			},
 			{
 				test: /\.s?css$/,
-				use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+				use: [
+					'style-loader',
+					MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options: {
+							sourceMap: true
+						}
+					},
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: true
+						}
+					}
+				]
 			},
 			{
-				test: /\.(gif|png|jpe?g)$/i,
-				exclude: [ /node_modules/ ],
+				test: /\.(gif|png|jpe?g|svg)$/i,
 				loaders: [ 'file-loader', 'image-webpack-loader' ]
 			}
 		]
@@ -29,6 +52,11 @@ module.exports = {
 	resolve: {
 		extensions: [ '.js', '.jsx' ]
 	},
+	plugins: [
+		new MiniCssExtractPlugin({
+			filename: 'style.css'
+		})
+	],
 	devtool: 'cheap-module-source-map',
 	devServer: {
 		contentBase: path.join(__dirname, 'dist'),
