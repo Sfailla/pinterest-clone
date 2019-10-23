@@ -10,8 +10,13 @@ html {
 
 body {
 	font-family: 'Roboto', Helvetica, Arial, Sans-serif;
-	font-size: 1.6rem;
 	line-height: 1.5;
+	font-size: 1.6rem;
+	transition: font-size .1s ease-in-out;
+
+	@media (max-width: 50em) {
+		font-size: 10px;
+	}
 }
 
 button {
