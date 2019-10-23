@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import 'normalize.css';
+// import 'normalize.css';
 import './styles/style.scss';
 
-import Header from './components/Header';
+import Header from './components/Header.js';
 
 const styles = {
 	content: {
-		display: 'block',
-		paddingLeft: '5rem',
-		marginTop: '5rem'
+		marginTop: '5rem',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center'
 	}
 };
 

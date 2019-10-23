@@ -1,5 +1,7 @@
 import React from 'react';
 
+import logo from '../images/react-logo.png';
+
 const styles = {
 	header: {
 		height: '25rem',
@@ -12,12 +14,10 @@ const styles = {
 		width: '100%',
 		height: '100%',
 		display: 'flex',
-		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
 	heading: {
-		fontSize: '2.6rem',
 		color: 'magenta'
 	},
 	subHeading: {
@@ -32,6 +32,7 @@ const Header = () => {
 				<h2 style={styles.heading}>
 					Welcome to your new React Project
 				</h2>
+				<img src={logo} alt="react-logo" />
 			</div>
 		</div>
 	);
