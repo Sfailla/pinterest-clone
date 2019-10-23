@@ -13,34 +13,23 @@ module.exports = {
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
-				loader: 'babel-loader',
-				exclude: /node_modules/,
-				query: {
-					presets: [ '@babel/preset-env', '@babel/preset-react' ],
-					plugins: [
-						'@babel/plugin-proposal-class-properties',
-						'@babel/plugin-proposal-object-rest-spread',
-						'@babel/plugin-transform-runtime'
-					]
+				exclude: /(node_modules|bower_components)/,
+				use: {
+					loader: 'babel-loader'
 				}
 			},
+
 			{
-				test: /\.s?css$/,
+				test: /\.(sa|sc|c)ss$/,
 				use: [
-					'style-loader',
-					MiniCssExtractPlugin.loader,
 					{
-						loader: 'css-loader',
-						options: {
-							sourceMap: true
-						}
+						loader:
+							process.env.NODE_ENV === 'production'
+								? MiniCssExtractPlugin.loader
+								: 'style-loader'
 					},
-					{
-						loader: 'sass-loader',
-						options: {
-							sourceMap: true
-						}
-					}
+					'css-loader',
+					'sass-loader'
 				]
 			},
 			{
@@ -50,11 +39,11 @@ module.exports = {
 		]
 	},
 	resolve: {
-		extensions: [ '.js', '.jsx' ]
+		extensions: [ '.js', '.jsx', '.json' ]
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: 'style.css'
+			filename: '[name].css'
 		})
 	],
 	devtool: 'cheap-module-source-map',
