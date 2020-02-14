@@ -6,14 +6,14 @@ module.exports = {
 		app: './src/app.js'
 	},
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: path.join(__dirname, 'dist'),
 		filename: 'bundle.js'
 	},
 	module: {
 		rules: [
 			{
 				test: /\.(js|jsx)$/,
-				exclude: /(node_modules|bower_components)/,
+				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader'
 				}
@@ -43,7 +43,7 @@ module.exports = {
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: '[name].css'
+			filename: 'styles.css'
 		})
 	],
 	devtool: 'cheap-module-source-map',
