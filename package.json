@@ -5,7 +5,7 @@
 	"main": "app.js",
 	"scripts": {
 		"start": "npm run dev-server",
-		"dev-server": "start http://localhost:8080/ & webpack-dev-server --config ./webpack.config.js --mode development",
+		"dev:server": "start http://localhost:8080/ & webpack-dev-server --config ./webpack.config.js --mode development",
 		"build": "webpack --mode production"
 	},
 	"author": "steve failla",
@@ -28,9 +28,6 @@
 		"@babel/preset-react": "^7.0.0",
 		"babel-cli": "^6.26.0",
 		"babel-loader": "^8.0.6",
-		"babel-plugin-transform-class-properties": "^6.24.1",
-		"babel-plugin-transform-object-rest-spread": "^6.26.0",
-		"babel-plugin-transform-runtime": "^6.23.0",
 		"css-loader": "^3.2.0",
 		"file-loader": "^4.2.0",
 		"image-webpack-loader": "^6.0.0",
