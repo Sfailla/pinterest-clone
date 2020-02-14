@@ -1,6 +1,6 @@
 import React from 'react';
 
-import logo from '../images/react-logo.png';
+import logo from '../images/react-logo-1-trans.png';
 
 const styles = {
 	header: {
