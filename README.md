@@ -4,7 +4,7 @@ react boilerplate for client includes:
 
 `react` `react-router` `sass` `webpack`
 
-### by steve failla
+### by Steve Failla
 
 ___
 

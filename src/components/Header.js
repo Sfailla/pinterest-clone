@@ -1,6 +1,6 @@
 import React from 'react';
 
-import logo from '../images/react-logo-1-trans.png';
+import logo from '../react-logo.svg';
 
 const styles = {
 	header: {
@@ -23,6 +23,11 @@ const styles = {
 	subHeading: {
 		fontSize: '3.2rem',
 		color: 'cyan'
+	},
+	svg: {
+		paddingLeft: '2rem',
+		width: '200px',
+		height: '150px'
 	}
 };
 const Header = () => {
@@ -32,7 +37,7 @@ const Header = () => {
 				<h2 style={styles.heading}>
 					Welcome to your new React Project
 				</h2>
-				<img src={logo} alt="react-logo" />
+				<img style={styles.svg} src={logo} alt="react-logo" />
 			</div>
 		</div>
 	);
