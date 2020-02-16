@@ -1,5 +1,4 @@
 import React from 'react';
-
 import logo from '../svg/react-logo.svg';
 
 const styles = {
@@ -34,9 +33,7 @@ const Header = () => {
 	return (
 		<div style={styles.header}>
 			<div style={styles.flexContainer}>
-				<h2 style={styles.heading}>
-					Welcome to your new React Project
-				</h2>
+				<h2 style={styles.heading}>New React Project</h2>
 				<img style={styles.svg} src={logo} alt="react-logo" />
 			</div>
 		</div>
