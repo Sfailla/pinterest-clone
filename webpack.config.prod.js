@@ -1,7 +1,9 @@
 const merge = require('webpack-merge');
+const baseConfig = require('./webpack.config.base');
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const baseConfig = require('./webpack.config.base');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = merge(baseConfig, {
 	mode: 'production',
@@ -28,6 +30,7 @@ module.exports = merge(baseConfig, {
 			analyzerMode: 'static',
 			openAnalyzer: false,
 			reportFilename: 'bundle_sizes.html'
-		})
+		}),
+		new CleanWebpackPlugin()
 	]
 });
