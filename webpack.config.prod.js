@@ -25,7 +25,9 @@ module.exports = merge(baseConfig, {
 			chunkFilename: '[id].[hash].css'
 		}),
 		new BundleAnalyzerPlugin({
-			analyzerMode: 'static'
+			analyzerMode: 'static',
+			openAnalyzer: false,
+			reportFilename: 'bundle_sizes.html'
 		})
 	]
 });
