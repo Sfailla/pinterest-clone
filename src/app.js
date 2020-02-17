@@ -1,9 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
-// import 'normalize.css';
-import './styles/style.scss';
-
 import Header from './components/Header.js';
 
 const styles = {
@@ -26,4 +21,4 @@ const App = () => {
 	);
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export default App;
