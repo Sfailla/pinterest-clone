@@ -4,8 +4,7 @@
 	"description": "boilerplate for front-end react project, contains: react, react-router, webpack, sass",
 	"main": "app.js",
 	"scripts": {
-		"start": "npm run dev-server",
-		"dev:server": "start http://localhost:8080/ & webpack-dev-server --config ./webpack.config.dev.js",
+		"start": "start http://localhost:8080/ & webpack-dev-server --config ./webpack.config.dev.js",
 		"build": "webpack --config webpack.config.prod.js",
 		"test": "jest"
 	},
