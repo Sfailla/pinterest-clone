@@ -9,7 +9,7 @@ import Badge from '@material-ui/core/Badge';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import SearchIcon from '@material-ui/icons/Search';
-import logo from '../svg/pinterest-logo.svg';
+import logo from '../../svg/pinterest-logo.svg';
 
 const useStyles = makeStyles(theme => ({
 	root: {
