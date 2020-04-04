@@ -5,7 +5,7 @@ import Header from '../header/Header.js';
 import HomePage from '../../pages/homepage/HomePage.js';
 
 const App = () => {
-	const user = null;
+	let user = null;
 
 	return (
 		<BrowserRouter>
