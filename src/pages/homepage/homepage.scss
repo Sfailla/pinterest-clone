@@ -8,7 +8,7 @@
 	height: 100%;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	grid-auto-rows: 200px;
+	grid-auto-rows: 100px;
 	grid-gap: 10px;
 }
 
@@ -20,11 +20,11 @@
 }
 
 .box-small {
-	grid-row-end: span 1;
-}
-.box-meduim {
 	grid-row-end: span 2;
+}
+.box-medium {
+	grid-row-end: span 3;
 }
 .box-large {
-	grid-row-end: span 2;
+	grid-row-end: span 4;
 }
