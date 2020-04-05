@@ -1,0 +1,78 @@
+.card {
+	width: 485px;
+	height: 684px;
+	background-color: white;
+	border-radius: 10px;
+	z-index: 1;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.pinterest-logo {
+	width: 50px;
+	height: 50px;
+	margin: 5px auto 8px;
+}
+
+.text-wrapper {
+	text-align: center;
+
+	& h1 {
+		margin: 8px;
+	}
+
+	& p {
+		font-size: 16px;
+		font-weight: 400;
+		margin-bottom: 16px;
+	}
+}
+
+.card-body {
+	padding: 20px 10px 24px 10px;
+}
+
+.card-body-upper {
+	display: flex;
+	flex-direction: column;
+}
+
+.card-footer {
+	height: 62px;
+	color: #111;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 14px;
+	font-weight: 700;
+	-webkit-font-smoothing: antialiased;
+	border-top: 1px solid rgb(242, 242, 242);
+}
+
+.login-button {
+	color: white;
+	font-size: 16px;
+	font-weight: 700;
+	background-color: #e60023;
+
+	&:hover {
+		background-color: #ad081b;
+	}
+}
+
+.signup-button {
+	color: #111;
+	font-size: 16px;
+	font-weight: 700;
+	background-color: #efefef;
+	&:hover {
+		background-color: #e2e2e2;
+	}
+}
+
+.ind-btn {
+	margin: 8px;
+}
