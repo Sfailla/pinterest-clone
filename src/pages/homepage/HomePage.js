@@ -12,12 +12,14 @@ import image9 from '../../images/grid-img-9.png';
 import image10 from '../../images/grid-img-10.png';
 
 import Box from '../../components/grid-box/Box';
-import SignupCard from '../../components/sign-up-card/SignUpCard';
+import HomePageCard from '../../components/homepage-card/HomePageCard';
+import SigninAndSignup from '../../components/user-auth/SigninAndSignup';
 
 function HomePage() {
 	return (
 		<Fragment>
-			<SignupCard />
+			{/* <HomePageCard /> */}
+			<SigninAndSignup />
 			<div className="homepage">
 				<div className="grid-container">
 					<Box image={image1} className="box box-large" />
