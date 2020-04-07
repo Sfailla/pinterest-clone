@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../svg/pinterest-logo.svg';
 
-import Signup from '../signup/Signup';
+import RenderSignup from '../signup/RenderSignup';
 
 export const SigninAndSignup = () => {
 	return (
@@ -18,7 +18,7 @@ export const SigninAndSignup = () => {
 						<p>Find new ideas to try</p>
 					</div>
 				</div>
-				<Signup />
+				<RenderSignup />
 			</div>
 			<div className="card-footer grey-background">
 				<p>Create a business account</p>
