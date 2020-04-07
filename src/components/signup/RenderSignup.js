@@ -4,7 +4,7 @@ import FormGroup from '../form-group/FormGroup';
 import Input from '../input/Input';
 import Button from '../buttons/Button';
 
-const Signup = () => {
+const RenderSignup = () => {
 	return (
 		<div className="signup">
 			<FormGroup className="form-wrapper">
@@ -64,4 +64,4 @@ const Signup = () => {
 	);
 };
 
-export default Signup;
+export default RenderSignup;
