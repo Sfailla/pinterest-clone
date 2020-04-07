@@ -1,7 +1,12 @@
 import React from 'react';
 import logo from '../../svg/pinterest-logo.svg';
+import Button from '../buttons/Button';
 
-const HomePageCard = () => {
+const HomePageCard = ({
+	handleLogin,
+	handleSignup,
+	setRenderAuthCard
+}) => {
 	return (
 		<div className="card homepage__card">
 			<div className="card-body homepage__card-body">
@@ -18,14 +23,21 @@ const HomePageCard = () => {
 				</div>
 				<div className="button-group">
 					<div className="button-wrapper">
-						<button className="rounded-button red-button">
-							Log in
-						</button>
+						<Button
+							name="Log in"
+							onClick={() => handleLogin(true)}
+							className="rounded-button red-button"
+						/>
 					</div>
 					<div className="button-wrapper">
-						<button className="rounded-button grey-button">
-							Sign up
-						</button>
+						<Button
+							name="Sign up"
+							onClick={() => {
+								setRenderAuthCard(false);
+								handleSignup(true);
+							}}
+							className="rounded-button grey-button"
+						/>
 					</div>
 				</div>
 			</div>
