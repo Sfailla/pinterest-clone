@@ -40,3 +40,34 @@
 	color: white;
 	background-color: #1877f2;
 }
+
+.auth-link-button {
+	width: 130px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #efefef;
+	padding: 8px 12px;
+	border-radius: 24px;
+	z-index: 1;
+	font-size: 16px;
+	font-weight: 700;
+
+	position: absolute;
+	top: 48px;
+	left: 24px;
+
+	&:hover {
+		background-color: #e2e2e2;
+	}
+
+	&:active {
+		background-color: #dadada;
+	}
+
+	&:focus {
+		box-shadow: 0 0 0 4px rgba(0, 132, 255, .5);
+		outline: 0;
+	}
+}
