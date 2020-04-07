@@ -12,14 +12,41 @@ import image9 from '../../images/grid-img-9.png';
 import image10 from '../../images/grid-img-10.png';
 
 import Box from '../../components/grid-box/Box';
+import Button from '../../components/buttons/Button';
 import HomePageCard from '../../components/homepage-card/HomePageCard';
 import SigninAndSignup from '../../components/user-auth/SigninAndSignup';
 
 function HomePage() {
+	const [ renderSignup, setRenderSignup ] = React.useState(false);
+	const [ renderLogin, setRenderLogin ] = React.useState(false);
+	const [ renderAuthCard, setRenderAuthCard ] = React.useState(true);
+
 	return (
 		<Fragment>
-			{/* <HomePageCard /> */}
-			<SigninAndSignup />
+			{renderAuthCard && (
+				<div className="wrapper">
+					<HomePageCard
+						handleLogin={setRenderLogin}
+						handleSignup={setRenderSignup}
+						setRenderAuthCard={setRenderAuthCard}
+					/>
+				</div>
+			)}
+			{renderSignup && (
+				<div>
+					<SigninAndSignup />
+					<div className="button-wrapper">
+						<Button
+							name="Login"
+							onClick={() => {
+								setRenderSignup(false);
+								setRenderLogin(true);
+							}}
+							className="auth-link-button"
+						/>
+					</div>
+				</div>
+			)}
 			<div className="homepage">
 				<div className="grid-container">
 					<Box image={image1} className="box box-large" />
