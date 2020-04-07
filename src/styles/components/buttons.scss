@@ -2,9 +2,41 @@
 	width: 100%;
 	display: block;
 	min-width: 60px;
-	min-height: 48px;
 	border-radius: 25px;
 	font-size: 16px;
 	font-weight: 700;
 	padding: 12px;
+}
+
+.red-button {
+	color: white;
+	background-color: #e60023;
+
+	&:hover {
+		background-color: #ad081b;
+	}
+}
+
+.grey-button {
+	color: #111;
+	background-color: #efefef;
+	&:hover {
+		background-color: #e2e2e2;
+	}
+}
+
+.button-wrapper {
+	margin: 8px;
+}
+
+.continue-button {
+	height: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.facebook-button {
+	color: white;
+	background-color: #1877f2;
 }
