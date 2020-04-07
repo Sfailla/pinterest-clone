@@ -1,4 +1,4 @@
-.signup {
+.auth {
 	&__card {
 		width: 484px;
 		height: 684px;
@@ -32,7 +32,12 @@
 			color: rgb(51, 51, 51);
 			font-size: 16px;
 			font-weight: normal;
-			padding-bottom: 32px;
+			margin-top: -15px;
+			margin-bottom: 32px;
 		}
 	}
+}
+
+.grey-background {
+	background-color: #efefef;
 }
