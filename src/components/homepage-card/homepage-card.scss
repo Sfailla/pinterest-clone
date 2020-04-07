@@ -2,6 +2,10 @@
 	&__card {
 		width: 485px;
 		height: 381px;
+
+		& button {
+			min-height: 48px;
+		}
 	}
 	&__logo {
 		width: 50px;
@@ -24,25 +28,4 @@
 			margin-bottom: 16px;
 		}
 	}
-}
-
-.login-button {
-	color: white;
-	background-color: #e60023;
-
-	&:hover {
-		background-color: #ad081b;
-	}
-}
-
-.signup-button {
-	color: #111;
-	background-color: #efefef;
-	&:hover {
-		background-color: #e2e2e2;
-	}
-}
-
-.button-wrapper {
-	margin: 8px;
 }

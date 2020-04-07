@@ -18,12 +18,12 @@ const HomePageCard = () => {
 				</div>
 				<div className="button-group">
 					<div className="button-wrapper">
-						<button className="rounded-button login-button">
+						<button className="rounded-button red-button">
 							Log in
 						</button>
 					</div>
 					<div className="button-wrapper">
-						<button className="rounded-button signup-button">
+						<button className="rounded-button grey-button">
 							Sign up
 						</button>
 					</div>
