@@ -3,26 +3,26 @@ import logo from '../../svg/pinterest-logo.svg';
 
 const HomePageCard = () => {
 	return (
-		<div className="card">
-			<div className="card-body">
+		<div className="card homepage__card">
+			<div className="card-body homepage__card-body">
 				<div className="card-body-upper">
 					<img
-						className="pinterest-logo"
+						className="pinterest-logo homepage__logo"
 						src={logo}
 						alt="pinterest logo"
 					/>
-					<div className="text-wrapper">
+					<div className="text-wrapper homepage__text-wrapper">
 						<h1>Welcome to pinterest</h1>
 						<p>Find new ideas to try</p>
 					</div>
 				</div>
-				<div className="button-wrapper">
-					<div className="ind-btn">
+				<div className="button-group">
+					<div className="button-wrapper">
 						<button className="rounded-button login-button">
 							Log in
 						</button>
 					</div>
-					<div className="ind-btn">
+					<div className="button-wrapper">
 						<button className="rounded-button signup-button">
 							Sign up
 						</button>
