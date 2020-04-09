@@ -3,8 +3,8 @@ import logo from '../../svg/pinterest-logo.svg';
 import Button from '../buttons/Button';
 
 const HomePageCard = ({
-	handleLogin,
-	handleSignup,
+	setRenderLogin,
+	setRenderSignup,
 	setRenderAuthCard
 }) => {
 	return (
@@ -25,7 +25,10 @@ const HomePageCard = ({
 					<div className="button-wrapper">
 						<Button
 							name="Log in"
-							onClick={() => handleLogin(true)}
+							onClick={() => {
+								setRenderAuthCard(false);
+								setRenderLogin(true);
+							}}
 							className="rounded-button red-button"
 						/>
 					</div>
@@ -34,7 +37,7 @@ const HomePageCard = ({
 							name="Sign up"
 							onClick={() => {
 								setRenderAuthCard(false);
-								handleSignup(true);
+								setRenderSignup(true);
 							}}
 							className="rounded-button grey-button"
 						/>

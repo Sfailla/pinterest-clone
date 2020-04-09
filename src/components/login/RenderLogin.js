@@ -4,9 +4,9 @@ import FormGroup from '../form-group/FormGroup';
 import Input from '../input/Input';
 import Button from '../buttons/Button';
 
-const RenderSignup = () => {
+const RenderLogin = () => {
 	return (
-		<div className="signup">
+		<div className="login">
 			<FormGroup className="form-wrapper">
 				<Input
 					className="input__card"
@@ -20,15 +20,10 @@ const RenderSignup = () => {
 					className="input__card"
 					name="password"
 				/>
-				<Input
-					type="number"
-					className="input__card"
-					placeholder="Age"
-					name="age"
-				/>
+				<p>Forgot your password?</p>
 				<div className="button-wrapper">
 					<Button
-						name="Continue"
+						name="Login"
 						className="rounded-button continue-button red-button"
 					/>
 				</div>
@@ -37,4 +32,4 @@ const RenderSignup = () => {
 	);
 };
 
-export default RenderSignup;
+export default RenderLogin;

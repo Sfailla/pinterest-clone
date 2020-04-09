@@ -15,34 +15,3 @@
 		font-weight: bold;
 	}
 }
-
-.policy {
-	margin-top: 16px;
-	text-align: center;
-
-	& p:first-child {
-		font-size: 11px;
-		font-weight: normal;
-		text-align: center;
-		transition: opacity 0.2s linear 0s;
-		color: rgb(142, 142, 142);
-		width: 224px;
-	}
-}
-
-.bold-text {
-	color: #3b3939;
-	font-weight: bold;
-}
-
-.member-link {
-	text-align: center;
-	display: block;
-	margin-top: 12px;
-
-	& a {
-		text-decoration: none;
-		color: rgb(51, 51, 51);
-		cursor: pointer;
-	}
-}
