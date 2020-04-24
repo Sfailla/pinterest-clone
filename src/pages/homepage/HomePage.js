@@ -16,7 +16,7 @@ import Button from '../../components/buttons/Button';
 import HomePageCard from '../../components/homepage-card/HomePageCard';
 import SigninAndSignup from '../../components/user-auth/SigninAndSignup';
 
-function HomePage() {
+function HomePage(props) {
 	const [ renderSignup, setRenderSignup ] = React.useState(false);
 	const [ renderLogin, setRenderLogin ] = React.useState(false);
 	const [ renderAuthCard, setRenderAuthCard ] = React.useState(true);
@@ -35,6 +35,7 @@ function HomePage() {
 			{renderSignup && (
 				<Fragment>
 					<SigninAndSignup
+						history={props.history}
 						renderLogin={renderLogin}
 						renderSignup={renderSignup}
 						setRenderLogin={setRenderLogin}
@@ -45,6 +46,7 @@ function HomePage() {
 			{renderLogin && (
 				<Fragment>
 					<SigninAndSignup
+						history={props.history}
 						renderLogin={renderLogin}
 						renderSignup={renderSignup}
 						setRenderLogin={setRenderLogin}
