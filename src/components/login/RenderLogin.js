@@ -4,10 +4,10 @@ import FormGroup from '../form-group/FormGroup';
 import Input from '../input/Input';
 import Button from '../buttons/Button';
 
-const RenderLogin = ({ values, handleOnChange }) => {
+const RenderLogin = ({ values, handleOnChange, handleOnSubmit }) => {
 	return (
 		<div className="login">
-			<FormGroup className="form-wrapper">
+			<FormGroup onSubmit={handleOnSubmit} className="form-wrapper">
 				<Input
 					onChange={handleOnChange}
 					value={values.email}
@@ -27,6 +27,7 @@ const RenderLogin = ({ values, handleOnChange }) => {
 				<p>Forgot your password?</p>
 				<div className="button-wrapper">
 					<Button
+						type="submit"
 						name="Login"
 						className="rounded-button continue-button red-button"
 					/>
