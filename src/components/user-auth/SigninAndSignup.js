@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../../svg/pinterest-logo.svg';
+import firebase from '../../firebase/firebase';
 
 import RenderSignup from '../signup/RenderSignup';
 import RenderLogin from '../login/RenderLogin';
@@ -8,18 +9,41 @@ import Button from '../buttons/Button';
 import formValidation from '../form-validation/formValidation';
 import validateLogin from '../form-validation/validateLogin';
 
-export const SigninAndSignup = ({ renderSignup, renderLogin }) => {
+export const SigninAndSignup = ({
+	renderSignup,
+	renderLogin,
+	history
+}) => {
 	const INITIAL_STATE = {
 		email: '',
 		password: '',
 		name: ''
 	};
 
-	const { values, handleOnChange, handleOnSubmit } = formValidation(
-		INITIAL_STATE,
-		validateLogin
-	);
-	console.log(values);
+	const {
+		values,
+		errors,
+		handleOnChange,
+		handleOnSubmit
+	} = formValidation(INITIAL_STATE, validateLogin, authenticateUser);
+
+	const [ firebaseError, setFirebaseError ] = useState(null);
+	console.log(errors);
+
+	function authenticateUser() {
+		const { email, password, name } = values;
+
+		renderSignup
+			? firebase
+					.register(email, password, name)
+					.then(() => history.push('/dashboard'))
+					.catch(err => setFirebaseError(err))
+			: firebase
+					.login(email, password)
+					.then(() => history.push('/dashboard'))
+					.catch(err => setFirebaseError(err));
+	}
+
 	return (
 		<div className="card auth__card">
 			<div className="card-body auth__card-body">
