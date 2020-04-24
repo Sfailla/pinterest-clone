@@ -24,28 +24,53 @@ function HomePage() {
 	return (
 		<Fragment>
 			{renderAuthCard && (
-				<div className="wrapper">
+				<Fragment>
 					<HomePageCard
-						handleLogin={setRenderLogin}
-						handleSignup={setRenderSignup}
+						setRenderLogin={setRenderLogin}
+						setRenderSignup={setRenderSignup}
 						setRenderAuthCard={setRenderAuthCard}
 					/>
-				</div>
+				</Fragment>
 			)}
 			{renderSignup && (
-				<div>
-					<SigninAndSignup />
-					<div className="button-wrapper">
-						<Button
-							name="Login"
-							onClick={() => {
-								setRenderSignup(false);
-								setRenderLogin(true);
-							}}
-							className="auth-link-button"
-						/>
-					</div>
-				</div>
+				<Fragment>
+					<SigninAndSignup
+						renderLogin={renderLogin}
+						renderSignup={renderSignup}
+						setRenderLogin={setRenderLogin}
+						setRenderSignup={setRenderSignup}
+					/>
+				</Fragment>
+			)}
+			{renderLogin && (
+				<Fragment>
+					<SigninAndSignup
+						renderLogin={renderLogin}
+						renderSignup={renderSignup}
+						setRenderLogin={setRenderLogin}
+						setRenderSignup={setRenderSignup}
+					/>
+				</Fragment>
+			)}
+			{renderSignup && (
+				<Button
+					name="Log in"
+					onClick={() => {
+						setRenderSignup(false);
+						setRenderLogin(true);
+					}}
+					className="auth-link-button"
+				/>
+			)}
+			{renderLogin && (
+				<Button
+					name="Sign up"
+					onClick={() => {
+						setRenderLogin(false);
+						setRenderSignup(true);
+					}}
+					className="auth-link-button"
+				/>
 			)}
 			<div className="homepage">
 				<div className="grid-container">
