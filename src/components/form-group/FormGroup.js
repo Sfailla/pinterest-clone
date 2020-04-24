@@ -1,7 +1,7 @@
 import React from 'react';
 
-const FormGroup = ({ children }) => {
-	return <form>{children}</form>;
+const FormGroup = ({ children, onSubmit }) => {
+	return <form onSubmit={onSubmit}>{children}</form>;
 };
 
 export default FormGroup;
