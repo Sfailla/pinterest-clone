@@ -5,7 +5,21 @@ import RenderSignup from '../signup/RenderSignup';
 import RenderLogin from '../login/RenderLogin';
 import Button from '../buttons/Button';
 
+import formValidation from '../form-validation/formValidation';
+import validateLogin from '../form-validation/validateLogin';
+
 export const SigninAndSignup = ({ renderSignup, renderLogin }) => {
+	const INITIAL_STATE = {
+		email: '',
+		password: '',
+		name: ''
+	};
+
+	const { values, handleOnChange, handleOnSubmit } = formValidation(
+		INITIAL_STATE,
+		validateLogin
+	);
+	console.log(values);
 	return (
 		<div className="card auth__card">
 			<div className="card-body auth__card-body">
@@ -20,8 +34,20 @@ export const SigninAndSignup = ({ renderSignup, renderLogin }) => {
 						<p>Find new ideas to try</p>
 					</div>
 				</div>
-				{renderSignup && <RenderSignup />}
-				{renderLogin && <RenderLogin />}
+				{renderSignup && (
+					<RenderSignup
+						handleOnSubmit={handleOnSubmit}
+						handleOnChange={handleOnChange}
+						values={values}
+					/>
+				)}
+				{renderLogin && (
+					<RenderLogin
+						handleOnSubmit={handleOnSubmit}
+						handleOnChange={handleOnChange}
+						values={values}
+					/>
+				)}
 				<div className="wrapper">
 					<div className="button-group">
 						<span>OR</span>
