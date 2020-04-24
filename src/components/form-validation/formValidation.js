@@ -1,9 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function formValidation(initialState, validate) {
+function formValidation(initialState, validate, authenticate) {
 	const [ values, setValues ] = useState(initialState);
 	const [ errors, setErrors ] = useState(null);
 	const [ isSubmitting, setSubmitting ] = useState(false);
+
+	useEffect(
+		() => {
+			if (isSubmitting) {
+				const noErrors = Object.keys(errors).length === 0;
+				if (noErrors) {
+					setSubmitting(false);
+					authenticate();
+				} else {
+					console.log('authentication error');
+					setSubmitting(false);
+				}
+			}
+		},
+		[ errors, isSubmitting, authenticate ]
+	);
 
 	const handleOnChange = event => {
 		event.persist();
