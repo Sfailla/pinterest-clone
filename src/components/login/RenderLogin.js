@@ -4,17 +4,21 @@ import FormGroup from '../form-group/FormGroup';
 import Input from '../input/Input';
 import Button from '../buttons/Button';
 
-const RenderLogin = () => {
+const RenderLogin = ({ values, handleOnChange }) => {
 	return (
 		<div className="login">
 			<FormGroup className="form-wrapper">
 				<Input
+					onChange={handleOnChange}
+					value={values.email}
 					className="input__card"
 					type="text"
 					placeholder="Email"
 					name="email"
 				/>
 				<Input
+					onChange={handleOnChange}
+					value={values.password}
 					type="password"
 					placeholder="Password"
 					className="input__card"
