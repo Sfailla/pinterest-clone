@@ -9,31 +9,26 @@ import Button from '../buttons/Button';
 import formValidation from '../form-validation/formValidation';
 import validateLogin from '../form-validation/validateLogin';
 
-export const SigninAndSignup = ({
-	renderSignup,
-	renderLogin,
-	history
-}) => {
-	const INITIAL_STATE = {
-		email: '',
-		password: '',
-		name: ''
-	};
+const SigninAndSignup = ({ renderSignup, renderLogin, history }) => {
+	// const INITIAL_STATE = {
+	// 	email: '',
+	// 	password: '',
+	// 	name: ''
+	// };
 
-	const {
-		values,
-		errors,
-		handleOnChange,
-		handleOnSubmit
-	} = formValidation(INITIAL_STATE, validateLogin, authenticateUser);
+	// const {
+	// 	values,
+	// 	errors,
+	// 	handleOnChange,
+	// 	handleOnSubmit
+	// } = formValidation(INITIAL_STATE, validateLogin, authenticateUser);
 
-	const [ firebaseError, setFirebaseError ] = useState(null);
-	console.log(errors);
+	// const [ firebaseError, setFirebaseError ] = useState(null);
 
 	function authenticateUser() {
 		const { email, password, name } = values;
 
-		renderSignup
+		return renderSignup
 			? firebase
 					.register(email, password, name)
 					.then(() => history.push('/dashboard'))
@@ -90,7 +85,7 @@ export const SigninAndSignup = ({
 					</div>
 					<div className="policy">
 						<p>
-							By continuing, you agree to Pintersest's{' '}
+							By continuing, you agree to Pintersest's
 							<span className="bold-text">
 								Terms of Service, Privacy Policy
 							</span>
