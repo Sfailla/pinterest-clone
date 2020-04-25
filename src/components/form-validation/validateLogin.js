@@ -16,11 +16,11 @@ export default function validateLogin(values) {
 		errors.password = 'Password must be 6 characters';
 	}
 	// Name Errors
-	if (!values.name) {
-		errors.name = 'Name is required';
-	} else if (values.name.length < 4) {
-		errors.name = 'Name must be more than 3 characters';
-	}
+	// if (location && !values.name) {
+	// 	errors.name = 'Name is required';
+	// } else if (location && values.name.length < 4) {
+	// 	errors.name = 'Name must be more than 3 characters';
+	// }
 
 	return errors;
 }
