@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 function formValidation(initialState, validate, authenticate) {
-	const [ values, setValues ] = useState(initialState);
-	const [ errors, setErrors ] = useState(null);
-	const [ isSubmitting, setSubmitting ] = useState(false);
+	const [ values, setValues ] = React.useState(initialState);
+	const [ errors, setErrors ] = React.useState(null);
+	const [ isSubmitting, setSubmitting ] = React.useState(false);
 
-	useEffect(
+	React.useEffect(
 		() => {
 			if (isSubmitting) {
 				const noErrors = Object.keys(errors).length === 0;

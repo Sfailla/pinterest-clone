@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import logo from '../../svg/pinterest-logo.svg';
 import firebase from '../../firebase/firebase';
 
@@ -23,7 +23,7 @@ const SigninAndSignup = ({ renderSignup, renderLogin, history }) => {
 		handleOnSubmit
 	} = formValidation(INITIAL_STATE, validateLogin, authenticateUser);
 
-	const [ firebaseError, setFirebaseError ] = useState(null);
+	const [ firebaseError, setFirebaseError ] = React.useState(null);
 
 	function authenticateUser() {
 		const { email, password, name } = values;
