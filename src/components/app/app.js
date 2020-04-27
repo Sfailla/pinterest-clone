@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
-import userAuth from '../user-auth/userAuth';
 import PrivateRoute from '../../router/PrivateRoute';
 import PublicRoute from '../../router/PublicRoute';
 
@@ -8,26 +7,34 @@ import Header from '../header/Header.js';
 import HomePage from '../../pages/homepage/HomePage.js';
 import Dashboard from '../../pages/dashboard/Dashboard';
 
-function App() {
-	const user = userAuth();
-	console.log(!!user);
-
+function App({ user }) {
+	const [ activeLink, setActiveLink ] = React.useState('home');
+	const [ page, setPage ] = React.useState('home');
 	return (
 		<BrowserRouter>
 			<div className="app-container">
-				{user && <Header />}
+				{user && (
+					<Header
+						setPage={setPage}
+						activeLink={activeLink}
+						setActiveLink={setActiveLink}
+					/>
+				)}
 				<div className="route-container">
 					<Switch>
 						<PublicRoute
-							user={user}
 							exact
 							path="/"
+							user={user}
 							component={HomePage}
 						/>
+
 						{user && (
 							<PrivateRoute
-								user={user}
+								exact
 								path="/dashboard"
+								page={page}
+								user={user}
 								component={Dashboard}
 							/>
 						)}
