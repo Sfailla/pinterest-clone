@@ -2,8 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import 'normalize.css';
 import './styles/style.scss';
+
 import App from './components/app/app';
+import userAuth from './components/user-auth/userAuth';
 
-const app = <App />;
+const AppWrapper = () => {
+	const user = userAuth();
 
-ReactDOM.render(app, document.getElementById('root'));
+	return <App user={user} />;
+};
+
+ReactDOM.render(<AppWrapper />, document.getElementById('root'));
