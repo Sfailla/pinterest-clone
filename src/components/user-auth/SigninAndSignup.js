@@ -10,20 +10,20 @@ import formValidation from '../form-validation/formValidation';
 import validateLogin from '../form-validation/validateLogin';
 
 const SigninAndSignup = ({ renderSignup, renderLogin, history }) => {
-	// const INITIAL_STATE = {
-	// 	email: '',
-	// 	password: '',
-	// 	name: ''
-	// };
+	const INITIAL_STATE = {
+		email: '',
+		password: '',
+		name: ''
+	};
 
-	// const {
-	// 	values,
-	// 	errors,
-	// 	handleOnChange,
-	// 	handleOnSubmit
-	// } = formValidation(INITIAL_STATE, validateLogin, authenticateUser);
+	const {
+		values,
+		errors,
+		handleOnChange,
+		handleOnSubmit
+	} = formValidation(INITIAL_STATE, validateLogin, authenticateUser);
 
-	// const [ firebaseError, setFirebaseError ] = useState(null);
+	const [ firebaseError, setFirebaseError ] = useState(null);
 
 	function authenticateUser() {
 		const { email, password, name } = values;
