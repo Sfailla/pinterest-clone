@@ -42,6 +42,14 @@ function HomePage(props) {
 						setRenderLogin={setRenderLogin}
 						setRenderSignup={setRenderSignup}
 					/>
+					<Button
+						name="Log in"
+						onClick={() => {
+							setRenderSignup(false);
+							setRenderLogin(true);
+						}}
+						className="auth-link-button"
+					/>
 				</Fragment>
 			)}
 			{renderLogin && (
@@ -53,28 +61,17 @@ function HomePage(props) {
 						setRenderLogin={setRenderLogin}
 						setRenderSignup={setRenderSignup}
 					/>
+					<Button
+						name="Log Out"
+						onClick={() => {
+							setRenderSignup(true);
+							setRenderLogin(false);
+						}}
+						className="auth-link-button"
+					/>
 				</Fragment>
 			)}
-			{renderSignup && (
-				<Button
-					name="Log in"
-					onClick={() => {
-						setRenderSignup(false);
-						setRenderLogin(true);
-					}}
-					className="auth-link-button"
-				/>
-			)}
-			{renderLogin && (
-				<Button
-					name="Sign up"
-					onClick={() => {
-						setRenderLogin(false);
-						setRenderSignup(true);
-					}}
-					className="auth-link-button"
-				/>
-			)}
+
 			<div className="homepage">
 				<GridContainer className="grid-container">
 					<GridBox image={image1} className="box box-large" />
@@ -88,22 +85,22 @@ function HomePage(props) {
 					<GridBox image={image9} className="box box-large" />
 					<GridBox image={image10} className="box box-large" />
 					<GridBox image={image1} className="box box-large" />
-					<GridBox image={image2} className="box box-large" />
-					<GridBox image={image3} className="box box-medium" />
 					<GridBox image={image4} className="box box-medium" />
 					<GridBox image={image5} className="box box-medium" />
 					<GridBox image={image6} className="box box-small" />
-					<GridBox image={image7} className="box box-large" />
+					<GridBox image={image10} className="box box-large" />
+					<GridBox image={image3} className="box box-medium" />
 					<GridBox image={image8} className="box box-small" />
 					<GridBox image={image9} className="box box-large" />
-					<GridBox image={image10} className="box box-large" />
+					<GridBox image={image7} className="box box-large" />
 					<GridBox image={image1} className="box box-large" />
 					<GridBox image={image2} className="box box-large" />
+					<GridBox image={image7} className="box box-large" />
 					<GridBox image={image3} className="box box-medium" />
+					<GridBox image={image2} className="box box-large" />
 					<GridBox image={image4} className="box box-medium" />
 					<GridBox image={image5} className="box box-medium" />
 					<GridBox image={image6} className="box box-small" />
-					<GridBox image={image7} className="box box-large" />
 					<GridBox image={image8} className="box box-small" />
 					<GridBox image={image8} className="box box-small" />
 					<GridBox image={image9} className="box box-large" />
