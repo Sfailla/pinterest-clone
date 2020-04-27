@@ -11,7 +11,8 @@ import image8 from '../../images/grid-img-8.png';
 import image9 from '../../images/grid-img-9.png';
 import image10 from '../../images/grid-img-10.png';
 
-import Box from '../../components/grid-box/Box';
+import GridBox from '../../components/grid/GridBox';
+import GridContainer from '../../components/grid/GridContainer';
 import Button from '../../components/buttons/Button';
 import HomePageCard from '../../components/homepage-card/HomePageCard';
 import SigninAndSignup from '../../components/user-auth/SigninAndSignup';
@@ -75,39 +76,39 @@ function HomePage(props) {
 				/>
 			)}
 			<div className="homepage">
-				<div className="grid-container">
-					<Box image={image1} className="box box-large" />
-					<Box image={image2} className="box box-large" />
-					<Box image={image3} className="box box-medium" />
-					<Box image={image4} className="box box-medium" />
-					<Box image={image5} className="box box-medium" />
-					<Box image={image6} className="box box-small" />
-					<Box image={image7} className="box box-large" />
-					<Box image={image8} className="box box-small" />
-					<Box image={image9} className="box box-large" />
-					<Box image={image10} className="box box-large" />
-					<Box image={image1} className="box box-large" />
-					<Box image={image2} className="box box-large" />
-					<Box image={image3} className="box box-medium" />
-					<Box image={image4} className="box box-medium" />
-					<Box image={image5} className="box box-medium" />
-					<Box image={image6} className="box box-small" />
-					<Box image={image7} className="box box-large" />
-					<Box image={image8} className="box box-small" />
-					<Box image={image9} className="box box-large" />
-					<Box image={image10} className="box box-large" />
-					<Box image={image1} className="box box-large" />
-					<Box image={image2} className="box box-large" />
-					<Box image={image3} className="box box-medium" />
-					<Box image={image4} className="box box-medium" />
-					<Box image={image5} className="box box-medium" />
-					<Box image={image6} className="box box-small" />
-					<Box image={image7} className="box box-large" />
-					<Box image={image8} className="box box-small" />
-					<Box image={image8} className="box box-small" />
-					<Box image={image9} className="box box-large" />
-					<Box image={image10} className="box box-large" />
-				</div>
+				<GridContainer className="grid-container">
+					<GridBox image={image1} className="box box-large" />
+					<GridBox image={image2} className="box box-large" />
+					<GridBox image={image3} className="box box-medium" />
+					<GridBox image={image4} className="box box-medium" />
+					<GridBox image={image5} className="box box-medium" />
+					<GridBox image={image6} className="box box-small" />
+					<GridBox image={image7} className="box box-large" />
+					<GridBox image={image8} className="box box-small" />
+					<GridBox image={image9} className="box box-large" />
+					<GridBox image={image10} className="box box-large" />
+					<GridBox image={image1} className="box box-large" />
+					<GridBox image={image2} className="box box-large" />
+					<GridBox image={image3} className="box box-medium" />
+					<GridBox image={image4} className="box box-medium" />
+					<GridBox image={image5} className="box box-medium" />
+					<GridBox image={image6} className="box box-small" />
+					<GridBox image={image7} className="box box-large" />
+					<GridBox image={image8} className="box box-small" />
+					<GridBox image={image9} className="box box-large" />
+					<GridBox image={image10} className="box box-large" />
+					<GridBox image={image1} className="box box-large" />
+					<GridBox image={image2} className="box box-large" />
+					<GridBox image={image3} className="box box-medium" />
+					<GridBox image={image4} className="box box-medium" />
+					<GridBox image={image5} className="box box-medium" />
+					<GridBox image={image6} className="box box-small" />
+					<GridBox image={image7} className="box box-large" />
+					<GridBox image={image8} className="box box-small" />
+					<GridBox image={image8} className="box box-small" />
+					<GridBox image={image9} className="box box-large" />
+					<GridBox image={image10} className="box box-large" />
+				</GridContainer>
 			</div>
 		</Fragment>
 	);
