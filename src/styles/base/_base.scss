@@ -26,3 +26,9 @@ button {
 	outline: none;
 	border: none;
 }
+
+button.active {
+	background: black;
+	color: white;
+	border-radius: 24px;
+}
