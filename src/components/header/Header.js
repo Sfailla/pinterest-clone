@@ -1,4 +1,7 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import firebase from '../../firebase/firebase';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -6,14 +9,28 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Badge from '@material-ui/core/Badge';
+import Button from '@material-ui/core/Button';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import SearchIcon from '@material-ui/icons/Search';
 import logo from '../../svg/pinterest-logo.svg';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		flexGrow: 1
+		flexGrow: 1,
+
+		'& .MuiButton-root': {
+			marginLeft: '8px',
+			padding: '0px',
+			borderRadius: '24px'
+		},
+		'& .MuiButton-root:hover.active': {
+			backgroundColor: 'black',
+			borderRadius: '24px'
+		}
 	},
 	background: {
 		height: '65px',
@@ -89,17 +106,76 @@ const useStyles = makeStyles(theme => ({
 		'&:hover': {
 			fill: theme.palette.grey[700]
 		}
+	},
+	wordLink: {
+		width: '100%',
+		minWidth: '60px',
+		height: '40px',
+		padding: '2px 5px',
+		backgroundColor: 'rgba(0, 0, 0, 0.04)',
+		color: 'inherit',
+		fontFamily:
+			'-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica',
+		fontWeight: 'bold',
+		fontSize: '16px',
+		borderRadius: '24px',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center'
 	}
 }));
 
-export default function Header() {
+export default function Header({
+	setActiveLink,
+	activeLink,
+	setPage
+}) {
 	const classes = useStyles();
+	const history = useHistory();
+
+	const [ anchorEl, setAnchorEl ] = React.useState(null);
+
+	const open = Boolean(anchorEl);
+
+	const handleMenu = event => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
 
 	return (
 		<div className={classes.root}>
 			<AppBar className={classes.background} position="static">
 				<Toolbar>
+					{/* logo */}
 					<img className={classes.logo} src={logo} />
+					<Button
+						className={activeLink === 'home' ? 'active' : ''}
+						onClick={() => {
+							setActiveLink('home');
+							setPage('home');
+						}}
+					>
+						{/* home link */}
+						<Typography varient="h4" className={classes.wordLink}>
+							HOME
+						</Typography>
+					</Button>
+					{/* boards link */}
+					<Button
+						onClick={() => {
+							setActiveLink('boards');
+							setPage('boards');
+						}}
+						className={activeLink === 'boards' ? 'active' : ''}
+					>
+						<Typography varient="h4" className={classes.wordLink}>
+							BOARDS
+						</Typography>
+					</Button>
+					{/* search input and icon */}
 					<div className={classes.search}>
 						<div className={classes.searchIcon}>
 							<SearchIcon />
@@ -113,12 +189,17 @@ export default function Header() {
 							inputProps={{ 'aria-label': 'search' }}
 						/>
 					</div>
+					{/* spacer */}
 					<div className={classes.spacer} />
+					{/* chat icon and badges */}
 					<IconButton color="inherit" aria-label="chat with people">
-						<ChatOutlinedIcon className={classes.iconFill} />
+						<Badge badgeContent={2} color="secondary">
+							<ChatOutlinedIcon className={classes.iconFill} />
+						</Badge>
 					</IconButton>
+					{/* alert icon and badges */}
 					<IconButton
-						aria-label="show 4 new notifications"
+						aria-label="new notifications"
 						color="inherit"
 						className={classes.alert}
 					>
@@ -126,7 +207,9 @@ export default function Header() {
 							<NotificationsIcon className={classes.iconFill} />
 						</Badge>
 					</IconButton>
+					{/* open menu button  */}
 					<IconButton
+						onClick={handleMenu}
 						edge="start"
 						className={classes.menuButton}
 						color="inherit"
@@ -137,6 +220,35 @@ export default function Header() {
 							className={classes.iconFill}
 						/>
 					</IconButton>
+					{/* user menu options */}
+					<Menu
+						id="menu-appbar"
+						anchorEl={anchorEl}
+						anchorOrigin={{
+							vertical: 'top',
+							horizontal: 'right'
+						}}
+						keepMounted
+						transformOrigin={{
+							vertical: 'top',
+							horizontal: 'right'
+						}}
+						open={open}
+						onClose={handleClose}
+					>
+						<MenuItem onClick={handleClose}>Profile</MenuItem>
+						<MenuItem
+							onClick={() => {
+								firebase
+									.logout()
+									.then(() => history.push('/'))
+									.catch(err => console.log(err));
+								handleClose();
+							}}
+						>
+							Sign Out
+						</MenuItem>
+					</Menu>
 				</Toolbar>
 			</AppBar>
 		</div>
