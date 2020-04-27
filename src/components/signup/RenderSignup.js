@@ -4,7 +4,7 @@ import FormGroup from '../form-group/FormGroup';
 import Input from '../input/Input';
 import Button from '../buttons/Button';
 
-const RenderSignup = ({ values, handleOnChange, handleOnSubmit }) => {
+function RenderSignup({ values, handleOnChange, handleOnSubmit }) {
 	return (
 		<div className="signup">
 			<FormGroup onSubmit={handleOnSubmit} className="form-wrapper">
@@ -42,6 +42,6 @@ const RenderSignup = ({ values, handleOnChange, handleOnSubmit }) => {
 			</FormGroup>
 		</div>
 	);
-};
+}
 
 export default RenderSignup;

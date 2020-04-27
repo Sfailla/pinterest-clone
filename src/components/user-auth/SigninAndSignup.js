@@ -9,7 +9,7 @@ import Button from '../buttons/Button';
 import formValidation from '../form-validation/formValidation';
 import validateLogin from '../form-validation/validateLogin';
 
-const SigninAndSignup = ({ renderSignup, renderLogin, history }) => {
+function SigninAndSignup({ renderSignup, renderLogin, history }) {
 	const INITIAL_STATE = {
 		email: '',
 		password: '',
@@ -102,6 +102,6 @@ const SigninAndSignup = ({ renderSignup, renderLogin, history }) => {
 			</div>
 		</div>
 	);
-};
+}
 
 export default SigninAndSignup;

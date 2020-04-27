@@ -2,11 +2,11 @@ import React from 'react';
 import logo from '../../svg/pinterest-logo.svg';
 import Button from '../buttons/Button';
 
-const HomePageCard = ({
+function HomePageCard({
 	setRenderLogin,
 	setRenderSignup,
 	setRenderAuthCard
-}) => {
+}) {
 	return (
 		<div className="card homepage__card">
 			<div className="card-body homepage__card-body">
@@ -49,6 +49,6 @@ const HomePageCard = ({
 			</div>
 		</div>
 	);
-};
+}
 
 export default HomePageCard;

@@ -125,11 +125,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-export default function Header({
-	setActiveLink,
-	activeLink,
-	setPage
-}) {
+function Header({ setActiveLink, activeLink, setPage }) {
 	const classes = useStyles();
 	const history = useHistory();
 
@@ -254,3 +250,5 @@ export default function Header({
 		</div>
 	);
 }
+
+export default Header;
