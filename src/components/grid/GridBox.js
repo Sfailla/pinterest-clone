@@ -1,10 +1,11 @@
 import React from 'react';
 
-const Box = ({ image, className }) => {
+const Box = ({ image, className, addStyle }) => {
 	return (
 		<div
 			style={{
-				background: `url(${image}) no-repeat center top / cover`
+				background: `url(${image}) no-repeat center top / cover`,
+				...addStyle
 			}}
 			className={className}
 		/>
