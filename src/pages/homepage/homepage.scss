@@ -21,30 +21,3 @@
 	right: 0;
 	background-color: rgba(0, 0, 0, 0.5);
 }
-
-.grid-container {
-	width: 100%;
-	height: 100%;
-	justify-content: center;
-
-	display: grid;
-	grid-template-columns: repeat(auto-fill, 236px);
-	grid-auto-rows: 100px;
-	grid-gap: 10px;
-}
-
-.box {
-	width: 100%;
-	height: 100%;
-	border-radius: 10px;
-}
-
-.box-small {
-	grid-row-end: span 2;
-}
-.box-medium {
-	grid-row-end: span 3;
-}
-.box-large {
-	grid-row-end: span 4;
-}
