@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({
 	component: Component,
+	setPage,
 	page,
 	user,
 	...rest
@@ -12,7 +13,7 @@ const PrivateRoute = ({
 			{...rest}
 			render={props =>
 				!!user ? (
-					<Component {...props} page={page} />
+					<Component {...props} setPage={setPage} page={page} />
 				) : (
 					<Redirect
 						to={{
