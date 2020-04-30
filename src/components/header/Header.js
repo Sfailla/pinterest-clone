@@ -125,7 +125,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-function Header({ setActiveLink, activeLink, setPage }) {
+function Header({ page, setPage }) {
 	const classes = useStyles();
 	const history = useHistory();
 
@@ -148,9 +148,8 @@ function Header({ setActiveLink, activeLink, setPage }) {
 					{/* logo */}
 					<img className={classes.logo} src={logo} />
 					<Button
-						className={activeLink === 'home' ? 'active' : ''}
+						className={page === 'home' ? 'active' : ''}
 						onClick={() => {
-							setActiveLink('home');
 							setPage('home');
 						}}
 					>
@@ -162,10 +161,9 @@ function Header({ setActiveLink, activeLink, setPage }) {
 					{/* boards link */}
 					<Button
 						onClick={() => {
-							setActiveLink('boards');
 							setPage('boards');
 						}}
-						className={activeLink === 'boards' ? 'active' : ''}
+						className={page === 'boards' ? 'active' : ''}
 					>
 						<Typography varient="h4" className={classes.wordLink}>
 							BOARDS
