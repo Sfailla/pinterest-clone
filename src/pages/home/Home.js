@@ -2,10 +2,7 @@ import React from 'react';
 import GridContainer from '../../components/grid/GridContainer';
 import GridBox from '../../components/grid/GridBox';
 
-function Home({ data }) {
-	const [ collection, setCollection ] = React.useState(null);
-	const [ loading, setLoading ] = React.useState(false);
-
+function Home({ data, setPage, setSingleViewData }) {
 	return (
 		<div className="home">
 			<div className="text-wrapper">
@@ -15,16 +12,29 @@ function Home({ data }) {
 
 			<GridContainer className="home__grid">
 				{data &&
-					data.map((res, i) => {
+					data.map(res => {
+						const height = Math.round(
+							(200 + Math.ceil(Math.random() * 300)) / 100
+						);
 						return (
 							<GridBox
-								className="box"
 								key={res.urls.regular}
 								addStyle={{
 									width: '236px',
 									background: `url(${res.urls
 										.regular}) no-repeat center top / cover`,
-									gridRowEnd: i % 2 === 0 ? 'span 3' : 'span 4'
+									gridRowEnd: `span ${height}`
+								}}
+								className="box home__grid-box"
+								onClick={() => {
+									setSingleViewData({
+										id: res.id,
+										img: res.urls.regular,
+										author: res.user.name,
+										authorLink: res.user.links.self,
+										description: res.description
+									});
+									setPage('view-pin');
 								}}
 							/>
 						);
