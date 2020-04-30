@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Box = ({ image, className, addStyle }) => {
+const Box = ({ image, className, addStyle, onClick }) => {
 	return (
 		<div
 			style={{
@@ -8,6 +8,7 @@ const Box = ({ image, className, addStyle }) => {
 				...addStyle
 			}}
 			className={className}
+			onClick={onClick}
 		/>
 	);
 };
