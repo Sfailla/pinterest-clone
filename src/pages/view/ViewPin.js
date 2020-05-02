@@ -2,14 +2,26 @@ import React from 'react';
 import './view.css';
 
 export default function ViewPin({ viewData }) {
+	const { author, description, img, authorLink } = viewData;
+	const background = { backgroundImage: `url(${img})` };
 	return (
 		<div className="details wrapper">
-			<h1>{viewData.author.toUpperCase()}</h1>
 			<div className="details__card">
-				<div className="details__upper">
-					<img src={viewData.img} className="details__img" />
+				<div className="left">
+					<div style={background} className="details__img" />
 				</div>
-				<div className="details__lower" />
+				<div className="details__right">
+					<h1>{author.toUpperCase()}</h1>
+					<p className="details__description">{description}</p>
+					<a
+						href={authorLink}
+						target="_blank"
+						rel="noopener nofollow"
+						className="details__author-link"
+					>
+						link to author
+					</a>
+				</div>
 			</div>
 		</div>
 	);

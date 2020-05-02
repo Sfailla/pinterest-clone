@@ -7,11 +7,37 @@
 .details__img {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.details__left {
+	width: inherit;
+	height: 500px;
+}
+
+.details__right {
+	width: inherit;
+	background: lightpink;
+	padding: 10px;
 }
 
 .details__card {
-	height: 500px;
+	height: 700px;
 	border-radius: var(--card-border-radius);
 	overflow: hidden;
+	margin-top: 50px;
+
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+
+	-webkit-box-shadow: 0 10px 6px -6px #777;
+	-moz-box-shadow: 0 10px 6px -6px #777;
+	box-shadow: 0 10px 6px -6px #777;
+}
+
+.details__description {
+	font-size: 16px;
+	text-transform: uppercase;
 }
