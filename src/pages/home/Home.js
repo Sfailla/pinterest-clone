@@ -16,6 +16,13 @@ function Home({ data, setPage, setSingleViewData }) {
 						const height = Math.round(
 							(200 + Math.ceil(Math.random() * 300)) / 100
 						);
+						const viewData = {
+							id: res.id,
+							img: res.urls.regular,
+							author: res.user.name,
+							authorLink: res.links.self,
+							description: res.description
+						};
 						return (
 							<GridBox
 								key={res.urls.regular}
@@ -27,13 +34,7 @@ function Home({ data, setPage, setSingleViewData }) {
 								}}
 								className="box home__grid-box"
 								onClick={() => {
-									setSingleViewData({
-										id: res.id,
-										img: res.urls.regular,
-										author: res.user.name,
-										authorLink: res.user.links.self,
-										description: res.description
-									});
+									setSingleViewData(viewData);
 									setPage('view-pin');
 								}}
 							/>
