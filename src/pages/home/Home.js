@@ -20,7 +20,7 @@ function Home({ data, setPage, setSingleViewData }) {
 							id: res.id,
 							img: res.urls.regular,
 							author: res.user.name,
-							authorLink: res.links.self,
+							authorLink: res.links.html,
 							description: res.description
 						};
 						return (
