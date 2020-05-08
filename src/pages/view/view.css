@@ -14,12 +14,11 @@
 
 .details__left {
 	width: inherit;
-	height: 500px;
 }
 
 .details__right {
 	width: inherit;
-	background: lightpink;
+	background: gray;
 	padding: 10px;
 }
 
@@ -37,7 +36,28 @@
 	box-shadow: 0 10px 6px -6px #777;
 }
 
+.details__text-wrapper {
+	margin: 8px;
+}
+
+.details__text-wrapper h1 {
+	font-size: 28px;
+}
+
 .details__description {
-	font-size: 16px;
+	font-size: 12px;
 	text-transform: uppercase;
+}
+
+.details__description span {
+	font-style: italic;
+}
+
+.details__button {
+	width: 100%;
+	height: 3rem;
+}
+
+.details__author-link {
+	font-size: 16px;
 }
