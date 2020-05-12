@@ -3,6 +3,11 @@ import GridContainer from '../../components/grid/GridContainer';
 import GridBox from '../../components/grid/GridBox';
 
 function Home({ data, setPage, setSingleViewData }) {
+	const [ state, setState ] = React.useState({
+		height: 2,
+		newData: null
+	});
+
 	return (
 		<div className="home">
 			<div className="text-wrapper">
@@ -17,7 +22,6 @@ function Home({ data, setPage, setSingleViewData }) {
 							(200 + Math.ceil(Math.random() * 300)) / 100
 						);
 						const viewData = {
-							id: res.id,
 							img: res.urls.regular,
 							author: res.user.name,
 							authorLink: res.links.html,
