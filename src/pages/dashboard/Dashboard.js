@@ -8,7 +8,6 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 
 const INITIAL_VIEW_STATE = {
-	id: '',
 	img: '',
 	author: '',
 	authorLink: '',
@@ -19,7 +18,7 @@ const SlideTransition = props => {
 	return <Slide {...props} direction="up" />;
 };
 
-function Dashboard({ setPage, page }) {
+function Dashboard({ setPage, page, query }) {
 	const [ appData, setAppData ] = React.useState(null);
 	const [ singleViewData, setSingleViewData ] = React.useState(
 		INITIAL_VIEW_STATE
@@ -29,14 +28,14 @@ function Dashboard({ setPage, page }) {
 		Transition: SlideTransition
 	});
 	const [ message, setMessage ] = React.useState('');
-
+	// handles opening the snackbar
 	const handleClick = Transition => {
 		setState({
 			open: true,
 			Transition
 		});
 	};
-
+	// handles closing the snackbar
 	const handleClose = (event, reason) => {
 		if (reason === 'clickaway') {
 			return;
@@ -51,15 +50,15 @@ function Dashboard({ setPage, page }) {
 		const baseUrl = 'https://api.unsplash.com/search/photos?';
 		const client_id = 'qoz2rrh6ChkvTtjYQapHD8P3cXZNi2ZDpG_CD7WBoOU';
 
-		if (!appData) {
-			const query = 'guns';
+		if (appData === null) {
 			const urlParams = `&query=${query}&page=1&per_page=20&client_id=${client_id}`;
 			const result = await fetch(`${baseUrl}${urlParams}`);
 			const data = await result.json();
 
 			return setAppData(data.results);
 		}
-		return appData;
+
+		return;
 	};
 
 	const addPinToBoard = async () => {
@@ -97,9 +96,14 @@ function Dashboard({ setPage, page }) {
 		}
 	};
 
-	React.useEffect(() => {
-		getInitialData();
-	}, []);
+	React.useEffect(
+		() => {
+			getInitialData();
+		},
+		[ appData ]
+	);
+
+	console.log(query);
 
 	return (
 		<div className="dashboard">
