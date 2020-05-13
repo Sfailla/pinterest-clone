@@ -27,7 +27,7 @@ function Header({ page, setPage, setQuery }) {
 	const handleMenu = event => {
 		setAnchorEl(event.currentTarget);
 	};
-	git;
+
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
