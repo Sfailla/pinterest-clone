@@ -5,6 +5,7 @@ const PrivateRoute = ({
 	component: Component,
 	setPage,
 	page,
+	query,
 	user,
 	...rest
 }) => {
@@ -13,7 +14,12 @@ const PrivateRoute = ({
 			{...rest}
 			render={props =>
 				!!user ? (
-					<Component {...props} setPage={setPage} page={page} />
+					<Component
+						{...props}
+						query={query}
+						setPage={setPage}
+						page={page}
+					/>
 				) : (
 					<Redirect
 						to={{
