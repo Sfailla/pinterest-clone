@@ -10,13 +10,16 @@ import userAuth from '../user-auth/userAuth';
 
 function App() {
 	const [ page, setPage ] = React.useState('home');
+	const [ query, setQuery ] = React.useState('guns');
 
 	const user = userAuth();
 
 	return (
 		<BrowserRouter>
 			<div className="app-container">
-				{user && <Header page={page} setPage={setPage} />}
+				{user && (
+					<Header page={page} setQuery={setQuery} setPage={setPage} />
+				)}
 				<div className="route-container">
 					<Switch>
 						<PublicRoute
@@ -32,6 +35,7 @@ function App() {
 								path="/dashboard"
 								page={page}
 								user={user}
+								query={query}
 								setPage={setPage}
 								component={Dashboard}
 							/>
