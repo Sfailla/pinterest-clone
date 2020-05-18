@@ -1,52 +1,59 @@
-import React from 'react';
-import GridContainer from '../../components/grid/GridContainer';
-import GridBox from '../../components/grid/GridBox';
+import * as React from 'react';
+import { Masonry } from 'masonic';
+import './masonic.css';
 
-function Home({ data, setPage, setSingleViewData }) {
-	const [ state, setState ] = React.useState({
-		height: 2,
-		newData: null
-	});
+const styles = {
+	card: {
+		width: '236px',
+		height: 'auto',
+		borderRadius: '16px',
+		backgroundColor: 'lightpink',
+		padding: '2px 10px',
+		overflow: 'hidden'
+	}
+};
+
+const EasyMasonryComponent = ({ data, isLoading }) => {
+	const getGridItems = () => {
+		const gridItems = [];
+
+		data &&
+			data.map((res, i) => {
+				return gridItems.push({
+					id: i + 1,
+					name: res.user.name,
+					src: res.urls.regular
+				});
+			});
+
+		return gridItems;
+	};
+
+	const MasonryCard = ({ data: { name, src } }) =>
+		data && (
+			<div style={styles.card}>
+				<img src={src} className="img" alt="pix" />
+				<span children={name} />
+			</div>
+		);
+
+	const items = getGridItems();
 
 	return (
-		<div className="home">
-			<div className="text-wrapper">
-				<h1 className="home__title">explore</h1>
-				<p />
-			</div>
-
-			<GridContainer className="home__grid">
-				{data &&
-					data.map(res => {
-						const height = Math.round(
-							(200 + Math.ceil(Math.random() * 300)) / 100
-						);
-						const viewData = {
-							img: res.urls.regular,
-							author: res.user.name,
-							authorLink: res.links.html,
-							description: res.description
-						};
-						return (
-							<GridBox
-								key={res.urls.regular}
-								addStyle={{
-									width: '236px',
-									background: `url(${res.urls
-										.regular}) no-repeat center top / cover`,
-									gridRowEnd: `span ${height}`
-								}}
-								className="box home__grid-box"
-								onClick={() => {
-									setSingleViewData(viewData);
-									setPage('view-pin');
-								}}
-							/>
-						);
-					})}
-			</GridContainer>
+		<div className="container">
+			{isLoading ? (
+				<Masonry
+					items={items}
+					columnGutter={10}
+					columnWidth={236}
+					overscanBy={2}
+					render={MasonryCard}
+				/>
+			) : (
+				<div>Loading...</div>
+			)}
 		</div>
 	);
-}
+};
 
-export default Home;
+export default EasyMasonryComponent;
