@@ -24,8 +24,6 @@ function Header({ page, setPage, setQuery }) {
 	const history = useHistory();
 	const open = Boolean(anchorEl);
 
-	console.log(open);
-
 	const handleMenu = event => {
 		setAnchorEl(event.currentTarget);
 	};
