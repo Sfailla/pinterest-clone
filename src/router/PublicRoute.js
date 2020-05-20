@@ -5,10 +5,10 @@ const PublicRoute = ({ component: Component, user, ...rest }) => (
 	<Route
 		{...rest}
 		component={props =>
-			!!user ? (
+			user ? (
 				<Redirect to="/dashboard" />
 			) : (
-				<Component {...props} />
+				<Component {...props} {...rest} />
 			)}
 	/>
 );
