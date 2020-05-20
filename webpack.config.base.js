@@ -7,7 +7,8 @@ module.exports = {
 	},
 	output: {
 		path: path.join(__dirname, 'dist'),
-		filename: 'app.bundle.js'
+		filename: 'app.bundle.js',
+		publicPath: '/'
 	},
 	module: {
 		rules: [
