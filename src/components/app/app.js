@@ -4,6 +4,7 @@ import PrivateRoute from '../../router/PrivateRoute';
 import PublicRoute from '../../router/PublicRoute';
 
 import Header from '../header/Header.js';
+import Home from '../../pages/home/Home';
 import HomePage from '../../pages/homepage/HomePage.js';
 import Dashboard from '../../pages/dashboard/Dashboard';
 import userAuth from '../user-auth/userAuth';
