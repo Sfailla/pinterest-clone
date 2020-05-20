@@ -2,18 +2,7 @@ import * as React from 'react';
 import { Masonry } from 'masonic';
 import './masonic.css';
 
-const styles = {
-	card: {
-		width: '236px',
-		height: 'auto',
-		borderRadius: '16px',
-		backgroundColor: 'lightpink',
-		padding: '2px 10px',
-		overflow: 'hidden'
-	}
-};
-
-const EasyMasonryComponent = ({ data, isLoading }) => {
+const Home = ({ data, isLoading }) => {
 	const getGridItems = () => {
 		const gridItems = [];
 
@@ -29,24 +18,25 @@ const EasyMasonryComponent = ({ data, isLoading }) => {
 		return gridItems;
 	};
 
-	const MasonryCard = ({ data: { name, src } }) =>
-		data && (
-			<div style={styles.card}>
-				<img src={src} className="img" alt="pix" />
-				<span children={name} />
-			</div>
-		);
+	const MasonryCard = ({ data: { name, src } }) => (
+		<div className="mason-card">
+			<img src={src} className="img" alt="pix" />
+			<span children={name.toUpperCase()} />
+		</div>
+	);
 
 	const items = getGridItems();
+	console.count('home_rendered');
 
 	return (
 		<div className="container">
-			{isLoading ? (
+			{!isLoading ? (
 				<Masonry
-					items={items}
-					columnGutter={10}
 					columnWidth={236}
+					columnGutter={10}
 					overscanBy={2}
+					items={items}
+					className="grid-item-card"
 					render={MasonryCard}
 				/>
 			) : (
@@ -56,4 +46,4 @@ const EasyMasonryComponent = ({ data, isLoading }) => {
 	);
 };
 
-export default EasyMasonryComponent;
+export default Home;
