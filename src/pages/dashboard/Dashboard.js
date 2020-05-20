@@ -2,18 +2,10 @@ import React from 'react';
 import firebase from '../../firebase/firebase';
 
 import Home from '../../pages/home/Home';
-// import Home from '../../pages/home/Home1';
-import EasyMasonryComponent from '../../pages/boards/Boards';
 import ViewPin from '../../pages/view/ViewPin';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
-
-const INITIAL_VIEW_STATE = {
-	img: '',
-	author: '',
-	authorLink: '',
-	description: ''
-};
+import Boards from '../../pages/boards/Boards';
 
 const SlideTransition = props => {
 	return <Slide {...props} direction="up" />;
@@ -22,9 +14,12 @@ const SlideTransition = props => {
 function Dashboard({ setPage, page, query }) {
 	const [ appData, setAppData ] = React.useState(null);
 	const [ isLoading, setIsLoading ] = React.useState(false);
-	const [ singleViewData, setSingleViewData ] = React.useState(
-		INITIAL_VIEW_STATE
-	);
+	const [ singleViewData, setSingleViewData ] = React.useState({
+		img: '',
+		author: '',
+		authorLink: '',
+		description: ''
+	});
 	const [ state, setState ] = React.useState({
 		open: false,
 		Transition: SlideTransition
@@ -87,7 +82,7 @@ function Dashboard({ setPage, page, query }) {
 					/>
 				);
 			case 'boards':
-				return <EasyMasonryComponent data={appData} />;
+				return <Boards />;
 			case 'view-pin':
 				return (
 					<ViewPin
@@ -107,11 +102,12 @@ function Dashboard({ setPage, page, query }) {
 		getInitialData();
 	}, []);
 
-	console.log('I rendered');
+	console.log('dash rendered');
 
 	return (
 		<div className="dashboard">
-			<RenderComponent />
+			<h1>Dashboard</h1>
+			{RenderComponent()}
 			<Snackbar
 				anchorOrigin={{
 					vertical: 'bottom',
