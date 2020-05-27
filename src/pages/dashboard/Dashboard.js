@@ -73,13 +73,15 @@ function Dashboard({ setPage, page, query }) {
 		switch (page) {
 			case 'home':
 				return (
-					<Home
-						setSingleViewData={setSingleViewData}
-						page={page}
-						isLoading={isLoading}
-						setPage={setPage}
-						data={appData}
-					/>
+					appData && (
+						<Home
+							setSingleViewData={setSingleViewData}
+							page={page}
+							isLoading={isLoading}
+							setPage={setPage}
+							data={appData}
+						/>
+					)
 				);
 			case 'boards':
 				return <Boards />;
@@ -98,11 +100,8 @@ function Dashboard({ setPage, page, query }) {
 	};
 
 	React.useEffect(() => {
-		console.log('use effect firing');
 		getInitialData();
 	}, []);
-
-	console.log('dash rendered');
 
 	return (
 		<div className="dashboard">
