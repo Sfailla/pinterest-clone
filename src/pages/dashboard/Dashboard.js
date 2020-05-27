@@ -77,7 +77,6 @@ function Dashboard({ setPage, page, query }) {
 						<Home
 							setSingleViewData={setSingleViewData}
 							page={page}
-							isLoading={isLoading}
 							setPage={setPage}
 							data={appData}
 						/>
