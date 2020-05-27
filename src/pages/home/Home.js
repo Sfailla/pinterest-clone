@@ -2,39 +2,74 @@ import * as React from 'react';
 import { Masonry } from 'masonic';
 import './masonic.css';
 
-const Home = ({ data, isLoading }) => {
+const Home = ({ data }) => {
+	const [ imgLoaded, setImgLoaded ] = React.useState(false);
+	const imageRef = React.useRef(null);
+
 	const getGridItems = () => {
-		const gridItems = [];
+		const itemArr = [];
 
 		data &&
 			data.map((res, i) => {
-				return gridItems.push({
-					id: i + 1,
+				itemArr.push({
+					id: res.id,
 					name: res.user.name,
 					src: res.urls.regular
 				});
 			});
 
-		return gridItems;
+		return itemArr;
+	};
+
+	const handleLoadImg = () => {
+		if (!imgLoaded) {
+			setImgLoaded(true);
+		}
 	};
 
 	const MasonryCard = ({ data: { name, src } }) => (
 		<div className="mason-card">
-			<img src={src} className="img" alt="pix" />
+			<img
+				src={src}
+				ref={imageRef}
+				onLoad={handleLoadImg}
+				className="img"
+				alt="pix"
+			/>
 			<span children={name.toUpperCase()} />
 		</div>
 	);
 
-	const items = getGridItems();
-	console.count('home_rendered');
+	const LoadImgsAndHide = () => {
+		const styles = {
+			hideImg: {
+				display: 'none'
+			}
+		};
+		return (
+			<div style={styles.hideImg}>
+				{items.map(i => <MasonryCard key={i.id} data={i} />)}
+			</div>
+		);
+	};
+
+	let items = getGridItems();
+
+	React.useEffect(() => {
+		let img = imageRef.current;
+		if (img && img.complete) {
+			handleLoadImg();
+		}
+	}, []);
 
 	return (
 		<div className="container">
-			{!isLoading ? (
+			{LoadImgsAndHide()}
+			{imgLoaded ? (
 				<Masonry
 					columnWidth={236}
 					columnGutter={10}
-					overscanBy={2}
+					overscanBy={1}
 					items={items}
 					className="grid-item-card"
 					render={MasonryCard}
