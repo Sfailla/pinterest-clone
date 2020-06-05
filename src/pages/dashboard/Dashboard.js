@@ -73,7 +73,7 @@ function Dashboard({ setPage, page, query }) {
 		switch (page) {
 			case 'home':
 				return (
-					appData && (
+					!isLoading && (
 						<Home
 							setSingleViewData={setSingleViewData}
 							page={page}
@@ -104,7 +104,9 @@ function Dashboard({ setPage, page, query }) {
 
 	return (
 		<div className="dashboard">
-			<h1>Dashboard</h1>
+			<h1 className="dashboard__title">
+				returned images for "{query}"
+			</h1>
 			{RenderComponent()}
 			<Snackbar
 				anchorOrigin={{
