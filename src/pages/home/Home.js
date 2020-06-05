@@ -1,10 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 import { Masonry } from 'masonic';
+import MasonryCard from '../../components/grid/MasonryCard';
 import './masonic.css';
+import { useWindowSize } from '@react-hook/window-size';
 
 const Home = ({ data }) => {
-	const [ imgLoaded, setImgLoaded ] = React.useState(false);
-	const imageRef = React.useRef(null);
+	const [ imgLoaded, setImageLoaded ] = React.useState(false);
+	const [ readyToRender, setReadyToRender ] = React.useState(false);
+	const [ windowWidth, windowHeight ] = useWindowSize();
 
 	const getGridItems = () => {
 		const itemArr = [];
@@ -23,22 +26,9 @@ const Home = ({ data }) => {
 
 	const handleLoadImg = () => {
 		if (!imgLoaded) {
-			setImgLoaded(true);
+			setImageLoaded(true);
 		}
 	};
-
-	const MasonryCard = ({ data: { name, src } }) => (
-		<div className="mason-card">
-			<img
-				src={src}
-				ref={imageRef}
-				onLoad={handleLoadImg}
-				className="img"
-				alt="pix"
-			/>
-			<span children={name.toUpperCase()} />
-		</div>
-	);
 
 	const LoadImgsAndHide = () => {
 		const styles = {
@@ -48,24 +38,30 @@ const Home = ({ data }) => {
 		};
 		return (
 			<div style={styles.hideImg}>
-				{items.map(i => <MasonryCard key={i.id} data={i} />)}
+				{items.map(i => (
+					<MasonryCard
+						key={i.id}
+						handleLoadImg={handleLoadImg}
+						data={i}
+					/>
+				))}
 			</div>
 		);
 	};
 
-	let items = getGridItems();
+	const items = getGridItems();
+	console.log(readyToRender);
 
 	React.useEffect(() => {
-		let img = imageRef.current;
-		if (img && img.complete) {
-			handleLoadImg();
-		}
+		// do something on render
+		LoadImgsAndHide();
+		setReadyToRender(true);
 	}, []);
 
 	return (
 		<div className="container">
-			{LoadImgsAndHide()}
-			{imgLoaded ? (
+			Home
+			{readyToRender ? (
 				<Masonry
 					columnWidth={236}
 					columnGutter={10}

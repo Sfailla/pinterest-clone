@@ -15,10 +15,11 @@ import SearchIcon from '@material-ui/icons/Search';
 import logo from '../../svg/pinterest-logo.svg';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import FormGroup from '../form-group/FormGroup';
 import { Typography } from '@material-ui/core';
 import { useStyles } from './HeaderStyles';
 
-function Header({ page, setPage, setQuery }) {
+function Header({ page, setPage, setQuery, searchImages }) {
 	const [ anchorEl, setAnchorEl ] = React.useState(null);
 	const classes = useStyles();
 	const history = useHistory();
@@ -61,7 +62,10 @@ function Header({ page, setPage, setQuery }) {
 						</Typography>
 					</Button>
 					{/* search input and icon */}
-					<div className={classes.search}>
+					<form
+						onSubmit={() => searchImages()}
+						className={classes.search}
+					>
 						<div className={classes.searchIcon}>
 							<SearchIcon />
 						</div>
@@ -76,7 +80,7 @@ function Header({ page, setPage, setQuery }) {
 							}}
 							inputProps={{ 'aria-label': 'search' }}
 						/>
-					</div>
+					</form>
 					{/* spacer */}
 					<div className={classes.spacer} />
 					{/* chat icon and badges */}
