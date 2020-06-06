@@ -11,22 +11,42 @@ import userAuth from '../user-auth/userAuth';
 function App() {
 	const [ page, setPage ] = React.useState('home');
 	const [ query, setQuery ] = React.useState('guns');
+	const [ appData, setAppData ] = React.useState(null);
+	const [ searchVal, setSearchVal ] = React.useState('guns');
+	const [ isLoading, setIsLoading ] = React.useState(false);
 
-	const searchImages = async event => {
-		event.preventDefault();
-
-		console.log('it runs');
-
+	const handleGetAPIData = async (
+		query,
+		setIsLoading,
+		setAppData,
+		event
+	) => {
 		const baseUrl = 'https://api.unsplash.com/search/photos?';
 		const client_id = 'qoz2rrh6ChkvTtjYQapHD8P3cXZNi2ZDpG_CD7WBoOU';
+		setIsLoading(true);
+
 		const urlParams = `&query=${query}&page=1&per_page=20&client_id=${client_id}`;
 		const result = await fetch(`${baseUrl}${urlParams}`);
 		const data = await result.json();
 
-		console.log(data);
+		console.log(data.results);
+		setAppData(data.results);
+		setIsLoading(false);
+	};
+
+	const searchImages = event => {
+		event.preventDefault();
+		setSearchVal(query);
 	};
 
 	const user = userAuth();
+
+	React.useEffect(
+		() => {
+			handleGetAPIData(query, setIsLoading, setAppData);
+		},
+		[ searchVal ]
+	);
 
 	return (
 		<Router>
@@ -35,6 +55,7 @@ function App() {
 					<Header
 						page={page}
 						searchImages={searchImages}
+						setSearchVal={setSearchVal}
 						setQuery={setQuery}
 						setPage={setPage}
 					/>
@@ -54,7 +75,9 @@ function App() {
 								path="/dashboard"
 								page={page}
 								user={user}
-								query={query}
+								data={appData}
+								searchVal={searchVal}
+								isLoading={isLoading}
 								setPage={setPage}
 								component={Dashboard}
 							/>
