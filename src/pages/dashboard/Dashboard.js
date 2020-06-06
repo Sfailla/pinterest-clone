@@ -7,9 +7,9 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import Boards from '../../pages/boards/Boards';
 
-const SlideTransition = props => {
-	return <Slide {...props} direction="up" />;
-};
+// const SlideTransition = props => {
+// 	return <Slide {...props} direction="up" />;
+// };
 
 function Dashboard({ setPage, page, query }) {
 	const [ appData, setAppData ] = React.useState(null);
@@ -20,30 +20,30 @@ function Dashboard({ setPage, page, query }) {
 		authorLink: '',
 		description: ''
 	});
-	const [ state, setState ] = React.useState({
-		open: false,
-		Transition: SlideTransition
-	});
-	const [ message, setMessage ] = React.useState('');
+	// const [ state, setState ] = React.useState({
+	// 	open: false,
+	// 	Transition: SlideTransition
+	// });
+	// const [ message, setMessage ] = React.useState('');
 
-	// handles opening the snackbar
-	const handleClick = Transition => {
-		setState({
-			open: true,
-			Transition
-		});
-	};
+	// // handles opening the snackbar
+	// const handleClick = Transition => {
+	// 	setState({
+	// 		open: true,
+	// 		Transition
+	// 	});
+	// };
 
-	// handles closing the snackbar
-	const handleClose = (event, reason) => {
-		if (reason === 'clickaway') {
-			return;
-		}
-		setState({
-			...state,
-			open: false
-		});
-	};
+	// // handles closing the snackbar
+	// const handleClose = (event, reason) => {
+	// 	if (reason === 'clickaway') {
+	// 		return;
+	// 	}
+	// 	setState({
+	// 		...state,
+	// 		open: false
+	// 	});
+	// };
 
 	const getInitialData = async () => {
 		const baseUrl = 'https://api.unsplash.com/search/photos?';
@@ -61,42 +61,44 @@ function Dashboard({ setPage, page, query }) {
 		}
 	};
 
-	const addPinToBoard = async () => {
-		if (singleViewData) {
-			await firebase.db.collection('boards').add(singleViewData);
-			setPage('home');
-			setMessage('Added Pin To Board');
-		}
-	};
+	// const addPinToBoard = async () => {
+	// 	if (singleViewData) {
+	// 		await firebase.db.collection('boards').add(singleViewData);
+	// 		setPage('home');
+	// 		setMessage('Added Pin To Board');
+	// 	}
+	// };
 
-	const RenderComponent = () => {
-		switch (page) {
-			case 'home':
-				return (
-					!isLoading && (
-						<Home
-							setSingleViewData={setSingleViewData}
-							page={page}
-							setPage={setPage}
-							data={appData}
-						/>
-					)
-				);
-			case 'boards':
-				return <Boards />;
-			case 'view-pin':
-				return (
-					<ViewPin
-						handleClick={handleClick}
-						viewData={singleViewData}
-						addPin={addPinToBoard}
-						SlideTransition={SlideTransition}
-					/>
-				);
-			default:
-				return console.log('error in switch');
-		}
-	};
+	console.count('dash_render');
+
+	// const RenderComponent = () => {
+	// 	switch (page) {
+	// 		case 'home':
+	// 			return (
+	// 				!isLoading && (
+	// 					<Home
+	// 						setSingleViewData={setSingleViewData}
+	// 						page={page}
+	// 						setPage={setPage}
+	// 						data={appData}
+	// 					/>
+	// 				)
+	// 			);
+	// 		case 'boards':
+	// 			return <Boards />;
+	// 		case 'view-pin':
+	// 			return (
+	// 				<ViewPin
+	// 					handleClick={handleClick}
+	// 					viewData={singleViewData}
+	// 					addPin={addPinToBoard}
+	// 					SlideTransition={SlideTransition}
+	// 				/>
+	// 			);
+	// 		default:
+	// 			return console.log('error in switch');
+	// 	}
+	// };
 
 	React.useEffect(() => {
 		getInitialData();
@@ -107,8 +109,15 @@ function Dashboard({ setPage, page, query }) {
 			<h1 className="dashboard__title">
 				returned images for "{query}"
 			</h1>
-			{RenderComponent()}
-			<Snackbar
+			{appData && (
+				<Home
+					setSingleViewData={setSingleViewData}
+					page={page}
+					setPage={setPage}
+					data={appData}
+				/>
+			)}
+			{/* <Snackbar
 				anchorOrigin={{
 					vertical: 'bottom',
 					horizontal: 'left'
@@ -118,7 +127,7 @@ function Dashboard({ setPage, page, query }) {
 				onClose={handleClose}
 				message={message}
 				TransitionComponent={state.Transition}
-			/>
+			/> */}
 		</div>
 	);
 }
