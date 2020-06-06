@@ -16,23 +16,24 @@ const Home = ({ data }) => {
 		windowWidth,
 		windowHeight
 	]);
+
 	const positioner = usePositioner({
 		width,
-		columnGutter: 8,
-		columnWidth: 220
+		columnGutter: 15,
+		columnWidth: 236
 	});
 
-	const getGridItems = () => {
+	const formatGridItems = () => {
 		const itemArr = [];
-		const randInt = (min = 280, max = 500) =>
+		const randomHeight = (min = 280, max = 500) =>
 			Math.floor(Math.random() * (max - min)) + min;
 
 		data &&
-			data.map((res, i) => {
+			data.map(res => {
 				itemArr.push({
 					id: res.id,
 					name: res.user.name,
-					height: randInt(),
+					height: randomHeight(),
 					src: res.urls.regular
 				});
 			});
@@ -40,12 +41,14 @@ const Home = ({ data }) => {
 		return itemArr;
 	};
 
-	const items = React.useMemo(() => getGridItems(), [ data ]);
+	console.count('home_rendered');
+
+	const items = React.useMemo(() => formatGridItems(), [ data ]);
 
 	return (
 		<div className="container">
 			<div className="masonic">
-				{items ? (
+				{data ? (
 					<MasonryScroller
 						positioner={positioner}
 						// The distance in px between the top of the document and the top of the
@@ -56,7 +59,7 @@ const Home = ({ data }) => {
 						// Forwards the ref to the masonry container element
 						containerRef={containerRef}
 						items={items}
-						overscanBy={3}
+						overscanBy={2}
 						render={MasonryCard}
 					/>
 				) : (
