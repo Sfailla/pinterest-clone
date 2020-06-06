@@ -1,8 +1,14 @@
 import React from 'react';
+import '../../pages/home/masonic.css';
 
-const MasonryCard = ({ handleLoadImg, data: { name, src } }) => (
-	<div className="mason-card">
-		<img src={src} onLoad={handleLoadImg} className="img" alt="pix" />
+const MasonryCard = ({ data: { name, src, height } }) => (
+	<div
+		style={{
+			height,
+			background: `url(${src}) no-repeat center / cover`
+		}}
+		className="mason-card"
+	>
 		<span children={name.toUpperCase()} />
 	</div>
 );
