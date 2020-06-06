@@ -1,8 +1,8 @@
 .masonic {
-	padding: 8px 0px;
+	padding: 8px 20px;
 	width: 100%;
-	max-width: 1060px;
-	margin: 80px auto; /*was 162 auto 0*/
+	/* max-width: 1060px;
+	margin: 80px auto; was 162 auto 0 */
 }
 
 .container {
