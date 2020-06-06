@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import PrivateRoute from '../../router/PrivateRoute';
 import PublicRoute from '../../router/PublicRoute';
 
@@ -27,10 +27,9 @@ function App() {
 	};
 
 	const user = userAuth();
-	console.log(query);
 
 	return (
-		<BrowserRouter>
+		<Router>
 			<div className="app-container">
 				{user && (
 					<Header
@@ -63,7 +62,7 @@ function App() {
 					</Switch>
 				</div>
 			</div>
-		</BrowserRouter>
+		</Router>
 	);
 }
 
