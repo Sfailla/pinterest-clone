@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { useStyles } from './HomePageStyles';
 
 import image1 from '../../images/grid-img-1.png';
 import image2 from '../../images/grid-img-2.png';
@@ -18,6 +19,8 @@ import HomePageCard from '../../components/homepage-card/HomePageCard';
 import SigninAndSignup from '../../components/user-auth/SigninAndSignup';
 
 function HomePage(props) {
+	const classes = useStyles();
+
 	const [ renderSignup, setRenderSignup ] = React.useState(false);
 	const [ renderLogin, setRenderLogin ] = React.useState(false);
 	const [ renderAuthCard, setRenderAuthCard ] = React.useState(true);
@@ -72,39 +75,132 @@ function HomePage(props) {
 				</Fragment>
 			)}
 
-			<div className="homepage">
-				<GridContainer className="grid-container">
-					<GridBox image={image1} className="box box-large" />
-					<GridBox image={image2} className="box box-large" />
-					<GridBox image={image3} className="box box-medium" />
-					<GridBox image={image4} className="box box-medium" />
-					<GridBox image={image5} className="box box-medium" />
-					<GridBox image={image6} className="box box-small" />
-					<GridBox image={image7} className="box box-large" />
-					<GridBox image={image8} className="box box-small" />
-					<GridBox image={image9} className="box box-large" />
-					<GridBox image={image10} className="box box-large" />
-					<GridBox image={image1} className="box box-large" />
-					<GridBox image={image4} className="box box-medium" />
-					<GridBox image={image5} className="box box-medium" />
-					<GridBox image={image6} className="box box-small" />
-					<GridBox image={image10} className="box box-large" />
-					<GridBox image={image3} className="box box-medium" />
-					<GridBox image={image8} className="box box-small" />
-					<GridBox image={image9} className="box box-large" />
-					<GridBox image={image7} className="box box-large" />
-					<GridBox image={image1} className="box box-large" />
-					<GridBox image={image2} className="box box-large" />
-					<GridBox image={image7} className="box box-large" />
-					<GridBox image={image3} className="box box-medium" />
-					<GridBox image={image2} className="box box-large" />
-					<GridBox image={image4} className="box box-medium" />
-					<GridBox image={image5} className="box box-medium" />
-					<GridBox image={image6} className="box box-small" />
-					<GridBox image={image8} className="box box-small" />
-					<GridBox image={image8} className="box box-small" />
-					<GridBox image={image9} className="box box-large" />
-					<GridBox image={image10} className="box box-large" />
+			<div className={classes.root}>
+				<GridContainer>
+					<GridBox
+						image={image1}
+						className={`${classes.box} ${classes.boxLarge}`}
+					/>
+					<GridBox
+						image={image2}
+						className={`${classes.box} ${classes.boxLarge}`}
+					/>
+					<GridBox
+						image={image3}
+						className={`${classes.box} ${classes.boxMedium}`}
+					/>
+					<GridBox
+						image={image4}
+						className={`${classes.box} ${classes.boxMedium}`}
+					/>
+					<GridBox
+						image={image5}
+						className={`${classes.box} ${classes.boxMedium}`}
+					/>
+					<GridBox
+						image={image6}
+						className={`${classes.box} ${classes.boxSmall}`}
+					/>
+					<GridBox
+						image={image7}
+						className={`${classes.box} ${classes.boxLarge}`}
+					/>
+					<GridBox
+						image={image8}
+						className={`${classes.box} ${classes.boxSmall}`}
+					/>
+					<GridBox
+						image={image9}
+						className={`${classes.box} ${classes.boxLarge}`}
+					/>
+					<GridBox
+						image={image10}
+						className={`${classes.box} ${classes.boxLarge}`}
+					/>
+					<GridBox
+						image={image1}
+						className={`${classes.box} ${classes.boxLarge}`}
+					/>
+					<GridBox
+						image={image4}
+						className={`${classes.box} ${classes.boxMedium}`}
+					/>
+					<GridBox
+						image={image5}
+						className={`${classes.box} ${classes.boxMedium}`}
+					/>
+					<GridBox
+						image={image6}
+						className={`${classes.box} ${classes.boxSmall}`}
+					/>
+					<GridBox
+						image={image10}
+						className={`${classes.box} ${classes.boxLarge}`}
+					/>
+					<GridBox
+						image={image3}
+						className={`${classes.box} ${classes.boxMedium}`}
+					/>
+					<GridBox
+						image={image8}
+						className={`${classes.box} ${classes.boxSmall}`}
+					/>
+					<GridBox
+						image={image9}
+						className={`${classes.box} ${classes.boxLarge}`}
+					/>
+					<GridBox
+						image={image7}
+						className={`${classes.box} ${classes.boxLarge}`}
+					/>
+					<GridBox
+						image={image1}
+						className={`${classes.box} ${classes.boxLarge}`}
+					/>
+					<GridBox
+						image={image2}
+						className={`${classes.box} ${classes.boxLarge}`}
+					/>
+					<GridBox
+						image={image7}
+						className={`${classes.box} ${classes.boxLarge}`}
+					/>
+					<GridBox
+						image={image3}
+						className={`${classes.box} ${classes.boxMedium}`}
+					/>
+					<GridBox
+						image={image2}
+						className={`${classes.box} ${classes.boxLarge}`}
+					/>
+					<GridBox
+						image={image4}
+						className={`${classes.box} ${classes.boxMedium}`}
+					/>
+					<GridBox
+						image={image5}
+						className={`${classes.box} ${classes.boxMedium}`}
+					/>
+					<GridBox
+						image={image6}
+						className={`${classes.box} ${classes.boxSmall}`}
+					/>
+					<GridBox
+						image={image8}
+						className={`${classes.box} ${classes.boxSmall}`}
+					/>
+					<GridBox
+						image={image8}
+						className={`${classes.box} ${classes.boxSmall}`}
+					/>
+					<GridBox
+						image={image9}
+						className={`${classes.box} ${classes.boxLarge}`}
+					/>
+					<GridBox
+						image={image10}
+						className={`${classes.box} ${classes.boxLarge}`}
+					/>
 				</GridContainer>
 			</div>
 		</Fragment>
