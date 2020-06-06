@@ -62,7 +62,10 @@ function Header({ page, setPage, setQuery, searchImages }) {
 						</Typography>
 					</Button>
 					{/* search input and icon */}
-					<form onSubmit={searchImages} className={classes.search}>
+					<FormGroup
+						onSubmit={searchImages}
+						className={classes.search}
+					>
 						<div className={classes.searchIcon}>
 							<SearchIcon />
 						</div>
@@ -77,7 +80,7 @@ function Header({ page, setPage, setQuery, searchImages }) {
 							}}
 							inputProps={{ 'aria-label': 'search' }}
 						/>
-					</form>
+					</FormGroup>
 					{/* spacer */}
 					<div className={classes.spacer} />
 					{/* chat icon and badges */}

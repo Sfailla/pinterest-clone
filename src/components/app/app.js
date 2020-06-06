@@ -15,12 +15,7 @@ function App() {
 	const [ searchVal, setSearchVal ] = React.useState('guns');
 	const [ isLoading, setIsLoading ] = React.useState(false);
 
-	const handleGetAPIData = async (
-		query,
-		setIsLoading,
-		setAppData,
-		event
-	) => {
+	const handleGetAPIData = async query => {
 		const baseUrl = 'https://api.unsplash.com/search/photos?';
 		const client_id = 'qoz2rrh6ChkvTtjYQapHD8P3cXZNi2ZDpG_CD7WBoOU';
 		setIsLoading(true);
@@ -29,7 +24,6 @@ function App() {
 		const result = await fetch(`${baseUrl}${urlParams}`);
 		const data = await result.json();
 
-		console.log(data.results);
 		setAppData(data.results);
 		setIsLoading(false);
 	};
@@ -43,7 +37,7 @@ function App() {
 
 	React.useEffect(
 		() => {
-			handleGetAPIData(query, setIsLoading, setAppData);
+			handleGetAPIData(query);
 		},
 		[ searchVal ]
 	);

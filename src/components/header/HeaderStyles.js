@@ -3,7 +3,6 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles(theme => ({
 	root: {
 		flexGrow: 1,
-
 		'& .MuiButton-root': {
 			marginLeft: '8px',
 			padding: '0px',
@@ -53,7 +52,8 @@ export const useStyles = makeStyles(theme => ({
 		pointerEvents: 'none',
 		display: 'flex',
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		zIndex: '1'
 	},
 	inputRoot: {
 		color: 'inherit',
@@ -62,7 +62,7 @@ export const useStyles = makeStyles(theme => ({
 	inputInput: {
 		padding: theme.spacing(1, 1, 1, 0),
 		// vertical padding + font size from searchIcon
-		paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+		paddingLeft: `calc(1em + ${theme.spacing(2)}px)`,
 		transition: theme.transitions.create('width'),
 		width: '100%',
 		[theme.breakpoints.up('sm')]: {
