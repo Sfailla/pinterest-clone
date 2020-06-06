@@ -62,10 +62,7 @@ function Header({ page, setPage, setQuery, searchImages }) {
 						</Typography>
 					</Button>
 					{/* search input and icon */}
-					<form
-						onSubmit={() => searchImages()}
-						className={classes.search}
-					>
+					<form onSubmit={searchImages} className={classes.search}>
 						<div className={classes.searchIcon}>
 							<SearchIcon />
 						</div>
