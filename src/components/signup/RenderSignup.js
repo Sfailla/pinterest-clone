@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import FormGroup from '../form-group/FormGroup';
 import Input from '../input/Input';
 import Button from '../buttons/Button';
 
+const styles = {
+	root: {
+		width: '268px',
+		margin: '0 auto'
+	}
+};
+
 function RenderSignup({ values, handleOnChange, handleOnSubmit }) {
 	return (
-		<div className="signup">
-			<FormGroup onSubmit={handleOnSubmit} className="form-wrapper">
+		<div style={styles.root}>
+			<FormGroup onSubmit={handleOnSubmit}>
 				<Input
 					value={values.email}
 					onChange={handleOnChange}
-					className="input__card"
 					type="text"
 					placeholder="Email"
 					name="email"
@@ -21,14 +27,12 @@ function RenderSignup({ values, handleOnChange, handleOnSubmit }) {
 					onChange={handleOnChange}
 					type="password"
 					placeholder="Password"
-					className="input__card"
 					name="password"
 				/>
 				<Input
 					value={values.name}
 					onChange={handleOnChange}
 					type="text"
-					className="input__card"
 					placeholder="Name"
 					name="name"
 				/>

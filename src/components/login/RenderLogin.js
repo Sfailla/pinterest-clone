@@ -4,14 +4,20 @@ import FormGroup from '../form-group/FormGroup';
 import Input from '../input/Input';
 import Button from '../buttons/Button';
 
+const styles = {
+	root: {
+		width: '268px',
+		margin: '0 auto'
+	}
+};
+
 function RenderLogin({ values, handleOnChange, handleOnSubmit }) {
 	return (
-		<div className="login">
-			<FormGroup onSubmit={handleOnSubmit} className="form-wrapper">
+		<div style={styles.root}>
+			<FormGroup onSubmit={handleOnSubmit}>
 				<Input
 					onChange={handleOnChange}
 					value={values.email}
-					className="input__card"
 					type="text"
 					placeholder="Email"
 					name="email"
@@ -21,7 +27,6 @@ function RenderLogin({ values, handleOnChange, handleOnSubmit }) {
 					value={values.password}
 					type="password"
 					placeholder="Password"
-					className="input__card"
 					name="password"
 				/>
 				<p>Forgot your password?</p>

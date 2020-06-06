@@ -2,21 +2,24 @@ import React from 'react';
 import logo from '../../svg/pinterest-logo.svg';
 import Button from '../buttons/Button';
 
+import { useStyles } from './HomePageCardStyles';
+
 function HomePageCard({
 	setRenderLogin,
 	setRenderSignup,
 	setRenderAuthCard
 }) {
+	const classes = useStyles();
 	return (
-		<div className="card homepage__card">
-			<div className="card-body homepage__card-body">
+		<div className={classes.card}>
+			<div className={classes.body}>
 				<div className="card-body-upper">
 					<img
-						className="pinterest-logo homepage__logo"
+						className={classes.logo}
 						src={logo}
 						alt="pinterest logo"
 					/>
-					<div className="text-wrapper homepage__text-wrapper">
+					<div className={classes.textWrapper}>
 						<h1>Welcome to pinterest</h1>
 						<p>Find new ideas to try</p>
 					</div>
@@ -44,7 +47,7 @@ function HomePageCard({
 					</div>
 				</div>
 			</div>
-			<div className="card-footer">
+			<div className={classes.cardFooter}>
 				<p>Create a business account</p>
 			</div>
 		</div>
