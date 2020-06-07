@@ -8,6 +8,9 @@ const styles = {
 	root: {
 		width: '268px',
 		margin: '0 auto'
+	},
+	message: {
+		paddingBottom: '8px'
 	}
 };
 
@@ -29,7 +32,7 @@ function RenderLogin({ values, handleOnChange, handleOnSubmit }) {
 					placeholder="Password"
 					name="password"
 				/>
-				<p>Forgot your password?</p>
+				<p style={styles.message}>Forgot your password?</p>
 				<div className="button-wrapper">
 					<Button
 						type="submit"

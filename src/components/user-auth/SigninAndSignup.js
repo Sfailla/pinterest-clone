@@ -1,11 +1,11 @@
 import React from 'react';
-import logo from '../../svg/pinterest-logo.svg';
 import firebase from '../../firebase/firebase';
+import { useStyles } from './SigninAndSignupStyles';
 
+import logo from '../../svg/pinterest-logo.svg';
 import RenderSignup from '../signup/RenderSignup';
 import RenderLogin from '../login/RenderLogin';
 import Button from '../buttons/Button';
-
 import formValidation from '../form-validation/formValidation';
 import validateLogin from '../form-validation/validateLogin';
 
@@ -22,8 +22,8 @@ function SigninAndSignup({ renderSignup, renderLogin, history }) {
 		handleOnChange,
 		handleOnSubmit
 	} = formValidation(INITIAL_STATE, validateLogin, authenticateUser);
-
 	const [ firebaseError, setFirebaseError ] = React.useState(null);
+	const classes = useStyles();
 
 	function authenticateUser() {
 		const { email, password, name } = values;
@@ -40,15 +40,15 @@ function SigninAndSignup({ renderSignup, renderLogin, history }) {
 	}
 
 	return (
-		<div className="card auth__card">
-			<div className="card-body auth__card-body">
-				<div className="card-body-upper auth__card-body-upper">
+		<div className={classes.authCard}>
+			<div className={classes.cardBody}>
+				<div className={classes.cardBodyUpper}>
 					<img
-						className="pinterest-logo auth__logo"
+						className={classes.logo}
 						src={logo}
 						alt="pinterest logo"
 					/>
-					<div className="auth__text-wrapper">
+					<div className={classes.textWrapper}>
 						<h3>Welcome to pinterest</h3>
 						<p>Find new ideas to try</p>
 					</div>
@@ -67,37 +67,39 @@ function SigninAndSignup({ renderSignup, renderLogin, history }) {
 						values={values}
 					/>
 				)}
-				<div className="wrapper">
+				<div className={classes.wrapper}>
 					<div className="button-group">
 						<span>OR</span>
-						<div className="button-wrapper">
+						<div className={classes.buttonWrapper}>
 							<Button
 								name="Continue with Facebook"
 								className="rounded-button facebook-button"
 							/>
 						</div>
-						<div className="button-wrapper">
+						<div className={classes.buttonWrapper}>
 							<Button
 								name="Continue with Google"
 								className="rounded-button"
 							/>
 						</div>
 					</div>
-					<div className="policy">
+					<div className={classes.policy}>
 						<p>
 							By continuing, you agree to Pintersest's
-							<span className="bold-text">
+							<span className={classes.boldText}>
 								Terms of Service, Privacy Policy
 							</span>
 						</p>
-						<p className="member-link">
+						<p className={classes.memberLink}>
 							already a member?
 							<a href="#0"> click here</a>
 						</p>
 					</div>
 				</div>
 			</div>
-			<div className="card-footer grey-background">
+			<div
+				className={`${classes.greyBackground} ${classes.cardFooter}`}
+			>
 				<p>Create a business account</p>
 			</div>
 		</div>

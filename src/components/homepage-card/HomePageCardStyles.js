@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
 	card: {
@@ -12,7 +12,7 @@ export const useStyles = makeStyles(theme => ({
 		left: '50%',
 		transform: 'translate(-50%, -50%)'
 	},
-	body: {
+	cardBody: {
 		margin: '40px 40px 24px 40px'
 	},
 	cardFooter: {
@@ -44,5 +44,8 @@ export const useStyles = makeStyles(theme => ({
 			fontWeight: '400',
 			marginBottom: theme.spacing(1)
 		}
+	},
+	buttonWrapper: {
+		margin: theme.spacing(1)
 	}
 }));

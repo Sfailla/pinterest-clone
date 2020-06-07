@@ -12,8 +12,8 @@ function HomePageCard({
 	const classes = useStyles();
 	return (
 		<div className={classes.card}>
-			<div className={classes.body}>
-				<div className="card-body-upper">
+			<div className={classes.cardBody}>
+				<div className={classes.cardBodyUpper}>
 					<img
 						className={classes.logo}
 						src={logo}
@@ -25,7 +25,7 @@ function HomePageCard({
 					</div>
 				</div>
 				<div className="button-group">
-					<div className="button-wrapper">
+					<div className={classes.buttonWrapper}>
 						<Button
 							name="Log in"
 							onClick={() => {
@@ -35,7 +35,7 @@ function HomePageCard({
 							className="rounded-button red-button"
 						/>
 					</div>
-					<div className="button-wrapper">
+					<div className={classes.buttonWrapper}>
 						<Button
 							name="Sign up"
 							onClick={() => {
