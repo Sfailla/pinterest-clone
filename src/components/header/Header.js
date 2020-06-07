@@ -55,7 +55,7 @@ function Header({ page, setPage, setQuery, searchImages }) {
 						onClick={() => {
 							setPage('boards');
 						}}
-						className={page === 'boards' ? 'active' : ''}
+						className={page === 'boards' && 'active'}
 					>
 						<Typography varient="h4" className={classes.wordLink}>
 							BOARDS
