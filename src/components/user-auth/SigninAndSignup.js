@@ -8,6 +8,11 @@ import RenderLogin from '../login/RenderLogin';
 import Button from '../buttons/Button';
 import formValidation from '../form-validation/formValidation';
 import validateLogin from '../form-validation/validateLogin';
+import {
+	facebookButton,
+	greyButton,
+	greyButtonHover
+} from '../../styles/variables/variables';
 
 function SigninAndSignup({ renderSignup, renderLogin, history }) {
 	const INITIAL_STATE = {
@@ -42,17 +47,16 @@ function SigninAndSignup({ renderSignup, renderLogin, history }) {
 	return (
 		<div className={classes.authCard}>
 			<div className={classes.cardBody}>
-				<div className={classes.cardBodyUpper}>
+				<div className={classes.textWrapper}>
 					<img
 						className={classes.logo}
 						src={logo}
 						alt="pinterest logo"
 					/>
-					<div className={classes.textWrapper}>
-						<h3>Welcome to pinterest</h3>
-						<p>Find new ideas to try</p>
-					</div>
+					<h3>Welcome to pinterest</h3>
+					<p>Find new ideas to try</p>
 				</div>
+
 				{renderSignup && (
 					<RenderSignup
 						handleOnSubmit={handleOnSubmit}
@@ -73,13 +77,17 @@ function SigninAndSignup({ renderSignup, renderLogin, history }) {
 						<div className={classes.buttonWrapper}>
 							<Button
 								name="Continue with Facebook"
-								className="rounded-button facebook-button"
+								variant="rounded"
+								color={facebookButton}
 							/>
 						</div>
 						<div className={classes.buttonWrapper}>
 							<Button
 								name="Continue with Google"
-								className="rounded-button"
+								variant="rounded"
+								textColor="black"
+								color={greyButton}
+								hover={greyButtonHover}
 							/>
 						</div>
 					</div>

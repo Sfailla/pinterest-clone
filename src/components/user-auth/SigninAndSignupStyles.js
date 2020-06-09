@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles(theme => ({
 	authCard: {
@@ -15,9 +15,6 @@ export const useStyles = makeStyles(theme => ({
 	cardBody: {
 		minHeight: '400px',
 		padding: '20px 10px 24px'
-	},
-	cardBodyUpper: {
-		textAlign: 'center'
 	},
 	cardFooter: {
 		height: '62px',
@@ -39,6 +36,11 @@ export const useStyles = makeStyles(theme => ({
 		margin: '0 auto'
 	},
 	textWrapper: {
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+
 		'& h3': {
 			color: 'rgb(51, 51, 51)',
 			fontSize: '36px',
@@ -89,5 +91,8 @@ export const useStyles = makeStyles(theme => ({
 	},
 	buttonWrapper: {
 		margin: theme.spacing(1)
+	},
+	googleButton: {
+		color: 'black'
 	}
 }));

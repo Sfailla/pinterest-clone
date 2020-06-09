@@ -24,7 +24,7 @@ export const useStyles = makeStyles(theme => ({
 		fontSize: '14px',
 		fontWeight: '700',
 		webkitFontSmoothing: 'antialiased',
-		borderTop: '1px solid #f2f2f2',
+		borderTop: '1px solid #c2c2c2',
 		borderBottomRightRadius: '10px',
 		borderBottomLeftRadius: '10px'
 	},
@@ -34,7 +34,10 @@ export const useStyles = makeStyles(theme => ({
 		margin: '0 auto'
 	},
 	textWrapper: {
-		textAlign: 'center',
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
 
 		'& h1': {
 			margin: theme.spacing(1)
@@ -47,5 +50,28 @@ export const useStyles = makeStyles(theme => ({
 	},
 	buttonWrapper: {
 		margin: theme.spacing(1)
+	},
+	roundedButton: {
+		width: '100%',
+		display: 'block',
+		minWidth: '60px',
+		borderRadius: '25px',
+		fontSize: '16px',
+		fontWeight: '700',
+		padding: '12px'
+	},
+	redButton: {
+		color: 'white',
+		backgroundColor: '#e60023',
+		'&:hover': {
+			backgroundColor: '#ad081b'
+		}
+	},
+	greyButton: {
+		color: '#111',
+		backgroundColor: '#efefef',
+		'&:hover': {
+			backgroundColor: '#e2e2e2'
+		}
 	}
 }));

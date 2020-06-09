@@ -34,5 +34,31 @@ export const useStyles = makeStyles(theme => ({
 	},
 	boxLarge: {
 		gridRowEnd: 'span 4'
+	},
+	authlinkButton: {
+		width: '130px',
+		height: '40px',
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#efefef',
+		padding: '8px 12px',
+		borderRadius: '24px',
+		fontSize: '16px',
+		fontWeight: '700',
+		zIndex: '1',
+		position: 'absolute',
+		top: '48px',
+		left: '24px',
+		'&:hover': {
+			backgroundColor: '#e2e2e2'
+		},
+		'&:active': {
+			backgroundColor: '#dadada'
+		},
+		'&:focus': {
+			boxShadow: '0 0 0 4px rgba(0, 132, 255, .5)',
+			outline: 0
+		}
 	}
 }));

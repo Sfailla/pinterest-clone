@@ -3,6 +3,10 @@ import React from 'react';
 import FormGroup from '../form-group/FormGroup';
 import Input from '../input/Input';
 import Button from '../buttons/Button';
+import {
+	redButton,
+	redButtonHover
+} from '../../styles/variables/variables';
 
 const styles = {
 	root: {
@@ -40,7 +44,9 @@ function RenderSignup({ values, handleOnChange, handleOnSubmit }) {
 					<Button
 						type="submit"
 						name="Continue"
-						className="rounded-button continue-button red-button"
+						variant="rounded"
+						color={redButton}
+						hover={redButtonHover}
 					/>
 				</div>
 			</FormGroup>

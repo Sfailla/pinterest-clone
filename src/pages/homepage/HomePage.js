@@ -12,11 +12,15 @@ import image8 from '../../images/grid-img-8.png';
 import image9 from '../../images/grid-img-9.png';
 import image10 from '../../images/grid-img-10.png';
 
-import GridBox from '../../components/grid/GridBox';
-import GridContainer from '../../components/grid/GridContainer';
 import Button from '../../components/buttons/Button';
+import GridBox from '../../components/grid/GridBox';
 import HomePageCard from '../../components/homepage-card/HomePageCard';
+import GridContainer from '../../components/grid/GridContainer';
 import SigninAndSignup from '../../components/user-auth/SigninAndSignup';
+import {
+	greyButton,
+	greyButtonHover
+} from '../../styles/variables/variables';
 
 function HomePage(props) {
 	const classes = useStyles();
@@ -47,11 +51,13 @@ function HomePage(props) {
 					/>
 					<Button
 						name="Log in"
+						variant="authlink"
+						color={greyButton}
+						hover={greyButtonHover}
 						onClick={() => {
 							setRenderSignup(false);
 							setRenderLogin(true);
 						}}
-						className="auth-link-button"
 					/>
 				</Fragment>
 			)}
@@ -66,11 +72,13 @@ function HomePage(props) {
 					/>
 					<Button
 						name="Log Out"
+						variant="authlink"
+						color={greyButton}
+						hover={greyButtonHover}
 						onClick={() => {
 							setRenderSignup(true);
 							setRenderLogin(false);
 						}}
-						className="auth-link-button"
 					/>
 				</Fragment>
 			)}
