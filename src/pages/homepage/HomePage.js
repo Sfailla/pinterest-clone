@@ -1,6 +1,16 @@
 import React, { Fragment } from 'react';
 import { useStyles } from './HomePageStyles';
 
+import Button from '../../components/buttons/Button';
+import GridBox from '../../components/grid/GridBox';
+import HomePageCard from '../../components/homepage-card/HomePageCard';
+import GridContainer from '../../components/grid/GridContainer';
+import SigninAndSignup from '../../components/user-auth/SigninAndSignup';
+import {
+	greyButton,
+	greyButtonHover
+} from '../../styles/variables/variables';
+
 import image1 from '../../images/grid-img-1.png';
 import image2 from '../../images/grid-img-2.png';
 import image3 from '../../images/grid-img-3.png';
@@ -12,22 +22,19 @@ import image8 from '../../images/grid-img-8.png';
 import image9 from '../../images/grid-img-9.png';
 import image10 from '../../images/grid-img-10.png';
 
-import Button from '../../components/buttons/Button';
-import GridBox from '../../components/grid/GridBox';
-import HomePageCard from '../../components/homepage-card/HomePageCard';
-import GridContainer from '../../components/grid/GridContainer';
-import SigninAndSignup from '../../components/user-auth/SigninAndSignup';
-import {
-	greyButton,
-	greyButtonHover
-} from '../../styles/variables/variables';
+console.count('homepage_render_count');
 
 function HomePage(props) {
 	const classes = useStyles();
-
 	const [ renderSignup, setRenderSignup ] = React.useState(false);
 	const [ renderLogin, setRenderLogin ] = React.useState(false);
 	const [ renderAuthCard, setRenderAuthCard ] = React.useState(true);
+
+	const randomSize = () => {
+		const sizes = [ 3, 4, 5 ];
+		let random = Math.floor(Math.random() * sizes.length);
+		return sizes[random];
+	};
 
 	return (
 		<Fragment>
@@ -85,130 +92,37 @@ function HomePage(props) {
 
 			<div className={classes.root}>
 				<GridContainer>
-					<GridBox
-						image={image1}
-						className={`${classes.box} ${classes.boxLarge}`}
-					/>
-					<GridBox
-						image={image2}
-						className={`${classes.box} ${classes.boxLarge}`}
-					/>
-					<GridBox
-						image={image3}
-						className={`${classes.box} ${classes.boxMedium}`}
-					/>
-					<GridBox
-						image={image4}
-						className={`${classes.box} ${classes.boxMedium}`}
-					/>
-					<GridBox
-						image={image5}
-						className={`${classes.box} ${classes.boxMedium}`}
-					/>
-					<GridBox
-						image={image6}
-						className={`${classes.box} ${classes.boxSmall}`}
-					/>
-					<GridBox
-						image={image7}
-						className={`${classes.box} ${classes.boxLarge}`}
-					/>
-					<GridBox
-						image={image8}
-						className={`${classes.box} ${classes.boxSmall}`}
-					/>
-					<GridBox
-						image={image9}
-						className={`${classes.box} ${classes.boxLarge}`}
-					/>
-					<GridBox
-						image={image10}
-						className={`${classes.box} ${classes.boxLarge}`}
-					/>
-					<GridBox
-						image={image1}
-						className={`${classes.box} ${classes.boxLarge}`}
-					/>
-					<GridBox
-						image={image4}
-						className={`${classes.box} ${classes.boxMedium}`}
-					/>
-					<GridBox
-						image={image5}
-						className={`${classes.box} ${classes.boxMedium}`}
-					/>
-					<GridBox
-						image={image6}
-						className={`${classes.box} ${classes.boxSmall}`}
-					/>
-					<GridBox
-						image={image10}
-						className={`${classes.box} ${classes.boxLarge}`}
-					/>
-					<GridBox
-						image={image3}
-						className={`${classes.box} ${classes.boxMedium}`}
-					/>
-					<GridBox
-						image={image8}
-						className={`${classes.box} ${classes.boxSmall}`}
-					/>
-					<GridBox
-						image={image9}
-						className={`${classes.box} ${classes.boxLarge}`}
-					/>
-					<GridBox
-						image={image7}
-						className={`${classes.box} ${classes.boxLarge}`}
-					/>
-					<GridBox
-						image={image1}
-						className={`${classes.box} ${classes.boxLarge}`}
-					/>
-					<GridBox
-						image={image2}
-						className={`${classes.box} ${classes.boxLarge}`}
-					/>
-					<GridBox
-						image={image7}
-						className={`${classes.box} ${classes.boxLarge}`}
-					/>
-					<GridBox
-						image={image3}
-						className={`${classes.box} ${classes.boxMedium}`}
-					/>
-					<GridBox
-						image={image2}
-						className={`${classes.box} ${classes.boxLarge}`}
-					/>
-					<GridBox
-						image={image4}
-						className={`${classes.box} ${classes.boxMedium}`}
-					/>
-					<GridBox
-						image={image5}
-						className={`${classes.box} ${classes.boxMedium}`}
-					/>
-					<GridBox
-						image={image6}
-						className={`${classes.box} ${classes.boxSmall}`}
-					/>
-					<GridBox
-						image={image8}
-						className={`${classes.box} ${classes.boxSmall}`}
-					/>
-					<GridBox
-						image={image8}
-						className={`${classes.box} ${classes.boxSmall}`}
-					/>
-					<GridBox
-						image={image9}
-						className={`${classes.box} ${classes.boxLarge}`}
-					/>
-					<GridBox
-						image={image10}
-						className={`${classes.box} ${classes.boxLarge}`}
-					/>
+					<GridBox size={randomSize()} src={image1} />
+					<GridBox size={randomSize()} src={image2} />
+					<GridBox size={randomSize()} src={image3} />
+					<GridBox size={randomSize()} src={image4} />
+					<GridBox size={randomSize()} src={image5} />
+					<GridBox size={randomSize()} src={image6} />
+					<GridBox size={randomSize()} src={image7} />
+					<GridBox size={randomSize()} src={image8} />
+					<GridBox size={randomSize()} src={image9} />
+					<GridBox size={randomSize()} src={image10} />
+					<GridBox size={randomSize()} src={image1} />
+					<GridBox size={randomSize()} src={image4} />
+					<GridBox size={randomSize()} src={image5} />
+					<GridBox size={randomSize()} src={image6} />
+					<GridBox size={randomSize()} src={image3} />
+					<GridBox size={randomSize()} src={image8} />
+					<GridBox size={randomSize()} src={image9} />
+					<GridBox size={randomSize()} src={image7} />
+					<GridBox size={randomSize()} src={image10} />
+					<GridBox size={randomSize()} src={image1} />
+					<GridBox size={randomSize()} src={image2} />
+					<GridBox size={randomSize()} src={image8} />
+					<GridBox size={randomSize()} src={image7} />
+					<GridBox size={randomSize()} src={image3} />
+					<GridBox size={randomSize()} src={image2} />
+					<GridBox size={randomSize()} src={image4} />
+					<GridBox size={randomSize()} src={image5} />
+					<GridBox size={randomSize()} src={image6} />
+					<GridBox size={randomSize()} src={image8} />
+					<GridBox size={randomSize()} src={image9} />
+					<GridBox size={randomSize()} src={image10} />
 				</GridContainer>
 			</div>
 		</Fragment>

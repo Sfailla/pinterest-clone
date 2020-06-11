@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from '../../firebase/firebase';
+import { useStyles } from './DashboardStyles';
 
 import Home from '../../pages/home/Home';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -12,6 +13,8 @@ const SlideTransition = props => {
 };
 
 function Dashboard({ setPage, page, searchVal, isLoading, data }) {
+	const classes = useStyles();
+
 	const [ singleViewData, setSingleViewData ] = React.useState({
 		img: '',
 		author: '',
@@ -69,8 +72,8 @@ function Dashboard({ setPage, page, searchVal, isLoading, data }) {
 	// };
 
 	return (
-		<div className="dashboard">
-			<h1 className="dashboard__title">images for "{searchVal}"</h1>
+		<div className={classes.root}>
+			<h1 className={classes.title}>images for "{searchVal}"</h1>
 			{!isLoading && (
 				<Home
 					setSingleViewData={setSingleViewData}

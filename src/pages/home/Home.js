@@ -4,11 +4,12 @@ import {
 	useContainerPosition,
 	usePositioner
 } from 'masonic';
-import MasonryCard from '../../components/grid/MasonryCard';
+import MasonryCard from './MasonryCard';
 import { useWindowSize } from '@react-hook/window-size';
-import './masonic.css';
+import { useStyles } from './HomeStyles';
 
 const Home = ({ data }) => {
+	const classes = useStyles();
 	const containerRef = React.useRef(null);
 	const [ windowWidth, windowHeight ] = useWindowSize();
 
@@ -23,7 +24,7 @@ const Home = ({ data }) => {
 		columnWidth: 236
 	});
 
-	const formatGridItems = () => {
+	const createGridItems = () => {
 		const itemArr = [];
 		const randomHeight = (min = 280, max = 500) =>
 			Math.floor(Math.random() * (max - min)) + min;
@@ -41,13 +42,11 @@ const Home = ({ data }) => {
 		return itemArr;
 	};
 
-	console.count('home_rendered');
-
-	const items = React.useMemo(() => formatGridItems(), [ data ]);
+	const items = React.useMemo(() => createGridItems(), [ data ]);
 
 	return (
-		<div className="container">
-			<div className="masonic">
+		<div className={classes.root}>
+			<div className={classes.masonic}>
 				{data ? (
 					<MasonryScroller
 						positioner={positioner}
