@@ -1,13 +1,11 @@
 import React from 'react';
+import { useStyles } from './GridStyles';
 
-const Box = ({ image, className, addStyle, onClick }) => {
+const Box = ({ src, size, className, onClick }) => {
+	const classes = useStyles({ src, size });
 	return (
 		<div
-			style={{
-				background: `url(${image}) no-repeat center top / cover`,
-				...addStyle
-			}}
-			className={className}
+			className={`${classes.box} ${className}`}
 			onClick={onClick}
 		/>
 	);
