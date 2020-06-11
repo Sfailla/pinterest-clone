@@ -4,7 +4,7 @@ export const useStyles = makeStyles(theme => ({
 	card: {
 		width: '485px',
 		height: '381px',
-		backgroundColor: 'white',
+		backgroundColor: theme.palette.common.white,
 		borderRadius: '10px',
 		zIndex: '1',
 		position: 'absolute',
@@ -13,16 +13,16 @@ export const useStyles = makeStyles(theme => ({
 		transform: 'translate(-50%, -50%)'
 	},
 	cardBody: {
-		margin: '40px 40px 24px 40px'
+		margin: theme.spacing(5, 5, 3, 5)
 	},
 	cardFooter: {
 		height: '62px',
-		color: '#111',
+		color: theme.palette.common.black,
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-		fontSize: '14px',
-		fontWeight: '700',
+		fontSize: theme.typography.fontSize,
+		fontWeight: theme.typography.fontWeightBold,
 		webkitFontSmoothing: 'antialiased',
 		borderTop: '1px solid #c2c2c2',
 		borderBottomRightRadius: '10px',
@@ -50,28 +50,5 @@ export const useStyles = makeStyles(theme => ({
 	},
 	buttonWrapper: {
 		margin: theme.spacing(1)
-	},
-	roundedButton: {
-		width: '100%',
-		display: 'block',
-		minWidth: '60px',
-		borderRadius: '25px',
-		fontSize: '16px',
-		fontWeight: '700',
-		padding: '12px'
-	},
-	redButton: {
-		color: 'white',
-		backgroundColor: '#e60023',
-		'&:hover': {
-			backgroundColor: '#ad081b'
-		}
-	},
-	greyButton: {
-		color: '#111',
-		backgroundColor: '#efefef',
-		'&:hover': {
-			backgroundColor: '#e2e2e2'
-		}
 	}
 }));

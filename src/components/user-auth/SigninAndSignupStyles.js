@@ -4,7 +4,7 @@ export const useStyles = makeStyles(theme => ({
 	authCard: {
 		width: '484px',
 		minHeight: '584px',
-		backgroundColor: 'white',
+		backgroundColor: theme.palette.common.white,
 		borderRadius: '10px',
 		zIndex: '1',
 		position: 'absolute',
@@ -14,7 +14,7 @@ export const useStyles = makeStyles(theme => ({
 	},
 	cardBody: {
 		minHeight: '400px',
-		padding: '20px 10px 24px'
+		padding: theme.spacing(2, 1, 3)
 	},
 	cardFooter: {
 		height: '62px',
@@ -23,7 +23,7 @@ export const useStyles = makeStyles(theme => ({
 		justifyContent: 'center',
 		alignItems: 'center',
 		fontSize: '14px',
-		fontWeight: '700',
+		fontWeight: theme.typography.fontWeightBold,
 		webkitFontSmoothing: 'antialiased',
 		borderTop: '1px solid #f2f2f2',
 		borderBottomRightRadius: '10px',
@@ -90,9 +90,9 @@ export const useStyles = makeStyles(theme => ({
 		paddingTop: theme.spacing(1)
 	},
 	buttonWrapper: {
-		margin: theme.spacing(1)
+		margin: theme.spacing(1, 0)
 	},
 	googleButton: {
-		color: 'black'
+		color: theme.palette.common.black
 	}
 }));
