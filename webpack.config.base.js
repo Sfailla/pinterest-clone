@@ -36,19 +36,31 @@ module.exports = {
 		new Dotenv(),
 		new webpack.DefinePlugin({
 			'process.env': {
-				FIREBASE_API_KEY: JSON.stringify(FIREBASE_API_KEY),
-				FIREBASE_AUTH_DOMAIN: JSON.stringify(FIREBASE_AUTH_DOMAIN),
-				FIREBASE_PROJECT_ID: JSON.stringify(FIREBASE_PROJECT_ID),
-				FIREBASE_PROJECT_ID: JSON.stringify(FIREBASE_PROJECT_ID),
+				FIREBASE_API_KEY: JSON.stringify(
+					Process.env.FIREBASE_API_KEY
+				),
+				FIREBASE_AUTH_DOMAIN: JSON.stringify(
+					Process.env.FIREBASE_AUTH_DOMAIN
+				),
+				FIREBASE_PROJECT_ID: JSON.stringify(
+					Process.env.FIREBASE_PROJECT_ID
+				),
+				FIREBASE_PROJECT_ID: JSON.stringify(
+					Process.env.FIREBASE_PROJECT_ID
+				),
 				FIREBASE_STORAGE_BUCKET: JSON.stringify(
-					FIREBASE_STORAGE_BUCKET
+					Process.env.FIREBASE_STORAGE_BUCKET
 				),
-				FIREBASE_SENDER_ID: JSON.stringify(FIREBASE_SENDER_ID),
-				FIREBASE_APP_ID: JSON.stringify(FIREBASE_APP_ID),
+				FIREBASE_SENDER_ID: JSON.stringify(
+					Process.env.FIREBASE_SENDER_ID
+				),
+				FIREBASE_APP_ID: JSON.stringify(Process.env.FIREBASE_APP_ID),
 				FIREBASE_MEASUREMENT_ID: JSON.stringify(
-					FIREBASE_MEASUREMENT_ID
+					Process.env.FIREBASE_MEASUREMENT_ID
 				),
-				UNSPLASH_ACCESS_KEY: JSON.stringify(UNSPLASH_ACCESS_KEY)
+				UNSPLASH_ACCESS_KEY: JSON.stringify(
+					Process.env.UNSPLASH_ACCESS_KEY
+				)
 			}
 		})
 	]
