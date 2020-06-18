@@ -36,7 +36,7 @@ module.exports = {
 		new Dotenv(),
 		new webpack.DefinePlugin({
 			'process.env': {
-				UPSPLASH_ACCESS_KEY: JSON.stringify(UPSPLASH_ACCESS_KEY),
+				UNSPLASH_ACCESS_KEY: JSON.stringify(UNSPLASH_ACCESS_KEY),
 				FIREBASE_API_KEY: JSON.stringify(FIREBASE_API_KEY),
 				FIREBASE_AUTH_DOMAIN: JSON.stringify(FIREBASE_AUTH_DOMAIN),
 				FIREBASE_PROJECT_ID: JSON.stringify(FIREBASE_PROJECT_ID),
