@@ -6,4 +6,6 @@ describe('App', () => {
 	it('renders App without error', () => {
 		render(<App />);
 	});
+
+	it('fetches api data', () => {});
 });

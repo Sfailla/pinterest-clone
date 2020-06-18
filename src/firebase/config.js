@@ -1,12 +1,12 @@
 const firebaseConfig = {
-	apiKey: 'AIzaSyBu39YiHOsU0qYIHlCK2h2ZAcYWFQj3w1o',
-	authDomain: 'pinterest-clone-cd38e.firebaseapp.com',
-	databaseURL: 'https://pinterest-clone-cd38e.firebaseio.com',
-	projectId: 'pinterest-clone-cd38e',
-	storageBucket: 'pinterest-clone-cd38e.appspot.com',
-	messagingSenderId: '886614119714',
-	appId: '1:886614119714:web:6ed108181eac914c86017b',
-	measurementId: 'G-P4KL4PC7EH'
+	apiKey: FIREBASE_API_KEY,
+	authDomain: FIREBASE_AUTH_DOMAIN,
+	databaseURL: FIREBASE_PROJECT_ID,
+	projectId: FIREBASE_PROJECT_ID,
+	storageBucket: FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: FIREBASE_SENDER_ID,
+	appId: FIREBASE_APP_ID,
+	measurementId: FIREBASE_MEASUREMENT_ID
 };
 
 export default firebaseConfig;
