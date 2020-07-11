@@ -6,26 +6,35 @@ import PublicRoute from '../../router/PublicRoute';
 import Header from '../header/Header.js';
 import HomePage from '../../pages/homepage/HomePage.js';
 import Dashboard from '../../pages/dashboard/Dashboard';
-import userAuth from '../user-auth/userAuth';
+import userAuth from '../../hooks/useAuth';
+import useFetch from '../../hooks/useFetch';
 
 function App() {
-	const [ page, setPage ] = React.useState('home');
-	const [ query, setQuery ] = React.useState('guns');
-	const [ appData, setAppData ] = React.useState(null);
-	const [ searchVal, setSearchVal ] = React.useState('guns');
 	const [ isLoading, setIsLoading ] = React.useState(false);
+	const [ appData, setAppData ] = React.useState(null);
+	const [ query, setQuery ] = React.useState('guns');
+	const [ page, setPage ] = React.useState('home');
+	const [ searchVal, setSearchVal ] = React.useState('guns');
 
-	const handleGetAPIData = async query => {
-		setIsLoading(true);
-		const baseUrl = 'https://api.unsplash.com/search/photos?';
-		const urlParams = `&query=${query}&page=1&per_page=20&client_id=${process
-			.env.UNSPLASH_ACCESS_KEY}`;
-		const result = await fetch(`${baseUrl}${urlParams}`);
-		const data = await result.json();
+	const baseUrl = 'https://api.unsplash.com/search/photos?';
+	const urlParams = `&query=${query}&page=1&per_page=20&client_id=${process
+		.env.UNSPLASH_ACCESS_KEY}`;
 
-		setAppData(data.results);
-		setIsLoading(false);
-	};
+	const { data } = useFetch(`${baseUrl}${urlParams}`);
+
+	console.log(data);
+
+	// const handleGetAPIData = async query => {
+	// 	setIsLoading(true);
+	// 	const baseUrl = 'https://api.unsplash.com/search/photos?';
+	// 	const urlParams = `&query=${query}&page=1&per_page=20&client_id=${process
+	// 		.env.UNSPLASH_ACCESS_KEY}`;
+	// 	const result = await fetch(`${baseUrl}${urlParams}`);
+	// 	const data = await result.json();
+
+	// 	setAppData(data.results);
+	// 	setIsLoading(false);
+	// };
 
 	const searchImages = event => {
 		event.preventDefault();
@@ -34,12 +43,12 @@ function App() {
 
 	const user = userAuth();
 
-	React.useEffect(
-		() => {
-			handleGetAPIData(query);
-		},
-		[ searchVal ]
-	);
+	// React.useEffect(
+	// 	() => {
+	// 		handleGetAPIData(query);
+	// 	},
+	// 	[ searchVal ]
+	// );
 
 	return (
 		<Router>
