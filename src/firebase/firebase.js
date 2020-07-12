@@ -13,13 +13,13 @@ class Firebase {
 	async register(email, password, name) {
 		await this.auth
 			.setPersistence(app.auth.Auth.Persistence.SESSION)
-			.then(async () => {
-				const newUser = await this.auth.createUserWithEmailAndPassword(
+			.then(() => {
+				const newUser = this.auth.createUserWithEmailAndPassword(
 					email,
 					password
 				);
 
-				return await newUser.user.updateProfile({
+				return newUser.user.updateProfile({
 					displayName: name
 				});
 			});
