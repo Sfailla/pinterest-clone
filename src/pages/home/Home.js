@@ -8,7 +8,7 @@ import MasonryCard from './MasonryCard';
 import { useWindowSize } from '@react-hook/window-size';
 import { useStyles } from './HomeStyles';
 
-const Home = ({ data }) => {
+const Home = ({ data, isLoading, query }) => {
 	const classes = useStyles();
 	const containerRef = React.useRef(null);
 	const [ windowWidth, windowHeight ] = useWindowSize();
@@ -24,22 +24,31 @@ const Home = ({ data }) => {
 		columnWidth: 236
 	});
 
+	function ItemArray(id, name, height, src) {
+		this.id = id;
+		this.name = name;
+		this.height = height;
+		this.src = src;
+	}
+
 	const createGridItems = () => {
-		const itemArr = [];
+		const itemArray = [];
 		const randomHeight = (min = 280, max = 500) =>
 			Math.floor(Math.random() * (max - min)) + min;
 
 		data &&
 			data.map(res => {
-				itemArr.push({
-					id: res.id,
-					name: res.user.name,
-					height: randomHeight(),
-					src: res.urls.regular
-				});
+				const items = new ItemArray(
+					res.id,
+					res.user.name,
+					randomHeight(),
+					res.urls.regular
+				);
+
+				itemArray.push(items);
 			});
 
-		return itemArr;
+		return itemArray;
 	};
 
 	const items = React.useMemo(() => createGridItems(), [ data ]);
@@ -47,8 +56,9 @@ const Home = ({ data }) => {
 	return (
 		<div className={classes.root}>
 			<div className={classes.masonic}>
-				{data ? (
+				{!isLoading ? (
 					<MasonryScroller
+						key={query}
 						positioner={positioner}
 						// The distance in px between the top of the document and the top of the
 						// masonry grid container

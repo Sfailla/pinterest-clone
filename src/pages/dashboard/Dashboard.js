@@ -12,7 +12,7 @@ const SlideTransition = props => {
 	return <Slide {...props} direction="up" />;
 };
 
-function Dashboard({ setPage, page, searchVal, isLoading, data }) {
+function Dashboard({ setPage, page, query, isLoading, data }) {
 	const classes = useStyles();
 
 	const [ singleViewData, setSingleViewData ] = React.useState({
@@ -56,32 +56,17 @@ function Dashboard({ setPage, page, searchVal, isLoading, data }) {
 
 	console.count('dash_render');
 
-	// const RenderComponent = () => {
-	// 	switch (page) {
-	// 		case 'boards':
-	// 			return <Boards />;
-	// 		case 'view-pin':
-	// 			return (
-	// 				<ViewPin
-	// 					handleClick={handleClick}
-	// 					viewData={singleViewData}
-	// 					addPin={addPinToBoard}
-	// 					SlideTransition={SlideTransition}
-	// 				/>
-	// 			);
-	// };
-
 	return (
 		<div className={classes.root}>
-			<h1 className={classes.title}>images for "{searchVal}"</h1>
-			{!isLoading && (
-				<Home
-					setSingleViewData={setSingleViewData}
-					page={page}
-					setPage={setPage}
-					data={data}
-				/>
-			)}
+			<h1 className={classes.title}>images for "{query}"</h1>
+			<Home
+				setSingleViewData={setSingleViewData}
+				page={page}
+				query={query}
+				isLoading={isLoading}
+				setPage={setPage}
+				data={data}
+			/>
 			<Snackbar
 				anchorOrigin={{
 					vertical: 'bottom',
