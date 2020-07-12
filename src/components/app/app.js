@@ -6,49 +6,37 @@ import PublicRoute from '../../router/PublicRoute';
 import Header from '../header/Header.js';
 import HomePage from '../../pages/homepage/HomePage.js';
 import Dashboard from '../../pages/dashboard/Dashboard';
-import userAuth from '../../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 import useFetch from '../../hooks/useFetch';
 
 function App() {
-	const [ isLoading, setIsLoading ] = React.useState(false);
-	const [ appData, setAppData ] = React.useState(null);
 	const [ query, setQuery ] = React.useState('guns');
 	const [ page, setPage ] = React.useState('home');
-	const [ searchVal, setSearchVal ] = React.useState('guns');
+	// const [ searchVal, setSearchVal ] = React.useState(query);
 
-	const baseUrl = 'https://api.unsplash.com/search/photos?';
-	const urlParams = `&query=${query}&page=1&per_page=20&client_id=${process
-		.env.UNSPLASH_ACCESS_KEY}`;
-
-	const { data } = useFetch(`${baseUrl}${urlParams}`);
-
-	console.log(data);
-
-	// const handleGetAPIData = async query => {
-	// 	setIsLoading(true);
-	// 	const baseUrl = 'https://api.unsplash.com/search/photos?';
-	// 	const urlParams = `&query=${query}&page=1&per_page=20&client_id=${process
-	// 		.env.UNSPLASH_ACCESS_KEY}`;
-	// 	const result = await fetch(`${baseUrl}${urlParams}`);
-	// 	const data = await result.json();
-
-	// 	setAppData(data.results);
-	// 	setIsLoading(false);
-	// };
-
-	const searchImages = event => {
+	const updateFetchResults = event => {
 		event.preventDefault();
-		setSearchVal(query);
+		updateParams({
+			query,
+			page: 1,
+			per_page: 20,
+			client_id: process.env.UNSPLASH_ACCESS_KEY
+		});
 	};
 
-	const user = userAuth();
+	const url = 'https://api.unsplash.com/search/photos?';
+	const params = {
+		query,
+		page: 1,
+		per_page: 20,
+		client_id: process.env.UNSPLASH_ACCESS_KEY
+	};
 
-	// React.useEffect(
-	// 	() => {
-	// 		handleGetAPIData(query);
-	// 	},
-	// 	[ searchVal ]
-	// );
+	const user = useAuth();
+	const { data, isLoading, updateParams, refetch } = useFetch(
+		url,
+		params
+	);
 
 	return (
 		<Router>
@@ -56,10 +44,10 @@ function App() {
 				{user && (
 					<Header
 						page={page}
-						searchImages={searchImages}
-						setSearchVal={setSearchVal}
+						updateFetchResults={updateFetchResults}
 						setQuery={setQuery}
 						setPage={setPage}
+						refetch={refetch}
 					/>
 				)}
 				<div className="route-container">
@@ -71,19 +59,17 @@ function App() {
 							component={HomePage}
 						/>
 
-						{user && (
-							<PrivateRoute
-								exact
-								path="/dashboard"
-								page={page}
-								user={user}
-								data={appData}
-								searchVal={searchVal}
-								isLoading={isLoading}
-								setPage={setPage}
-								component={Dashboard}
-							/>
-						)}
+						<PrivateRoute
+							exact
+							path="/dashboard"
+							page={page}
+							user={user}
+							data={data}
+							query={query}
+							isLoading={isLoading}
+							setPage={setPage}
+							component={Dashboard}
+						/>
 					</Switch>
 				</div>
 			</div>
