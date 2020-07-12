@@ -5,7 +5,7 @@ function useFetch(initialUrl, initialParams = {}, skip = false) {
 	const [ params, updateParams ] = React.useState(initialParams);
 	const [ hasError, setHasError ] = React.useState(false);
 	const [ errorMessage, setErrorMessage ] = React.useState('');
-	const [ isLoading, setIsLoading ] = React.useState(false);
+	const [ isDataLoading, setIsDataLoading ] = React.useState(false);
 	const [ data, setData ] = React.useState(null);
 	const [ refetchIndex, setRefetchIndex ] = React.useState(0);
 
@@ -24,7 +24,7 @@ function useFetch(initialUrl, initialParams = {}, skip = false) {
 	React.useEffect(
 		() => {
 			const fetchData = async () => {
-				if (skip) return setIsLoading(true);
+				if (skip) return setIsDataLoading(true);
 				try {
 					const response = await fetch(`${url}${queryString}`);
 					const result = await response.json();
@@ -38,7 +38,7 @@ function useFetch(initialUrl, initialParams = {}, skip = false) {
 					setHasError(true);
 					setErrorMessage(error.message);
 				} finally {
-					setIsLoading(false);
+					setIsDataLoading(false);
 				}
 			};
 			fetchData();
@@ -47,7 +47,7 @@ function useFetch(initialUrl, initialParams = {}, skip = false) {
 	);
 	return {
 		data,
-		isLoading,
+		isDataLoading,
 		hasError,
 		errorMessage,
 		updateUrl,
