@@ -51,6 +51,8 @@ const Home = ({ data, isLoading, query }) => {
 		return itemArray;
 	};
 
+	console.count('home_rendered');
+
 	const items = React.useMemo(() => createGridItems(), [ data ]);
 
 	return (
