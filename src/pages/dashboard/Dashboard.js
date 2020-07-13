@@ -5,14 +5,12 @@ import { useStyles } from './DashboardStyles';
 import Home from '../../pages/home/Home';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
-// import Boards from '../../pages/boards/Boards';
-// import ViewPin from '../../pages/view/ViewPin';
 
 const SlideTransition = props => {
 	return <Slide {...props} direction="up" />;
 };
 
-function Dashboard({ setPage, page, query, isLoading, data }) {
+function Dashboard({ setPage, page, query, isDataLoading, data }) {
 	const classes = useStyles();
 
 	const [ singleViewData, setSingleViewData ] = React.useState({
@@ -63,7 +61,7 @@ function Dashboard({ setPage, page, query, isLoading, data }) {
 				setSingleViewData={setSingleViewData}
 				page={page}
 				query={query}
-				isLoading={isLoading}
+				isDataLoading={isDataLoading}
 				setPage={setPage}
 				data={data}
 			/>
