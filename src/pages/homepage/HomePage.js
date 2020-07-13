@@ -11,16 +11,8 @@ import {
 	greyButtonHover
 } from '../../styles/variables/variables';
 
-import image1 from '../../images/grid-img-1.png';
-import image2 from '../../images/grid-img-2.png';
-import image3 from '../../images/grid-img-3.png';
-import image4 from '../../images/grid-img-4.png';
-import image5 from '../../images/grid-img-5.png';
-import image6 from '../../images/grid-img-6.png';
-import image7 from '../../images/grid-img-7.png';
-import image8 from '../../images/grid-img-8.png';
-import image9 from '../../images/grid-img-9.png';
-import image10 from '../../images/grid-img-10.png';
+import images from './images';
+import { Grid } from '@material-ui/core';
 
 console.count('homepage_render_count');
 
@@ -32,9 +24,14 @@ function HomePage(props) {
 
 	const randomSize = () => {
 		const sizes = [ 3, 4, 5 ];
-		let random = Math.floor(Math.random() * sizes.length);
-		return sizes[random];
+		return sizes[Math.floor(Math.random() * sizes.length)];
 	};
+
+	const randomChoice = items =>
+		items[Math.floor(Math.random() * items.length)];
+	const random = randomChoice(images);
+
+	console.log(images);
 
 	return (
 		<Fragment>
@@ -92,7 +89,10 @@ function HomePage(props) {
 
 			<div className={classes.root}>
 				<GridContainer>
-					<GridBox size={randomSize()} src={image1} />
+					{images.map(image => {
+						<GridBox size={randomSize()} src={image} />;
+					})}
+					{/* <GridBox size={randomSize()} src={image1} />
 					<GridBox size={randomSize()} src={image2} />
 					<GridBox size={randomSize()} src={image3} />
 					<GridBox size={randomSize()} src={image4} />
@@ -122,7 +122,7 @@ function HomePage(props) {
 					<GridBox size={randomSize()} src={image6} />
 					<GridBox size={randomSize()} src={image8} />
 					<GridBox size={randomSize()} src={image9} />
-					<GridBox size={randomSize()} src={image10} />
+					<GridBox size={randomSize()} src={image10} /> */}
 				</GridContainer>
 			</div>
 		</Fragment>
