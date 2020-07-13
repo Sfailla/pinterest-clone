@@ -13,7 +13,7 @@ function App() {
 	const [ query, setQuery ] = React.useState('guns');
 	const [ page, setPage ] = React.useState('home');
 	const [ userAuth, setUserAuth ] = React.useState(
-		JSON.parse(localStorage.getItem('userAuth')) || null
+		JSON.parse(localStorage.getItem('userAuth'))
 	);
 
 	const url = 'https://api.unsplash.com/search/photos?';
@@ -24,33 +24,28 @@ function App() {
 		client_id: process.env.UNSPLASH_ACCESS_KEY
 	};
 
+	const { data, isDataLoading, updateParams } = useFetch(url, params);
 	const { user, isAuthPending } = useAuth();
-	const { data, isDataLoading, updateParams, refetch } = useFetch(
-		url,
-		params
-	);
 
 	const updateFetchResults = event => {
 		event.preventDefault();
 		updateParams(params);
 	};
 
-	React.useEffect(() => {
-		if (user) setUserAuth(user);
-	}, []);
+	const persistAuth = () => {};
 
-	if (isDataLoading) return <div>Loading...</div>;
+	if (isDataLoading || isAuthPending) return <div>Loading...</div>;
 
 	return (
 		<Router>
 			<div className="app-container">
-				{userAuth && (
+				{user && (
 					<Header
 						page={page}
 						updateFetchResults={updateFetchResults}
 						setQuery={setQuery}
 						setPage={setPage}
-						refetch={refetch}
+						setUserAuth={setUserAuth}
 					/>
 				)}
 				<div className="route-container">
@@ -58,7 +53,8 @@ function App() {
 						<PublicRoute
 							exact
 							path="/"
-							user={userAuth}
+							user={user}
+							userAuth={userAuth}
 							component={HomePage}
 						/>
 
@@ -68,7 +64,8 @@ function App() {
 							page={page}
 							data={data}
 							query={query}
-							user={userAuth}
+							user={user}
+							userAuth={userAuth}
 							isDataLoading={isDataLoading}
 							setPage={setPage}
 							component={Dashboard}
