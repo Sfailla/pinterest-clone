@@ -10,13 +10,13 @@ function useAuth() {
 		const unsubscribe = firebase.auth.onAuthStateChanged(user => {
 			if (user) {
 				// user is signed in
-				localStorage.setItem('userAuth', JSON.stringify(user));
 				setUser(user);
+				localStorage.setItem('userAuth', JSON.stringify(user));
 				setIsAuthPending(false);
 			} else {
 				// user is not signed in
-				localStorage.removeItem('userAuth');
 				setUser(null);
+				localStorage.removeItem('userAuth');
 				setIsAuthPending(false);
 			}
 		});
