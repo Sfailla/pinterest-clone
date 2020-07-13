@@ -12,7 +12,7 @@ class Firebase {
 
 	async register(email, password, name) {
 		await this.auth
-			.setPersistence(app.auth.Auth.Persistence.SESSION)
+			.setPersistence(app.auth.Auth.Persistence.LOCAL)
 			.then(() => {
 				const newUser = this.auth.createUserWithEmailAndPassword(
 					email,
@@ -27,9 +27,9 @@ class Firebase {
 
 	async login(email, password) {
 		await this.auth
-			.setPersistence(app.auth.Auth.Persistence.SESSION)
-			.then(() => {
-				return this.auth.signInWithEmailAndPassword(email, password);
+			.setPersistence(app.auth.Auth.Persistence.LOCAL)
+			.then(async () => {
+				await this.auth.signInWithEmailAndPassword(email, password);
 			});
 	}
 
