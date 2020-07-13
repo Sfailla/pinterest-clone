@@ -19,7 +19,13 @@ import FormGroup from '../form-group/FormGroup';
 import { Typography } from '@material-ui/core';
 import { useStyles } from './HeaderStyles';
 
-function Header({ page, setPage, setQuery, updateFetchResults }) {
+function Header({
+	page,
+	setPage,
+	setQuery,
+	updateFetchResults,
+	setUserAuth
+}) {
 	const [ anchorEl, setAnchorEl ] = React.useState(null);
 	const classes = useStyles();
 	const history = useHistory();
@@ -133,7 +139,10 @@ function Header({ page, setPage, setQuery, updateFetchResults }) {
 							onClick={() => {
 								firebase
 									.logout()
-									.then(() => history.push('/'))
+									.then(() => {
+										setUserAuth(null);
+										history.push('/');
+									})
 									.catch(err => console.log(err));
 								handleClose();
 							}}
