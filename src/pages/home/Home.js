@@ -4,7 +4,8 @@ import MasonryCard from './MasonryCard';
 import { useStyles } from './HomeStyles';
 import useMasonryGrid from '../../hooks/useMasonryGrid';
 
-const Home = ({ data, isLoading, query }) => {
+const Home = ({ data }) => {
+	console.log(data);
 	const classes = useStyles();
 
 	const {
@@ -49,7 +50,6 @@ const Home = ({ data, isLoading, query }) => {
 		<div className={classes.root}>
 			<div className={classes.masonic}>
 				<MasonryScroller
-					key={query}
 					positioner={positioner}
 					// The distance in px between the top of the document and the top of the
 					// masonry grid container
