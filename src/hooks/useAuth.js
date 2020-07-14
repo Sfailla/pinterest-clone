@@ -11,13 +11,13 @@ function useAuth() {
 			if (user) {
 				// user is signed in
 				setUser(user);
-				localStorage.setItem('userAuth', JSON.stringify(user));
 				setIsAuthPending(false);
+				localStorage.setItem('userAuth', JSON.stringify(user));
 			} else {
 				// user is not signed in
 				setUser(null);
-				localStorage.removeItem('userAuth');
 				setIsAuthPending(false);
+				localStorage.removeItem('userAuth');
 			}
 		});
 
