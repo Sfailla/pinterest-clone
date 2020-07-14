@@ -1,37 +1,20 @@
 import React, { Fragment } from 'react';
-import { useStyles } from './HomePageStyles';
 
 import Button from '../../components/buttons/Button';
-import GridBox from '../../components/grid/GridBox';
 import HomePageCard from '../../components/homepage-card/HomePageCard';
-import GridContainer from '../../components/grid/GridContainer';
 import SigninAndSignup from '../../components/user-auth/SigninAndSignup';
 import {
 	greyButton,
 	greyButtonHover
 } from '../../styles/variables/variables';
-
-import images from './images';
-import { Grid } from '@material-ui/core';
+import MasonicGrid from '../../components/grid/MasonicGrid';
 
 console.count('homepage_render_count');
 
 function HomePage(props) {
-	const classes = useStyles();
 	const [ renderSignup, setRenderSignup ] = React.useState(false);
 	const [ renderLogin, setRenderLogin ] = React.useState(false);
 	const [ renderAuthCard, setRenderAuthCard ] = React.useState(true);
-
-	const randomSize = () => {
-		const sizes = [ 3, 4, 5 ];
-		return sizes[Math.floor(Math.random() * sizes.length)];
-	};
-
-	const randomChoice = items =>
-		items[Math.floor(Math.random() * items.length)];
-	const random = randomChoice(images);
-
-	console.log(images);
 
 	return (
 		<Fragment>
@@ -86,45 +69,7 @@ function HomePage(props) {
 					/>
 				</Fragment>
 			)}
-
-			<div className={classes.root}>
-				<GridContainer>
-					{images.map(image => {
-						<GridBox size={randomSize()} src={image} />;
-					})}
-					{/* <GridBox size={randomSize()} src={image1} />
-					<GridBox size={randomSize()} src={image2} />
-					<GridBox size={randomSize()} src={image3} />
-					<GridBox size={randomSize()} src={image4} />
-					<GridBox size={randomSize()} src={image5} />
-					<GridBox size={randomSize()} src={image6} />
-					<GridBox size={randomSize()} src={image7} />
-					<GridBox size={randomSize()} src={image8} />
-					<GridBox size={randomSize()} src={image9} />
-					<GridBox size={randomSize()} src={image10} />
-					<GridBox size={randomSize()} src={image1} />
-					<GridBox size={randomSize()} src={image4} />
-					<GridBox size={randomSize()} src={image5} />
-					<GridBox size={randomSize()} src={image6} />
-					<GridBox size={randomSize()} src={image3} />
-					<GridBox size={randomSize()} src={image8} />
-					<GridBox size={randomSize()} src={image9} />
-					<GridBox size={randomSize()} src={image7} />
-					<GridBox size={randomSize()} src={image10} />
-					<GridBox size={randomSize()} src={image1} />
-					<GridBox size={randomSize()} src={image2} />
-					<GridBox size={randomSize()} src={image8} />
-					<GridBox size={randomSize()} src={image7} />
-					<GridBox size={randomSize()} src={image3} />
-					<GridBox size={randomSize()} src={image2} />
-					<GridBox size={randomSize()} src={image4} />
-					<GridBox size={randomSize()} src={image5} />
-					<GridBox size={randomSize()} src={image6} />
-					<GridBox size={randomSize()} src={image8} />
-					<GridBox size={randomSize()} src={image9} />
-					<GridBox size={randomSize()} src={image10} /> */}
-				</GridContainer>
-			</div>
+			<MasonicGrid />
 		</Fragment>
 	);
 }
