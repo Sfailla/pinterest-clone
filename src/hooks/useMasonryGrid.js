@@ -1,5 +1,11 @@
 import React from 'react';
-import { useContainerPosition, usePositioner } from 'masonic';
+import {
+	useContainerPosition,
+	usePositioner,
+	useScroller,
+	useMasonry,
+	MasonryScroller
+} from 'masonic';
 import { useWindowSize } from '@react-hook/window-size';
 
 function useMasonryGrid(columnGutter = 15, columnWidth = 236) {
@@ -17,12 +23,18 @@ function useMasonryGrid(columnGutter = 15, columnWidth = 236) {
 		columnWidth
 	});
 
+	const { scrollTop, isScrolling } = useScroller(offset);
+
 	return {
 		positioner,
 		offset,
 		width,
 		windowHeight,
-		containerRef
+		containerRef,
+		isScrolling,
+		scrollTop,
+		useMasonry,
+		MasonryScroller
 	};
 }
 
