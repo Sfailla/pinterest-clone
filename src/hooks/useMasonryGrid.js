@@ -2,39 +2,53 @@ import React from 'react';
 import {
 	useContainerPosition,
 	usePositioner,
+	useResizeObserver,
 	useScroller,
 	useMasonry,
-	MasonryScroller
+	MasonryScroller,
+	createPositioner
 } from 'masonic';
 import { useWindowSize } from '@react-hook/window-size';
 
 function useMasonryGrid(columnGutter = 15, columnWidth = 236) {
-	const containerRef = React.useRef(null);
-	const [ windowWidth, windowHeight ] = useWindowSize();
+	let containerRef = React.useRef(null);
+	let [ windowWidth, windowHeight ] = useWindowSize();
 
-	const { offset, width } = useContainerPosition(containerRef, [
+	let { offset, width } = useContainerPosition(containerRef, [
 		windowWidth,
 		windowHeight
 	]);
 
-	const positioner = usePositioner({
+	let positioner = usePositioner({
 		width,
 		columnGutter,
 		columnWidth
 	});
 
-	const { scrollTop, isScrolling } = useScroller(offset);
+	let updatePositioner = () => {
+		positioner = createPositioner({
+			width,
+			columnGutter,
+			columnWidth
+		});
+		return positioner;
+	};
+
+	let resizeObserver = useResizeObserver(positioner);
+	let { scrollTop, isScrolling } = useScroller(offset);
 
 	return {
 		positioner,
 		offset,
 		width,
+		resizeObserver,
 		windowHeight,
 		containerRef,
 		isScrolling,
 		scrollTop,
 		useMasonry,
-		MasonryScroller
+		MasonryScroller,
+		updatePositioner
 	};
 }
 
