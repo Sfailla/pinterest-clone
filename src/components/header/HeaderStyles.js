@@ -104,5 +104,9 @@ export const useStyles = makeStyles(theme => ({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center'
+	},
+	active: {
+		backgroundColor: 'black',
+		color: 'white'
 	}
 }));

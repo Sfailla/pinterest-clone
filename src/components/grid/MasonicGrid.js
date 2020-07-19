@@ -14,7 +14,6 @@ function MasonicGrid() {
 
 	const classes = useStyles();
 	const items = React.useMemo(() => getItems(), [ images ]);
-	console.log(items && items);
 
 	return (
 		<div className={classes.root}>
@@ -35,11 +34,7 @@ export default MasonicGrid;
 
 const ImageCard = ({ data: { src, height, id } }) => {
 	const classes = useStyles({ src, height });
-	return (
-		<div className={classes.masonCard}>
-			<span children={id} />
-		</div>
-	);
+	return <div className={classes.masonCard} />;
 };
 
 const randomChoice = items =>

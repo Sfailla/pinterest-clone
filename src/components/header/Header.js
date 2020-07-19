@@ -24,7 +24,8 @@ function Header({
 	setPage,
 	setQuery,
 	updateFetchResults,
-	setUserAuth
+	setUserAuth,
+	refetch
 }) {
 	const [ anchorEl, setAnchorEl ] = React.useState(null);
 	const classes = useStyles();
@@ -39,6 +40,8 @@ function Header({
 		setAnchorEl(null);
 	};
 
+	console.log(page);
+
 	return (
 		<div className={classes.root}>
 			<AppBar className={classes.background} position="static">
@@ -46,7 +49,7 @@ function Header({
 					{/* logo */}
 					<img className={classes.logo} src={logo} />
 					<Button
-						className={page === 'home' ? 'active' : ''}
+						className={page === 'home' ? classes.active : ''}
 						onClick={() => {
 							setPage('home');
 						}}
@@ -61,7 +64,7 @@ function Header({
 						onClick={() => {
 							setPage('boards');
 						}}
-						className={page === 'home' ? 'active' : ''}
+						className={page === 'boards' ? classes.active : ''}
 					>
 						<Typography varient="h4" className={classes.wordLink}>
 							BOARDS
