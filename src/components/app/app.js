@@ -10,7 +10,7 @@ import useAuth from '../../hooks/useAuth';
 import useFetch from '../../hooks/useFetch';
 
 function App() {
-	const [ query, setQuery ] = React.useState('guns');
+	const [ query, setQuery ] = React.useState('cars');
 	const [ page, setPage ] = React.useState('home');
 	const [ userAuth, setUserAuth ] = React.useState(
 		JSON.parse(localStorage.getItem('userAuth'))
@@ -24,15 +24,16 @@ function App() {
 		client_id: process.env.UNSPLASH_ACCESS_KEY
 	};
 
-	const { data, isDataLoading, updateParams } = useFetch(url, params);
+	const { data, isDataLoading, updateParams, refetch } = useFetch(
+		url,
+		params
+	);
 	const { user, isAuthPending } = useAuth();
 
 	const updateFetchResults = event => {
 		event.preventDefault();
 		updateParams(params);
 	};
-
-	const persistAuth = () => {};
 
 	if (isDataLoading || isAuthPending) return <div>Loading...</div>;
 
@@ -46,6 +47,7 @@ function App() {
 						setQuery={setQuery}
 						setPage={setPage}
 						setUserAuth={setUserAuth}
+						refetch={refetch}
 					/>
 				)}
 				<div className="route-container">
