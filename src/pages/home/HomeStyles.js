@@ -19,7 +19,7 @@ export const useStyles = makeStyles(theme => ({
 	},
 	masonCard: {
 		width: '100%',
-		height: props => props.height,
+		height: props => `${props.height}px`,
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'flex-end',

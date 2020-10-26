@@ -17,6 +17,7 @@ const Home = ({ data, query }) => {
 
 	const createGridItems = () => {
 		const itemArray = [];
+
 		const randomHeight = (min = 280, max = 500) =>
 			Math.floor(Math.random() * (max - min)) + min;
 
