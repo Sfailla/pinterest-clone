@@ -3,13 +3,8 @@ import React, { Fragment } from 'react';
 import Button from '../../components/buttons/Button';
 import HomePageCard from '../../components/homepage-card/HomePageCard';
 import SigninAndSignup from '../../components/user-auth/SigninAndSignup';
-import {
-	greyButton,
-	greyButtonHover
-} from '../../styles/variables/variables';
+import { greyButton, greyButtonHover } from '../../styles/variables/variables';
 import MasonicGrid from '../../components/grid/MasonicGrid';
-
-console.count('homepage_render_count');
 
 function HomePage(props) {
 	const [ renderSignup, setRenderSignup ] = React.useState(false);
@@ -58,7 +53,7 @@ function HomePage(props) {
 						setRenderSignup={setRenderSignup}
 					/>
 					<Button
-						name="Log Out"
+						name="Sign up"
 						variant="authlink"
 						color={greyButton}
 						hover={greyButtonHover}

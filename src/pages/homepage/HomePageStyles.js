@@ -4,7 +4,7 @@ import { mainBorderRadius } from '../../styles/variables/variables';
 export const useStyles = makeStyles(theme => ({
 	root: {
 		width: '100vw',
-		height: '100vh',
+		height: 'calc(100vh - 65px)',
 		padding: theme.spacing(4),
 		overflow: 'hidden',
 		'&:after': {
