@@ -1,14 +1,12 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
 
-const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
-	const user = useAuth();
+const PrivateRoute = ({ user, isLoading, component: RouteComponent, ...rest }) => {
 	return (
 		<Route
 			{...rest}
 			render={props =>
-				!!user ? (
+				isLoading || user ? (
 					<RouteComponent {...props} {...rest} />
 				) : (
 					<Redirect
