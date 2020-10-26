@@ -19,14 +19,7 @@ import FormGroup from '../form-group/FormGroup';
 import { Typography } from '@material-ui/core';
 import { useStyles } from './HeaderStyles';
 
-function Header({
-	page,
-	setPage,
-	setQuery,
-	updateFetchResults,
-	setUserAuth,
-	refetch
-}) {
+function Header({ page, setPage, setQuery, updateFetchResults }) {
 	const [ anchorEl, setAnchorEl ] = React.useState(null);
 	const classes = useStyles();
 	const history = useHistory();
@@ -39,8 +32,6 @@ function Header({
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
-
-	console.log(page);
 
 	return (
 		<div className={classes.root}>
@@ -71,10 +62,7 @@ function Header({
 						</Typography>
 					</Button>
 					{/* search input and icon */}
-					<FormGroup
-						onSubmit={updateFetchResults}
-						className={classes.search}
-					>
+					<FormGroup onSubmit={updateFetchResults} className={classes.search}>
 						<div className={classes.searchIcon}>
 							<SearchIcon />
 						</div>
@@ -116,10 +104,7 @@ function Header({
 						color="inherit"
 						aria-label="open drawer"
 					>
-						<MoreHorizIcon
-							fontSize="large"
-							className={classes.iconFill}
-						/>
+						<MoreHorizIcon fontSize="large" className={classes.iconFill} />
 					</IconButton>
 					{/* user menu options */}
 					<Menu
@@ -143,7 +128,6 @@ function Header({
 								firebase
 									.logout()
 									.then(() => {
-										setUserAuth(null);
 										history.push('/');
 									})
 									.catch(err => console.log(err));
