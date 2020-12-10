@@ -31,12 +31,14 @@ function App() {
 	return (
 		<Router>
 			<div className="app-container">
-				<Header
-					page={page}
-					updateFetchResults={updateFetchResults}
-					setQuery={setQuery}
-					setPage={setPage}
-				/>
+				{user && (
+					<Header
+						page={page}
+						updateFetchResults={updateFetchResults}
+						setQuery={setQuery}
+						setPage={setPage}
+					/>
+				)}
 
 				<div className="route-container">
 					<Switch>
