@@ -8,6 +8,7 @@ import {
 	MasonryScroller,
 	createPositioner
 } from 'masonic';
+
 import { useWindowSize } from '@react-hook/window-size';
 
 function useMasonryGrid(items, columnGutter = 15, columnWidth = 236) {
