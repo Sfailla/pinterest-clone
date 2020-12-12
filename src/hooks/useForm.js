@@ -1,6 +1,6 @@
 import React from 'react';
 
-function formValidation(initialState, validate, authenticate) {
+export default function useForm(initialState, validate, authenticate) {
 	const [ values, setValues ] = React.useState(initialState);
 	const [ errors, setErrors ] = React.useState(null);
 	const [ isSubmitting, setSubmitting ] = React.useState(false);
@@ -45,5 +45,3 @@ function formValidation(initialState, validate, authenticate) {
 		errors
 	};
 }
-
-export default formValidation;
