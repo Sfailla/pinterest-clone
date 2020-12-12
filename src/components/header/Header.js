@@ -24,6 +24,7 @@ function Header({ page, setPage, setQuery, updateFetchResults }) {
 	const classes = useStyles();
 	const history = useHistory();
 	const open = Boolean(anchorEl);
+	const isSearchPage = page === 'search';
 
 	const handleOpenMenu = event => {
 		setAnchorEl(event.currentTarget);
@@ -41,9 +42,8 @@ function Header({ page, setPage, setQuery, updateFetchResults }) {
 					<img className={classes.logo} src={logo} />
 					<Button
 						classes={{
-							root: classes.button
+							root: isSearchPage && `${classes.button} ${classes.active}`
 						}}
-						className={page === 'search' && classes.active}
 						onClick={() => {
 							setPage('search');
 						}}
@@ -55,10 +55,12 @@ function Header({ page, setPage, setQuery, updateFetchResults }) {
 					</Button>
 					{/* boards link */}
 					<Button
+						classes={{
+							root: !isSearchPage && `${classes.button} ${classes.active}`
+						}}
 						onClick={() => {
 							setPage('boards');
 						}}
-						className={page === 'boards' && classes.active}
 					>
 						<Typography varient="h4" className={classes.wordLink}>
 							BOARDS
