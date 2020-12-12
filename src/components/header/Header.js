@@ -40,14 +40,17 @@ function Header({ page, setPage, setQuery, updateFetchResults }) {
 					{/* logo */}
 					<img className={classes.logo} src={logo} />
 					<Button
-						className={page === 'home' ? classes.active : ''}
+						classes={{
+							root: classes.button
+						}}
+						className={page === 'search' && classes.active}
 						onClick={() => {
-							setPage('home');
+							setPage('search');
 						}}
 					>
-						{/* home link */}
+						{/* search link */}
 						<Typography varient="h4" className={classes.wordLink}>
-							HOME
+							Search
 						</Typography>
 					</Button>
 					{/* boards link */}
@@ -55,7 +58,7 @@ function Header({ page, setPage, setQuery, updateFetchResults }) {
 						onClick={() => {
 							setPage('boards');
 						}}
-						className={page === 'boards' ? classes.active : ''}
+						className={page === 'boards' && classes.active}
 					>
 						<Typography varient="h4" className={classes.wordLink}>
 							BOARDS

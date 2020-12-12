@@ -6,26 +6,18 @@ import {
 	redButtonHover,
 	greyButton,
 	greyButtonHover
-} from '../../styles/variables/variables';
+} from '../../styles';
 
 import { useStyles } from './HomePageCardStyles';
 
-function HomePageCard({
-	setRenderLogin,
-	setRenderSignup,
-	setRenderAuthCard
-}) {
+function HomePageCard({ setRenderLogin, setRenderSignup, setRenderAuthCard }) {
 	const classes = useStyles();
 	return (
 		<div className={classes.card}>
 			<div className={classes.cardBody}>
 				<div className={classes.cardBodyUpper}>
 					<div className={classes.textWrapper}>
-						<img
-							className={classes.logo}
-							src={logo}
-							alt="pinterest logo"
-						/>
+						<img className={classes.logo} src={logo} alt="pinterest logo" />
 						<h1>Welcome to pinterest</h1>
 						<p>Find new ideas to try</p>
 					</div>
@@ -33,7 +25,6 @@ function HomePageCard({
 
 				<div className={classes.buttonWrapper}>
 					<Button
-						name="Log in"
 						color={redButton}
 						hover={redButtonHover}
 						variant="rounded"
@@ -41,11 +32,12 @@ function HomePageCard({
 							setRenderAuthCard(false);
 							setRenderLogin(true);
 						}}
-					/>
+					>
+						Log in
+					</Button>
 				</div>
 				<div className={classes.buttonWrapper}>
 					<Button
-						name="Sign up"
 						textColor="black"
 						color={greyButton}
 						hover={greyButtonHover}
@@ -54,7 +46,9 @@ function HomePageCard({
 							setRenderAuthCard(false);
 							setRenderSignup(true);
 						}}
-					/>
+					>
+						Sign up
+					</Button>
 				</div>
 			</div>
 			<div className={classes.cardFooter}>

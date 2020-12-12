@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import Button from '../../components/buttons/Button';
 import HomePageCard from '../../components/homepage-card/HomePageCard';
 import SigninAndSignup from '../../components/user-auth/SigninAndSignup';
-import { greyButton, greyButtonHover } from '../../styles/variables/variables';
+import { greyButton, greyButtonHover } from '../../styles';
 import MasonicGrid from '../../components/grid/MasonicGrid';
 
 function HomePage(props) {
@@ -32,7 +32,6 @@ function HomePage(props) {
 						setRenderSignup={setRenderSignup}
 					/>
 					<Button
-						name="Log in"
 						variant="authlink"
 						color={greyButton}
 						hover={greyButtonHover}
@@ -40,7 +39,9 @@ function HomePage(props) {
 							setRenderSignup(false);
 							setRenderLogin(true);
 						}}
-					/>
+					>
+						Log in
+					</Button>
 				</Fragment>
 			)}
 			{renderLogin && (
@@ -53,7 +54,6 @@ function HomePage(props) {
 						setRenderSignup={setRenderSignup}
 					/>
 					<Button
-						name="Sign up"
 						variant="authlink"
 						color={greyButton}
 						hover={greyButtonHover}
@@ -61,7 +61,9 @@ function HomePage(props) {
 							setRenderSignup(true);
 							setRenderLogin(false);
 						}}
-					/>
+					>
+						Sign up
+					</Button>
 				</Fragment>
 			)}
 			<MasonicGrid />

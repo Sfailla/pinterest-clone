@@ -7,10 +7,12 @@ export const useStyles = makeStyles(theme => ({
 			marginLeft: '8px',
 			padding: '0px',
 			borderRadius: '24px'
-		},
-		'& .MuiButton-root:hover.active': {
-			backgroundColor: theme.palette.common.black,
-			borderRadius: '24px'
+		}
+	},
+	button: {
+		'&:hover:not(:active)': {
+			color: 'white',
+			backgroundColor: 'black'
 		}
 	},
 	background: {

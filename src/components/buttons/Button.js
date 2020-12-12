@@ -2,7 +2,7 @@ import React from 'react';
 import { useStyles } from './ButtonStyles';
 
 const Button = ({
-	name,
+	children,
 	variant,
 	color,
 	textColor,
@@ -14,7 +14,7 @@ const Button = ({
 
 	return (
 		<button className={classes[variant]} {...otherProps}>
-			{name}
+			{children}
 		</button>
 	);
 };
