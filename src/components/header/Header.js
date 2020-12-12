@@ -25,7 +25,7 @@ function Header({ page, setPage, setQuery, updateFetchResults }) {
 	const history = useHistory();
 	const open = Boolean(anchorEl);
 
-	const handleMenu = event => {
+	const handleOpenMenu = event => {
 		setAnchorEl(event.currentTarget);
 	};
 
@@ -98,7 +98,7 @@ function Header({ page, setPage, setQuery, updateFetchResults }) {
 					</IconButton>
 					{/* open menu button  */}
 					<IconButton
-						onClick={handleMenu}
+						onClick={handleOpenMenu}
 						edge="start"
 						className={classes.menuButton}
 						color="inherit"
