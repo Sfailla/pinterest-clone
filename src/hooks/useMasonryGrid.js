@@ -10,7 +10,7 @@ import {
 } from 'masonic';
 import { useWindowSize } from '@react-hook/window-size';
 
-function useMasonryGrid(columnGutter = 15, columnWidth = 236) {
+function useMasonryGrid(items, columnGutter = 15, columnWidth = 236) {
 	let containerRef = React.useRef(null);
 	let [ windowWidth, windowHeight ] = useWindowSize();
 
@@ -19,11 +19,14 @@ function useMasonryGrid(columnGutter = 15, columnWidth = 236) {
 		windowHeight
 	]);
 
-	let positioner = usePositioner({
-		width,
-		columnGutter,
-		columnWidth
-	});
+	let positioner = usePositioner(
+		{
+			width,
+			columnGutter,
+			columnWidth
+		},
+		[ items ]
+	);
 
 	let updatePositioner = () => {
 		positioner = createPositioner({
