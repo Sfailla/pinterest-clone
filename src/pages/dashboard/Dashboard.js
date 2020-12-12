@@ -8,6 +8,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import Header from '../../components/header/Header';
 import { createGridItems } from './createGridItems';
+import CardContext from './cardContext';
 
 const SlideTransition = props => {
 	return <Slide {...props} direction="up" />;
@@ -16,26 +17,19 @@ const SlideTransition = props => {
 function Dashboard() {
 	const classes = useStyles();
 
-	const [ singleViewData, setSingleViewData ] = React.useState({
-		img: '',
-		author: '',
-		authorLink: '',
-		description: ''
-	});
-
 	const [ state, setState ] = React.useState({
 		open: false,
-		Transition: SlideTransition
+		transition: SlideTransition
 	});
 
 	const [ message, setMessage ] = React.useState('');
 
 	// handles opening the snackbar
 	const handleOpen = React.useCallback(
-		Transition => {
+		transition => {
 			setState({
 				open: true,
-				Transition
+				transition
 			});
 		},
 		[ setState ]
@@ -63,26 +57,32 @@ function Dashboard() {
 	// 	}
 	// };
 
+	const [ singleViewData, setSingleViewData ] = React.useState(null);
 	const [ appData, setAppData ] = React.useState([]);
+	const [ dataError, setDataError ] = React.useState(null);
 	const [ page, setPage ] = React.useState('home');
 	const [ query, setQuery ] = React.useState('cars');
 	const url = 'https://api.unsplash.com/search/photos?';
 	const params = {
 		query,
 		page: 1,
-		per_page: 20,
+		per_page: 30,
 		client_id: process.env.UNSPLASH_ACCESS_KEY
 	};
 
-	const { data, isDataLoading, updateParams } = useFetch(url, params);
+	const { data, isDataLoading, updateParams, error } = useFetch(url, params);
+
+	console.log(error);
 
 	React.useEffect(
 		() => {
 			if (!isDataLoading) {
 				setAppData(data);
+			} else {
+				setDataError('no search results found');
 			}
 		},
-		[ data ]
+		[ appData, isDataLoading ]
 	);
 
 	const updateFetchResults = event => {
@@ -96,33 +96,37 @@ function Dashboard() {
 
 	return (
 		<React.Fragment>
-			<Header
-				page={page}
-				updateFetchResults={updateFetchResults}
-				setQuery={setQuery}
-				setPage={setPage}
-			/>
-			<div className={classes.root}>
-				<h1 className={classes.title}>images for "{query}"</h1>
-				<Home
-					setSingleViewData={setSingleViewData}
+			<CardContext.Provider value={{ setSingleViewData }}>
+				<Header
 					page={page}
-					isDataLoading={isDataLoading}
+					updateFetchResults={updateFetchResults}
+					setQuery={setQuery}
 					setPage={setPage}
-					items={items}
 				/>
-				<Snackbar
-					anchorOrigin={{
-						vertical: 'bottom',
-						horizontal: 'left'
-					}}
-					open={state.open}
-					autoHideDuration={3000}
-					onClose={handleClose}
-					message={message}
-					TransitionComponent={state.Transition}
-				/>
-			</div>
+				<div className={classes.root}>
+					<h1 className={classes.title}>images for "{query}"</h1>
+					{appData.length > 0 && (
+						<Home
+							setSingleViewData={setSingleViewData}
+							page={page}
+							isDataLoading={isDataLoading}
+							setPage={setPage}
+							items={items}
+						/>
+					)}
+					<Snackbar
+						anchorOrigin={{
+							vertical: 'bottom',
+							horizontal: 'left'
+						}}
+						open={state.open}
+						autoHideDuration={3000}
+						onClose={handleClose}
+						message={message}
+						TransitionComponent={state.transition}
+					/>
+				</div>
+			</CardContext.Provider>
 		</React.Fragment>
 	);
 }
