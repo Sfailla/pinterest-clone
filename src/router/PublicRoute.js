@@ -1,20 +1,17 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
 
-const PublicRoute = ({ component: RouteComponent, ...rest }) => {
-	const user = useAuth();
+export default function PublicRoute({
+	component: Component,
+	redirect: pathname,
+	restricted,
+	...rest
+}) {
 	return (
 		<Route
 			{...rest}
 			render={props =>
-				!!user ? (
-					<Redirect to="/dashboard" />
-				) : (
-					<RouteComponent {...props} {...rest} />
-				)}
+				!restricted ? <Component {...props} /> : <Redirect to={{ pathname }} />}
 		/>
 	);
-};
-
-export default PublicRoute;
+}

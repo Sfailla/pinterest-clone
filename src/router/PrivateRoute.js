@@ -1,23 +1,23 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-const PrivateRoute = ({ user, isLoading, component: RouteComponent, ...rest }) => {
+export default function PrivateRoute({
+	user,
+	isLoading,
+	redirect: pathname,
+	component: Component,
+	restricted = false,
+	...restProps
+}) {
 	return (
 		<Route
-			{...rest}
+			{...restProps}
 			render={props =>
-				isLoading || user ? (
-					<RouteComponent {...props} {...rest} />
+				user && !restricted ? (
+					<Component {...props} {...restProps} />
 				) : (
-					<Redirect
-						to={{
-							pathname: '/',
-							state: { from: props.location }
-						}}
-					/>
+					<Redirect to={{ pathname }} />
 				)}
 		/>
 	);
-};
-
-export default PrivateRoute;
+}
