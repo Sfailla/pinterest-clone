@@ -39,5 +39,9 @@ export const useStyles = makeStyles(theme => ({
 			borderBottomLeftRadius: '10px',
 			borderBottomRightRadius: '10px'
 		}
+	},
+	button: {
+		width: '100%',
+		height: ({ height }) => height + 'px'
 	}
 }));

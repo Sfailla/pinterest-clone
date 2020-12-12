@@ -6,6 +6,9 @@ import useMasonryGrid from '../../hooks/useMasonryGrid';
 
 const Home = ({ items }) => {
 	const classes = useStyles();
+	// const CardWithClick = React.useCallback(props => {
+	// 	return <MasonryCard {...props} onClick={() => setSingleViewData(props.data)} />;
+	// }, []);
 
 	const {
 		containerRef,
@@ -20,6 +23,7 @@ const Home = ({ items }) => {
 		<div className={classes.root}>
 			<div className={classes.masonic}>
 				<MasonryScroller
+					style={{ outline: 'none' }}
 					// masonry grid container
 					// The distance in px between the top of the document and the top of the
 					positioner={positioner}
