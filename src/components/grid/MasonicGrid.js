@@ -22,7 +22,7 @@ function MasonicGrid() {
 				scrollTop,
 				height: windowHeight,
 				containerRef,
-				items: items,
+				items,
 				overscanBy: 2,
 				render: ImageCard
 			})}
@@ -37,19 +37,19 @@ const ImageCard = ({ data: { src, height, id } }) => {
 	return <div className={classes.masonCard} />;
 };
 
-const randomChoice = items =>
-	items[Math.floor(Math.random() * items.length)];
+const randomChoice = items => items[Math.floor(Math.random() * items.length)];
 
 const randomHeight = (min = 280, max = 500) =>
 	Math.floor(Math.random() * (max - min)) + min;
 
-const getItems = (cur = 0) => {
+const getItems = (cur = 20) => {
 	const items = [];
-	for (let i = 20 * cur; i < cur * 20 + 20; i++)
+	for (let i = 0; i < cur; i++) {
 		items.push({
 			id: i,
 			src: randomChoice(images),
 			height: randomHeight()
 		});
+	}
 	return items;
 };
