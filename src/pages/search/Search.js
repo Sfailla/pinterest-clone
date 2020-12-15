@@ -1,15 +1,11 @@
 import React from 'react';
 
-import MasonryCard from './MasonryCard';
+import MasonryCard from '../../components/grid/MasonryCard';
 import { useStyles } from './SearchStyles';
 import useMasonryGrid from '../../hooks/useMasonryGrid';
 
 const Search = ({ items }) => {
 	const classes = useStyles();
-	// const CardWithClick = React.useCallback(props => {
-	// 	return <MasonryCard {...props} onClick={() => setSingleViewData(props.data)} />;
-	// }, []);
-
 	const {
 		containerRef,
 		windowHeight,
