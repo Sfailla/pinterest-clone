@@ -19,7 +19,7 @@ import FormGroup from '../form-group/FormGroup';
 import { Typography } from '@material-ui/core';
 import { useStyles } from './HeaderStyles';
 
-function Header({ page, setPage, setQuery, updateFetchResults }) {
+function Header({ page, setPage, handleOnChange, handleOnSubmit }) {
 	const [ anchorEl, setAnchorEl ] = React.useState(null);
 	const classes = useStyles();
 	const history = useHistory();
@@ -67,14 +67,14 @@ function Header({ page, setPage, setQuery, updateFetchResults }) {
 						</Typography>
 					</Button>
 					{/* search input and icon */}
-					<FormGroup onSubmit={updateFetchResults} className={classes.search}>
+					<FormGroup onSubmit={handleOnSubmit} className={classes.search}>
 						<div className={classes.searchIcon}>
 							<SearchIcon />
 						</div>
 						<InputBase
 							name="search"
 							type="text"
-							onChange={event => setQuery(event.target.value)}
+							onChange={handleOnChange}
 							placeholder="Search…"
 							classes={{
 								root: classes.inputRoot,
