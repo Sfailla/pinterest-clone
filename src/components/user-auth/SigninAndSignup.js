@@ -7,7 +7,7 @@ import RenderSignup from '../signup/RenderSignup';
 import RenderLogin from '../login/RenderLogin';
 import Button from '../buttons/Button';
 import useForm from '../../hooks/useForm';
-import validateLogin from '../form-validation/validateLogin';
+import validateLogin from '../../utils/form-validation/validateLogin';
 import { facebookButton, greyButton, greyButtonHover } from '../../styles';
 
 function SigninAndSignup({ renderSignup, renderLogin, history }) {
