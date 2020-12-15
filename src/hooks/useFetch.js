@@ -3,13 +3,10 @@ import React from 'react';
 function useFetch(initialUrl, initialParams = {}, skip = false) {
 	const [ url, updateUrl ] = React.useState(initialUrl);
 	const [ params, updateParams ] = React.useState(initialParams);
-	const [ error, setError ] = React.useState({
-		fetch: '',
-		results: ''
-	});
+	const [ error, setError ] = React.useState(null);
 	const [ hasError, setHasError ] = React.useState(false);
-	const [ isDataLoading, setIsDataLoading ] = React.useState(true);
-	const [ data, setData ] = React.useState(null);
+	const [ isDataLoading, setIsDataLoading ] = React.useState(false);
+	const [ data, setData ] = React.useState([]);
 
 	const queryString = Object.keys(params)
 		.map(key => encodeURIComponent(key) + '=' + encodeURIComponent(params[key]))
@@ -26,15 +23,15 @@ function useFetch(initialUrl, initialParams = {}, skip = false) {
 						if (result.total > 19) {
 							setData(result.results);
 						} else {
-							setError({ results: 'sorry no results found' });
+							setError('sorry no results found');
 						}
 					} else {
 						setHasError(true);
-						setError({ fetch: result });
+						setError(result);
 					}
 				} catch (error) {
 					setHasError(true);
-					setError({ fetch: error.message });
+					setError(error.message);
 				} finally {
 					setIsDataLoading(false);
 				}
