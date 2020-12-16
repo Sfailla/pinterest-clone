@@ -44,9 +44,7 @@ function Header({ page, setPage, handleOnChange, handleOnSubmit }) {
 						classes={{
 							root: isSearchPage && `${classes.button} ${classes.active}`
 						}}
-						onClick={() => {
-							setPage('search');
-						}}
+						onClick={() => setPage('search')}
 					>
 						{/* search link */}
 						<Typography varient="h4" className={classes.wordLink}>
@@ -58,9 +56,7 @@ function Header({ page, setPage, handleOnChange, handleOnSubmit }) {
 						classes={{
 							root: !isSearchPage && `${classes.button} ${classes.active}`
 						}}
-						onClick={() => {
-							setPage('boards');
-						}}
+						onClick={() => setPage('boards')}
 					>
 						<Typography varient="h4" className={classes.wordLink}>
 							BOARDS
