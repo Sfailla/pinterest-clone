@@ -2,13 +2,13 @@ import React from 'react';
 
 export default function useForm(initialState, validate, authenticate) {
 	const [ values, setValues ] = React.useState(initialState);
-	const [ errors, setErrors ] = React.useState(null);
+	const [ formErrors, setFormErrors ] = React.useState({});
 	const [ isSubmitting, setSubmitting ] = React.useState(false);
 
 	React.useEffect(
 		() => {
 			if (isSubmitting) {
-				const noErrors = Object.keys(errors).length === 0;
+				const noErrors = Object.keys(formErrors).length === 0;
 				if (noErrors) {
 					setSubmitting(false);
 					authenticate();
@@ -18,7 +18,7 @@ export default function useForm(initialState, validate, authenticate) {
 				}
 			}
 		},
-		[ errors, isSubmitting, authenticate ]
+		[ formErrors, isSubmitting, authenticate ]
 	);
 
 	const handleOnChange = event => {
@@ -33,7 +33,7 @@ export default function useForm(initialState, validate, authenticate) {
 	const handleOnSubmit = event => {
 		event.preventDefault();
 		let errors = validate(values);
-		setErrors(errors);
+		setFormErrors(errors);
 		setSubmitting(true);
 	};
 
@@ -42,6 +42,7 @@ export default function useForm(initialState, validate, authenticate) {
 		handleOnSubmit,
 		isSubmitting,
 		values,
-		errors
+		setFormErrors,
+		formErrors
 	};
 }

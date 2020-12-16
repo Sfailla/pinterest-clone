@@ -1,11 +1,11 @@
 import React from 'react';
 
-function useFetch(initialUrl, initialParams = {}, skip = false) {
+function useFetch(initialUrl, initialParams = {}) {
 	const [ url, updateUrl ] = React.useState(initialUrl);
 	const [ params, updateParams ] = React.useState(initialParams);
-	const [ error, setError ] = React.useState(null);
+	const [ fetchErrors, setFetchErrors ] = React.useState('');
 	const [ hasError, setHasError ] = React.useState(false);
-	const [ isDataLoading, setIsDataLoading ] = React.useState(false);
+	const [ isDataLoading, setIsDataLoading ] = React.useState(true);
 	const [ data, setData ] = React.useState([]);
 
 	const queryString = Object.keys(params)
@@ -23,15 +23,15 @@ function useFetch(initialUrl, initialParams = {}, skip = false) {
 						if (result.total > 19) {
 							setData(result.results);
 						} else {
-							setError('sorry no results found');
+							setFetchErrors('sorry no results found');
 						}
 					} else {
 						setHasError(true);
-						setError(result);
+						setFetchErrors(result);
 					}
 				} catch (error) {
 					setHasError(true);
-					setError(error.message);
+					setFetchErrors(error.message);
 				} finally {
 					setIsDataLoading(false);
 				}
@@ -44,7 +44,8 @@ function useFetch(initialUrl, initialParams = {}, skip = false) {
 		data,
 		isDataLoading,
 		hasError,
-		error,
+		setFetchErrors,
+		fetchErrors,
 		updateUrl,
 		updateParams
 	};
