@@ -10,6 +10,8 @@ export const useStyles = makeStyles(theme => ({
 		paddingBottom: theme.spacing(1)
 	},
 	alert: {
+		borderRadius: '0px !important',
+
 		'& .MuiAlert-action': {
 			paddingLeft: 0,
 			marginRight: '20px',

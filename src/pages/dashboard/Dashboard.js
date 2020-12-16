@@ -64,8 +64,10 @@ export default function Dashboard() {
 		authorize
 	);
 
+	const [searchTerm, setSearchTerm] = React.useState('guns');
+
 	const params = {
-		query: values.search || 'guns',
+		query: values.search || searchTerm,
 		page: 1,
 		per_page: 30,
 		client_id: process.env.UNSPLASH_ACCESS_KEY
@@ -82,6 +84,7 @@ export default function Dashboard() {
 	function authorize() {
 		setFetchErrors(null);
 		setFormErrors(null);
+		setSearchTerm(values?.search)
 		updateParams(params);
 	}
 
@@ -99,6 +102,7 @@ export default function Dashboard() {
 				<Header
 					page={page}
 					setPage={setPage}
+					search={values?.search}
 					handleOnChange={handleOnChange}
 					handleOnSubmit={handleOnSubmit}
 				/>
@@ -107,7 +111,7 @@ export default function Dashboard() {
 						<Search
 							page={page}
 							setPage={setPage}
-							searchTerm={params.query}
+							searchTerm={searchTerm}
 							items={items}
 							isDataLoading={isDataLoading}
 							setSingleViewData={setSingleViewData}
