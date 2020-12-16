@@ -11,6 +11,7 @@ export default function useForm(initialState, validate, authenticate) {
 				const noErrors = Object.keys(formErrors).length === 0;
 				if (noErrors) {
 					setSubmitting(false);
+					setValues(initialState);
 					authenticate();
 				} else {
 					console.log('authentication error');
@@ -18,7 +19,7 @@ export default function useForm(initialState, validate, authenticate) {
 				}
 			}
 		},
-		[ formErrors, isSubmitting, authenticate ]
+		[ formErrors, isSubmitting, authenticate, setValues ]
 	);
 
 	const handleOnChange = event => {
