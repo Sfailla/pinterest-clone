@@ -1,11 +1,11 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { mainBorderRadius } from '../../styles';
 
 export const useStyles = makeStyles(theme => ({
-	root: {
+	search: {
 		width: '100%',
 		height: '100vh',
-		minHeight: '100vh'
+		minHeight: '100%'
 	},
 	title: {
 		padding: theme.spacing(2, 0)
@@ -42,6 +42,7 @@ export const useStyles = makeStyles(theme => ({
 	},
 	button: {
 		width: '100%',
-		height: ({ height }) => height + 'px'
+		height: ({ height }) => `${height}px`,
+		borderRadius: mainBorderRadius
 	}
 }));
