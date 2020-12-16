@@ -1,0 +1,4 @@
+{
+  "javascript.suggest.includeAutomaticOptionalChainCompletions": false,
+  "typescript.suggest.includeAutomaticOptionalChainCompletions": false
+}
