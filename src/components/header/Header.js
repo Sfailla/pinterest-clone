@@ -19,7 +19,7 @@ import FormGroup from '../form-group/FormGroup';
 import { Typography } from '@material-ui/core';
 import { useStyles } from './HeaderStyles';
 
-function Header({ page, setPage, handleOnChange, handleOnSubmit }) {
+function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
 	const [ anchorEl, setAnchorEl ] = React.useState(null);
 	const classes = useStyles();
 	const history = useHistory();
@@ -71,6 +71,7 @@ function Header({ page, setPage, handleOnChange, handleOnSubmit }) {
 							name="search"
 							type="text"
 							onChange={handleOnChange}
+							value={search}
 							placeholder="Search…"
 							classes={{
 								root: classes.inputRoot,
