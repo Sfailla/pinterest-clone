@@ -5,10 +5,11 @@ import useFetch from '../../hooks/useFetch';
 import useForm from '../../hooks/useForm';
 
 import Search from '../search/Search';
+import Alert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
 import Header from '../../components/header/Header';
-import { createGridItems } from './createGridItems';
+import { useGridItems } from './useGridItems';
 import CardContext from './cardContext';
 import validateSearch from '../../utils/form-validation/validateSearch';
 
@@ -21,10 +22,9 @@ export default function Dashboard() {
 
 	const [ state, setState ] = React.useState({
 		open: false,
+		message: '',
 		transition: SlideTransition
 	});
-
-	const [ message, setMessage ] = React.useState('');
 
 	// handles opening the snackbar
 	const handleOpen = React.useCallback(
@@ -48,76 +48,69 @@ export default function Dashboard() {
 				open: false
 			});
 		},
-		[ state, setState ]
+		[ setState ]
 	);
 
 	// const addPinToBoard = async () => {
 	// 	if (singleViewData) {
 	// 		await firebase.db.collection('boards').add(singleViewData);
 	// 		setPage('home');
-	// 		setMessage('Added Pin To Board');
 	// 	}
 	// };
 
-	const { handleOnChange, handleOnSubmit, values, errors } = useForm(
+	const { handleOnChange, handleOnSubmit, values, formErrors, setFormErrors } = useForm(
 		{ search: '' },
 		validateSearch,
 		authorize
 	);
 
 	const params = {
-		query: values.search || 'cars',
+		query: values.search || 'guns',
 		page: 1,
 		per_page: 30,
 		client_id: process.env.UNSPLASH_ACCESS_KEY
 	};
 
-	const { data, isDataLoading, updateParams, error } = useFetch(
+	const { data, isDataLoading, updateParams, fetchErrors, setFetchErrors } = useFetch(
 		'https://api.unsplash.com/search/photos?',
 		params
 	);
 
 	const [ singleViewData, setSingleViewData ] = React.useState(null);
-	const [ appData, setAppData ] = React.useState([]);
 	const [ page, setPage ] = React.useState('search');
 
-	React.useEffect(
-		() => {
-			if (!isDataLoading && !error) {
-				setAppData(data);
-			} else if (error) {
-				// setSearchError(error);
-			}
-		},
-		[ appData, isDataLoading ]
-	);
-
 	function authorize() {
+		setFetchErrors(null);
+		setFormErrors(null);
 		updateParams(params);
 	}
 
-	const items = createGridItems(appData);
-
-	console.count('dash_render');
+	const items = useGridItems(data);
 
 	return (
 		<React.Fragment>
 			<CardContext.Provider value={{ setSingleViewData }}>
+				{fetchErrors && (
+					<Alert className={classes.alert} variant="filled" severity="error" onClose={() => setFetchErrors(null)}>{fetchErrors}</Alert>
+				)}
+				{formErrors?.search && (
+					<Alert className={classes.alert} variant="filled" severity="error" onClose={() => setFormErrors(null)}>{formErrors?.search}</Alert>
+				)}
 				<Header
 					page={page}
 					setPage={setPage}
 					handleOnChange={handleOnChange}
 					handleOnSubmit={handleOnSubmit}
 				/>
-				<div className={classes.root}>
-					<h1 className={classes.title}>search for "{'cars'}"</h1>
-					{appData.length > 0 && (
+				<div className={classes.dashboard}>
+					{data.length > 0 && (
 						<Search
-							setSingleViewData={setSingleViewData}
 							page={page}
-							isDataLoading={isDataLoading}
 							setPage={setPage}
+							searchTerm={params.query}
 							items={items}
+							isDataLoading={isDataLoading}
+							setSingleViewData={setSingleViewData}
 						/>
 					)}
 
@@ -129,7 +122,7 @@ export default function Dashboard() {
 						open={state.open}
 						autoHideDuration={3000}
 						onClose={handleClose}
-						message={message}
+						message={state.message}
 						TransitionComponent={state.transition}
 					/>
 				</div>
