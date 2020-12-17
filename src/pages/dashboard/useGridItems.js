@@ -26,8 +26,6 @@ export const useGridItems = data => {
 		() => {
 			const arrayItems = formatGridItems(data);
 			setGridItems(arrayItems);
-
-			return () => arrayItems;
 		},
 		[ data ]
 	);
