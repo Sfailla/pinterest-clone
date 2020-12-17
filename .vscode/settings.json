@@ -1,4 +1,5 @@
 {
   "javascript.suggest.includeAutomaticOptionalChainCompletions": false,
-  "typescript.suggest.includeAutomaticOptionalChainCompletions": false
+  "typescript.suggest.includeAutomaticOptionalChainCompletions": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
