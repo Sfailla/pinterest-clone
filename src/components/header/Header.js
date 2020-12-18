@@ -1,30 +1,30 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import firebase from "../../firebase/firebase";
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import firebase from '../../firebase/firebase';
 
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import InputBase from "@material-ui/core/InputBase";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import Badge from "@material-ui/core/Badge";
-import Button from "@material-ui/core/Button";
-import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import SearchIcon from "@material-ui/icons/Search";
-import logo from "../../svg/pinterest-logo.svg";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormGroup from "../form-group/FormGroup";
-import { Typography } from "@material-ui/core";
-import { useStyles } from "./HeaderStyles";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import InputBase from '@material-ui/core/InputBase';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import Badge from '@material-ui/core/Badge';
+import Button from '@material-ui/core/Button';
+import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import SearchIcon from '@material-ui/icons/Search';
+import logo from '../../svg/pinterest-logo.svg';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormGroup from '../form-group/FormGroup';
+import { Typography } from '@material-ui/core';
+import { useStyles } from './HeaderStyles';
 
 function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const classes = useStyles();
   const history = useHistory();
   const open = Boolean(anchorEl);
-  const isSearchPage = page === "search";
+  const isSearchPage = page === 'search';
 
   const handleOpenMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -44,7 +44,7 @@ function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
             classes={{
               root: isSearchPage && `${classes.button} ${classes.active}`,
             }}
-            onClick={() => setPage("search")}
+            onClick={() => setPage('search')}
           >
             {/* search link */}
             <Typography varient="h4" className={classes.wordLink}>
@@ -56,7 +56,7 @@ function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
             classes={{
               root: !isSearchPage && `${classes.button} ${classes.active}`,
             }}
-            onClick={() => setPage("boards")}
+            onClick={() => setPage('boards')}
           >
             <Typography varient="h4" className={classes.wordLink}>
               BOARDS
@@ -72,12 +72,13 @@ function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
               type="text"
               onChange={handleOnChange}
               value={search}
+              disabled={!isSearchPage}
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              inputProps={{ "aria-label": "search" }}
+              inputProps={{ 'aria-label': 'search' }}
             />
           </FormGroup>
           {/* spacer */}
@@ -113,13 +114,13 @@ function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
             id="menu-appbar"
             anchorEl={anchorEl}
             anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
+              vertical: 'top',
+              horizontal: 'right',
             }}
             keepMounted
             transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
+              vertical: 'top',
+              horizontal: 'right',
             }}
             open={open}
             onClose={handleClose}
@@ -130,7 +131,7 @@ function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
                 firebase
                   .logout()
                   .then(() => {
-                    history.push("/");
+                    history.push('/');
                   })
                   .catch(err => console.log(err));
                 handleClose();

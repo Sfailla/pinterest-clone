@@ -1,47 +1,65 @@
-import React from "react";
-import firebase from "../../firebase/firebase";
-import { useStyles } from "./DashboardStyles";
-import useFetch from "../../hooks/useFetch";
-import useForm from "../../hooks/useForm";
-
-import Search from "../search/Search";
-import Boards from "../boards/Boards";
-import Alert from "@material-ui/lab/Alert";
-import Snackbar from "@material-ui/core/Snackbar";
-import Slide from "@material-ui/core/Slide";
-import Header from "../../components/header/Header";
-import { useGridItems } from "./useGridItems";
-import CardContext from "./cardContext";
-import validateSearch from "../../utils/form-validation/validateSearch";
-
-const SlideTransition = props => {
-  return <Slide {...props} direction="up" />;
-};
+import React from 'react';
+import firebase from '../../firebase/firebase';
+import { useStyles } from './DashboardStyles';
+import useFetch from '../../hooks/useFetch';
+import useForm from '../../hooks/useForm';
+import Search from '../search/Search';
+import Boards from '../boards/Boards';
+import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
+import Header from '../../components/header/Header';
+import { useGridItems } from './useGridItems';
+import CardContext from './cardContext';
+import validateSearch from '../../utils/form-validation/validateSearch';
+import { SlideTransition } from '../../animations/SlideTransition';
 
 export default function Dashboard() {
   const classes = useStyles();
-
+  const [paginate, setPaginate] = React.useState(1);
+  const [searchTerm, setSearchTerm] = React.useState('guns');
+  const [singleViewData, setSingleViewData] = React.useState(null);
+  const [page, setPage] = React.useState('search');
   const [state, setState] = React.useState({
     open: false,
-    message: "",
+    message: '',
     transition: SlideTransition,
   });
 
-  // handles opening the snackbar
-  const handleOpen = React.useCallback(
-    transition => {
-      setState({
-        open: true,
-        transition,
-      });
-    },
-    [setState]
+  const {
+    handleOnChange,
+    handleOnSubmit,
+    values,
+    formErrors,
+    setFormErrors,
+  } = useForm({ search: '' }, validateSearch, authorize);
+
+  const params = {
+    query: values.search || searchTerm,
+    page: paginate,
+    per_page: 30,
+    client_id: process.env.UNSPLASH_ACCESS_KEY,
+  };
+
+  const { data, updateParams, fetchErrors, setFetchErrors } = useFetch(
+    'https://api.unsplash.com/search/photos?',
+    params
   );
+
+  const addPinToBoard = async () => {
+    if (singleViewData) {
+      await firebase.db.collection('boards').add(singleViewData);
+      setState({
+        ...state,
+        open: true,
+        message: 'added to boards collection',
+      });
+    }
+  };
 
   // handles closing the snackbar
   const handleClose = React.useCallback(
     (event, reason) => {
-      if (reason === "clickaway") {
+      if (reason === 'clickaway') {
         return;
       }
       setState({
@@ -52,55 +70,23 @@ export default function Dashboard() {
     [setState]
   );
 
-  // const addPinToBoard = async () => {
-  // 	if (singleViewData) {
-  // 		await firebase.db.collection('boards').add(singleViewData);
-  // 		setPage('home');
-  // 	}
-  // };
-
-  const {
-    handleOnChange,
-    handleOnSubmit,
-    values,
-    formErrors,
-    setFormErrors,
-  } = useForm({ search: "" }, validateSearch, authorize);
-  const [paginate, setPaginate] = React.useState(1);
-  const [searchTerm, setSearchTerm] = React.useState("guns");
-
-  const params = {
-    query: values.search || searchTerm,
-    page: paginate,
-    per_page: 30,
-    client_id: process.env.UNSPLASH_ACCESS_KEY,
-  };
-
-  const handleChangePagination = (event, value) => {
-    setPaginate(value);
-    updateParams(params);
-  };
-
-  const { data, updateParams, fetchErrors, setFetchErrors } = useFetch(
-    "https://api.unsplash.com/search/photos?",
-    params
-  );
-
-  const [singleViewData, setSingleViewData] = React.useState(null);
-  const [page, setPage] = React.useState("search");
-
   function authorize() {
     setFetchErrors(null);
     setFormErrors(null);
+    setPaginate(1);
     setSearchTerm(values?.search);
     updateParams(params);
   }
+
+  React.useEffect(() => {
+    addPinToBoard();
+  }, [singleViewData]);
 
   const items = useGridItems(data.results);
 
   return (
     <React.Fragment>
-      <CardContext.Provider value={{ setSingleViewData }}>
+      <CardContext.Provider value={{ setSingleViewData, addPinToBoard }}>
         {fetchErrors && (
           <Alert
             className={classes.alert}
@@ -129,26 +115,29 @@ export default function Dashboard() {
           handleOnSubmit={handleOnSubmit}
         />
         <div className={classes.dashboard}>
-          {page === "search" && data.results?.length > 0 && (
+          {page === 'search' && data.results?.length > 0 && (
             <Search
               totalPages={data.total_pages}
               paginate={paginate}
-              handleChange={handleChangePagination}
+              // handleChange={handleChangePagination}
               searchTerm={searchTerm}
               items={items}
+              setPaginate={setPaginate}
+              updateParams={updateParams}
+              params={params}
             />
           )}
 
-          {page === "boards" && <Boards />}
+          {page === 'boards' && <Boards />}
 
           <Snackbar
             anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
+              vertical: 'bottom',
+              horizontal: 'left',
             }}
             open={state.open}
-            autoHideDuration={3000}
             onClose={handleClose}
+            autoHideDuration={3000}
             message={state.message}
             TransitionComponent={state.transition}
           />
