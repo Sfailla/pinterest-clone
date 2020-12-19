@@ -4,36 +4,8 @@ import { useStyles } from './BoardStyles';
 import useMasonryGrid from '../../hooks/useMasonryGrid';
 import CollectionCard from './CollectionCard';
 
-import {
-  useContainerPosition,
-  usePositioner,
-  useResizeObserver,
-  useMasonry,
-  Masonry,
-  MasonryScroller,
-  createPositioner,
-  useScrollToIndex,
-} from 'masonic';
-
-import { useWindowSize } from '@react-hook/window-size';
-
 function Boards() {
   const boardsRef = firebase.db.collection('boards');
-
-  const containerRef = React.useRef(null);
-  const [windowWidth, windowHeight] = useWindowSize();
-  const { offset, width } = useContainerPosition(containerRef, [
-    windowWidth,
-    windowHeight,
-  ]);
-  const positioner = usePositioner({
-    width,
-    columnGutter: 10,
-    columnWidth: 300,
-  });
-
-  let resizeObserver = useResizeObserver(positioner);
-
   const [collection, setCollection] = React.useState([]);
 
   const getCollection = () => {
@@ -48,13 +20,7 @@ function Boards() {
     });
   };
 
-  // const {
-  //   positioner,
-  //   resizeObserver,
-  //   windowHeight,
-  //   containerRef,
-  //   MasonryScroller,
-  // } = useMasonryGrid(collection, 10, 200);
+  const { Masonry } = useMasonryGrid();
 
   React.useEffect(() => {
     getCollection();

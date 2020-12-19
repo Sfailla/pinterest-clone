@@ -32,7 +32,6 @@ const Search = ({
   });
 
   const handleChange = async (event, value) => {
-    console.log(value);
     setPaginate(value);
     scrollToIndex(0);
     updateParams({
