@@ -4,9 +4,37 @@ import { useStyles } from './BoardStyles';
 import useMasonryGrid from '../../hooks/useMasonryGrid';
 import CollectionCard from './CollectionCard';
 
+import {
+  useContainerPosition,
+  usePositioner,
+  useResizeObserver,
+  useMasonry,
+  Masonry,
+  MasonryScroller,
+  createPositioner,
+  useScrollToIndex,
+} from 'masonic';
+
+import { useWindowSize } from '@react-hook/window-size';
+
 function Boards() {
-  const [collection, setCollection] = React.useState([]);
   const boardsRef = firebase.db.collection('boards');
+
+  const containerRef = React.useRef(null);
+  const [windowWidth, windowHeight] = useWindowSize();
+  const { offset, width } = useContainerPosition(containerRef, [
+    windowWidth,
+    windowHeight,
+  ]);
+  const positioner = usePositioner({
+    width,
+    columnGutter: 10,
+    columnWidth: 300,
+  });
+
+  let resizeObserver = useResizeObserver(positioner);
+
+  const [collection, setCollection] = React.useState([]);
 
   const getCollection = () => {
     boardsRef.onSnapshot(snapshot => {
@@ -20,14 +48,13 @@ function Boards() {
     });
   };
 
-  const {
-    Masonry,
-    positioner,
-    offset,
-    resizeObserver,
-    windowHeight,
-    containerRef,
-  } = useMasonryGrid();
+  // const {
+  //   positioner,
+  //   resizeObserver,
+  //   windowHeight,
+  //   containerRef,
+  //   MasonryScroller,
+  // } = useMasonryGrid(collection, 10, 200);
 
   React.useEffect(() => {
     getCollection();
@@ -36,8 +63,8 @@ function Boards() {
   const classes = useStyles();
 
   return (
-    <div>
-      <h1>Boards</h1>
+    <div className={classes.root}>
+      <h1>My Boards</h1>
       {!collection.length > 0 && (
         <p className={classes.defaultText}>
           There are currently no pinned images for your boards. you can search for
@@ -47,17 +74,10 @@ function Boards() {
       {collection.length > 0 && (
         <div className={classes.masonryContainer}>
           <Masonry
-            style={{ outline: 'none', width: '100%' }}
-            positioner={positioner}
-            resizeObserver={resizeObserver}
-            // The distance in px between the top of the document and the top of the
-            // masonry grid container
-            offset={offset}
-            // columnGutter={10}
-            // The height of the virtualization window
-            height={windowHeight}
-            // Forwards the ref to the masonry container element
-            containerRef={containerRef}
+            style={{ outline: 'none' }}
+            columnGutter={10}
+            columnWidth={200}
+            overscanBy={2}
             items={collection}
             render={CollectionCard}
           />

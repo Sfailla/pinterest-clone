@@ -7,7 +7,7 @@ const CollectionCard = ({ data: { id, name, src, height } }) => {
   return (
     <button className={classes.button}>
       <div className={classes.collectionCard}>
-        <span children={name.toUpperCase()} />
+        <span children={name?.toUpperCase()} />
       </div>
     </button>
   );

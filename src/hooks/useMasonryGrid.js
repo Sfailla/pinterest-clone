@@ -31,15 +31,6 @@ function useMasonryGrid(items, columnGutter = 15, columnWidth = 236) {
     [items]
   );
 
-  let updatePositioner = () => {
-    positioner = createPositioner({
-      width,
-      columnGutter,
-      columnWidth,
-    });
-    return positioner;
-  };
-
   let resizeObserver = useResizeObserver(positioner);
   let { scrollTop, isScrolling } = useScroller(offset);
 
@@ -55,7 +46,6 @@ function useMasonryGrid(items, columnGutter = 15, columnWidth = 236) {
     useMasonry,
     Masonry,
     MasonryScroller,
-    updatePositioner,
     useScrollToIndex,
   };
 }

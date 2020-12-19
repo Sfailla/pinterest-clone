@@ -34,8 +34,8 @@ export default function Dashboard() {
   } = useForm({ search: '' }, validateSearch, authorize);
 
   const params = {
-    query: values.search || searchTerm,
-    page: paginate,
+    query: searchTerm,
+    page: 1,
     per_page: 30,
     client_id: process.env.UNSPLASH_ACCESS_KEY,
   };
@@ -45,9 +45,9 @@ export default function Dashboard() {
     params
   );
 
-  const addPinToBoard = async () => {
+  const addPinToBoard = async viewData => {
     if (singleViewData) {
-      await firebase.db.collection('boards').add(singleViewData);
+      await firebase.db.collection('boards').add(viewData);
       setState({
         ...state,
         open: true,
@@ -70,23 +70,35 @@ export default function Dashboard() {
     [setState]
   );
 
+  const handleClick = React.useCallback(
+    (id, name, src, height) => {
+      setSingleViewData({ id, name, src, height });
+    },
+    [setSingleViewData]
+  );
+
   function authorize() {
     setFetchErrors(null);
     setFormErrors(null);
     setPaginate(1);
-    setSearchTerm(values?.search);
-    updateParams(params);
+    setSearchTerm(values.search);
+    updateParams({
+      query: values.search,
+      page: 1,
+      per_page: 30,
+      client_id: process.env.UNSPLASH_ACCESS_KEY,
+    });
   }
 
   React.useEffect(() => {
-    addPinToBoard();
+    addPinToBoard(singleViewData);
   }, [singleViewData]);
 
   const items = useGridItems(data.results);
 
   return (
     <React.Fragment>
-      <CardContext.Provider value={{ setSingleViewData, addPinToBoard }}>
+      <CardContext.Provider value={{ handleClick }}>
         {fetchErrors && (
           <Alert
             className={classes.alert}
@@ -110,21 +122,19 @@ export default function Dashboard() {
         <Header
           page={page}
           setPage={setPage}
-          search={values?.search}
+          search={values.search}
           handleOnChange={handleOnChange}
           handleOnSubmit={handleOnSubmit}
         />
         <div className={classes.dashboard}>
           {page === 'search' && data.results?.length > 0 && (
             <Search
-              totalPages={data.total_pages}
-              paginate={paginate}
-              // handleChange={handleChangePagination}
-              searchTerm={searchTerm}
               items={items}
+              searchTerm={searchTerm}
+              paginate={paginate}
               setPaginate={setPaginate}
               updateParams={updateParams}
-              params={params}
+              totalPages={data.total_pages}
             />
           )}
 

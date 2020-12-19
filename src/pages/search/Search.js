@@ -10,9 +10,8 @@ const Search = ({
   searchTerm,
   totalPages,
   paginate,
-  updateParams,
-  params,
   setPaginate,
+  updateParams,
 }) => {
   const classes = useStyles();
   const {
@@ -32,10 +31,16 @@ const Search = ({
     align: 'center',
   });
 
-  const handleChange = (event, value) => {
+  const handleChange = async (event, value) => {
+    console.log(value);
     setPaginate(value);
-    updateParams(params);
     scrollToIndex(0);
+    updateParams({
+      query: searchTerm,
+      page: value,
+      per_page: 30,
+      client_id: process.env.UNSPLASH_ACCESS_KEY,
+    });
   };
 
   return (
@@ -43,6 +48,7 @@ const Search = ({
       <h1 className={classes.title}>search results for "{searchTerm}"</h1>
       <div className={classes.masonic}>
         <MasonryScroller
+          key={items.id}
           style={{ outline: 'none' }}
           positioner={positioner}
           offset={offset}
