@@ -138,6 +138,10 @@ export const useStyles = makeStyles(theme => ({
     display: 'none',
     [theme.breakpoints.down('xs')]: {
       display: 'flex',
+      '& .MuiListItem-root': {
+        height: '50px',
+        justifyContent: 'space-between',
+      },
     },
   },
 }));

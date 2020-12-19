@@ -44,6 +44,14 @@ function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
     setAnchorEl(null);
   };
 
+  const handleRouting = React.useCallback(
+    page => {
+      setPage(page);
+      handleClose();
+    },
+    [page]
+  );
+
   const renderMobileMenu = (
     <Menu
       className={classes.mobileMenu}
@@ -61,17 +69,13 @@ function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
       open={isMenuOpen}
       onClose={handleClose}
     >
-      <MenuItem onClick={handleClose}>Boards</MenuItem>
-      <MenuItem onClick={handleClose}>Search</MenuItem>
+      <MenuItem onClick={() => handleRouting('boards')}>Boards</MenuItem>
+      <MenuItem onClick={() => handleRouting('search')}>Search</MenuItem>
       <MenuItem onClick={handleClose}>Profile</MenuItem>
 
       <MenuItem onClick={handleClose}>
         Messages
-        <IconButton
-          className={classes.badge}
-          color="inherit"
-          aria-label="chat with people"
-        >
+        <IconButton color="inherit" aria-label="chat with people">
           <Badge badgeContent={2} color="secondary">
             <ChatOutlinedIcon className={classes.iconFill} />
           </Badge>
@@ -80,11 +84,7 @@ function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
 
       <MenuItem onClick={handleClose}>
         Alerts
-        <IconButton
-          aria-label="new notifications"
-          color="inherit"
-          className={classes.alert}
-        >
+        <IconButton aria-label="new notifications" color="inherit">
           <Badge badgeContent={4} color="secondary">
             <NotificationsIcon className={classes.iconFill} />
           </Badge>
