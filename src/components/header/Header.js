@@ -23,8 +23,18 @@ function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const classes = useStyles();
   const history = useHistory();
-  const open = Boolean(anchorEl);
+  const isMenuOpen = Boolean(anchorEl);
   const isSearchPage = page === 'search';
+
+  const handleSignout = () => {
+    firebase
+      .logout()
+      .then(() => {
+        history.push('/');
+      })
+      .catch(err => console.log(err));
+    handleClose();
+  };
 
   const handleOpenMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -34,6 +44,79 @@ function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
     setAnchorEl(null);
   };
 
+  const renderMobileMenu = (
+    <Menu
+      className={classes.mobileMenu}
+      id="menu-mobile"
+      anchorEl={anchorEl}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      open={isMenuOpen}
+      onClose={handleClose}
+    >
+      <MenuItem onClick={handleClose}>Boards</MenuItem>
+      <MenuItem onClick={handleClose}>Search</MenuItem>
+      <MenuItem onClick={handleClose}>Profile</MenuItem>
+
+      <MenuItem onClick={handleClose}>
+        Messages
+        <IconButton
+          className={classes.badge}
+          color="inherit"
+          aria-label="chat with people"
+        >
+          <Badge badgeContent={2} color="secondary">
+            <ChatOutlinedIcon className={classes.iconFill} />
+          </Badge>
+        </IconButton>
+      </MenuItem>
+
+      <MenuItem onClick={handleClose}>
+        Alerts
+        <IconButton
+          aria-label="new notifications"
+          color="inherit"
+          className={classes.alert}
+        >
+          <Badge badgeContent={4} color="secondary">
+            <NotificationsIcon className={classes.iconFill} />
+          </Badge>
+        </IconButton>
+      </MenuItem>
+
+      <MenuItem onClick={handleSignout}>Sign Out</MenuItem>
+    </Menu>
+  );
+
+  const renderDesktopMenu = (
+    <Menu
+      className={classes.desktopMenu}
+      id="menu-desktop"
+      anchorEl={anchorEl}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      open={isMenuOpen}
+      onClose={handleClose}
+    >
+      <MenuItem onClick={handleClose}>Profile</MenuItem>
+      <MenuItem onClick={handleSignout}>Sign Out</MenuItem>
+    </Menu>
+  );
+
   return (
     <div className={classes.root}>
       <AppBar className={classes.background} position="static">
@@ -41,9 +124,8 @@ function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
           {/* logo */}
           <img className={classes.logo} src={logo} />
           <Button
-            classes={{
-              root: isSearchPage && `${classes.button} ${classes.active}`,
-            }}
+            className={classes.button}
+            classes={{ root: isSearchPage && classes.active }}
             onClick={() => setPage('search')}
           >
             {/* search link */}
@@ -53,9 +135,8 @@ function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
           </Button>
           {/* boards link */}
           <Button
-            classes={{
-              root: !isSearchPage && `${classes.button} ${classes.active}`,
-            }}
+            className={classes.button}
+            classes={{ root: !isSearchPage && classes.active }}
             onClick={() => setPage('boards')}
           >
             <Typography varient="h4" className={classes.wordLink}>
@@ -84,7 +165,11 @@ function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
           {/* spacer */}
           <div className={classes.spacer} />
           {/* chat icon and badges */}
-          <IconButton color="inherit" aria-label="chat with people">
+          <IconButton
+            className={classes.badge}
+            color="inherit"
+            aria-label="chat with people"
+          >
             <Badge badgeContent={2} color="secondary">
               <ChatOutlinedIcon className={classes.iconFill} />
             </Badge>
@@ -110,36 +195,8 @@ function Header({ page, setPage, search, handleOnChange, handleOnSubmit }) {
             <MoreHorizIcon fontSize="large" className={classes.iconFill} />
           </IconButton>
           {/* user menu options */}
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            open={open}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem
-              onClick={() => {
-                firebase
-                  .logout()
-                  .then(() => {
-                    history.push('/');
-                  })
-                  .catch(err => console.log(err));
-                handleClose();
-              }}
-            >
-              Sign Out
-            </MenuItem>
-          </Menu>
+          {renderMobileMenu}
+          {renderDesktopMenu}
         </Toolbar>
       </AppBar>
     </div>
