@@ -6,11 +6,11 @@ here are some videos of the application:
 
 # Home Page
 
-<img src="./readme-gif/pinterest-1.gif" width="492" height="300" />
+<img src="./readme-gif/pinterest-1.gif" width="650" height="400" />
 
 # Search Page
 
-<img src="./readme-gif/pinterest-2.gif" width="492" height="300" />
+<img src="./readme-gif/pinterest-2.gif" width="650" height="400" />
 
 ## Attribution
 
