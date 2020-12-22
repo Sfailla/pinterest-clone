@@ -1,16 +1,21 @@
 ## pinterest-clone ✨🚀💻
+
 cloning the popular site pinterest to practice react hooks, material-ui, and testing
 
 here are some videos of the application:
 
 # Home Page
-<img src="./readme-gif/pinterest-gif-1.gif" width="492" height="380" />
+
+<img src="./readme-gif/pinterest-1.gif" width="492" height="380" />
 
 # Dashboard Page
-<img src="./readme-gif/pinterest-gif-2.gif" width="492" height="380" />
+
+<img src="./readme-gif/pinterest-2.gif" width="492" height="380" />
 
 ## Attribution
+
 all photos are thanks to [unsplash.com](https://www.unsplash.com) and specifically:
+
 - **Photo by Timothy Meinberg on Unsplash**
 - **Photo by Cosmin Serban on Unsplash**
 - **Photo by Kate Hliznitsova on Unsplash**
