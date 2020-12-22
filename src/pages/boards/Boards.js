@@ -30,7 +30,7 @@ function Boards() {
 
   return (
     <div className={classes.root}>
-      <h1>My Boards</h1>
+      <h1>My Collection</h1>
       {!collection.length > 0 && (
         <p className={classes.defaultText}>
           There are currently no pinned images for your boards. you can search for
@@ -42,7 +42,7 @@ function Boards() {
           <Masonry
             style={{ outline: 'none' }}
             columnGutter={10}
-            columnWidth={200}
+            columnWidth={275}
             overscanBy={2}
             items={collection}
             render={CollectionCard}

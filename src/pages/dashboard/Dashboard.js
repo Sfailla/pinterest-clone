@@ -16,7 +16,7 @@ import { SlideTransition } from '../../animations/SlideTransition';
 export default function Dashboard() {
   const classes = useStyles();
   const [paginate, setPaginate] = React.useState(1);
-  const [searchTerm, setSearchTerm] = React.useState('guns');
+  const [searchTerm, setSearchTerm] = React.useState('cars');
   const [singleViewData, setSingleViewData] = React.useState(null);
   const [page, setPage] = React.useState('search');
   const [state, setState] = React.useState({

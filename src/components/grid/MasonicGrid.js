@@ -10,7 +10,7 @@ function MasonicGrid() {
     scrollTop,
     windowHeight,
     useMasonry,
-  } = useMasonryGrid(null, 10, 236);
+  } = useMasonryGrid(null, 20, 236);
 
   const classes = useStyles();
   const items = React.useMemo(() => getItems(), [images]);
@@ -32,7 +32,7 @@ function MasonicGrid() {
 
 export default MasonicGrid;
 
-const ImageCard = ({ data: { src, height, id } }) => {
+const ImageCard = ({ data: { src, height } }) => {
   const classes = useStyles({ src, height });
   return <div className={classes.masonCard} />;
 };
@@ -47,7 +47,7 @@ const getItems = (cur = 20) => {
   for (let i = 0; i < cur; i++) {
     items.push({
       id: i,
-      src: randomChoice(images),
+      src: images[i],
       height: randomHeight(),
     });
   }
