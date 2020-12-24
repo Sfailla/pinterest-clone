@@ -18,7 +18,7 @@ export default function Dashboard() {
   const [paginate, setPaginate] = React.useState(1);
   const [searchTerm, setSearchTerm] = React.useState('cars');
   const [singleViewData, setSingleViewData] = React.useState(null);
-  const [page, setPage] = React.useState('search');
+  const [page, setPage] = React.useState('boards');
   const [state, setState] = React.useState({
     open: false,
     message: '',
