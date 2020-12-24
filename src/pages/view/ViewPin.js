@@ -1,28 +1,31 @@
-import React from "react";
-import "./view.css";
+import React from 'react';
+// import './view.css';
 
-import Button from "../../components/buttons/Button";
-import ButtonGroup from "../../components/buttons/ButtonGroup";
+import Button from '../../components/buttons/Button';
+import ButtonGroup from '../../components/buttons/ButtonGroup';
 
-export default function ViewPin({ viewData, addPin, handleClick, SlideTransition }) {
-  const { author, description, img, authorLink } = viewData;
-  const background = { backgroundImage: `url(${img})` };
+import { useStyles } from './viewStyles';
+
+export default function ViewPin({ viewData }) {
+  const { src, name } = viewData;
+  const classes = useStyles({ src });
+
   return (
-    <div className="details wrapper">
-      <div className="details__card">
-        <div className="details__left">
-          <div style={background} className="details__img" />
+    <div className={classes.container}>
+      <div className={classes.card}>
+        <div className={classes.cardImage}>
+          <div className={classes.image} />
         </div>
-        <div className="details__right">
-          <div className="details__text-wrapper">
-            <h1>{author.toUpperCase()}</h1>
+        <div className={classes.cardDetails}>
+          <div className={classes.text}>
+            <h1>Photographer: {name.toUpperCase()}</h1>
             <p className="details__description">
-              {description ? description : <span>-no description-</span>}
+              {/* {description ? description : <span>-no description-</span>} */}
             </p>
           </div>
-          <div className="button-wrapper">
+          <div className={classes.link}>
             <a
-              href={authorLink}
+              // href={authorLink}
               target="_blank"
               rel="noopener nofollow"
               className="details__author-link"
@@ -32,14 +35,8 @@ export default function ViewPin({ viewData, addPin, handleClick, SlideTransition
           </div>
           <ButtonGroup className="details__button-group">
             <div className="button-wrapper ">
-              <Button
-                className="details__button red-button"
-                onClick={() => {
-                  addPin();
-                  handleClick(SlideTransition);
-                }}
-              >
-                ADD TO BOARDS
+              <Button className="details__button red-button">
+                Remove from Boards
               </Button>
             </div>
             <div className="button-wrapper">
