@@ -1,15 +1,17 @@
 import React from 'react';
 import { useStyles } from './BoardStyles';
 
-const CollectionCard = ({ data: { id, name, src, height } }) => {
+const CollectionCard = ({ data: { name, src, height } }) => {
   const classes = useStyles({ height, src });
 
   return (
-    <button className={classes.button}>
-      <div className={classes.collectionCard}>
-        <span children={name?.toUpperCase()} />
-      </div>
-    </button>
+    <div className={classes.container}>
+      <button className={classes.button}>
+        <div className={classes.collectionCard}>
+          {/* <span children={<p>hello world</p>} /> */}
+        </div>
+      </button>
+    </div>
   );
 };
 

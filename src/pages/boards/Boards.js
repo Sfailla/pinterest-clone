@@ -3,6 +3,7 @@ import firebase from '../../firebase/firebase';
 import { useStyles } from './BoardStyles';
 import useMasonryGrid from '../../hooks/useMasonryGrid';
 import CollectionCard from './CollectionCard';
+import ViewPin from '../view/ViewPin';
 
 function Boards() {
   const boardsRef = firebase.db.collection('boards');
@@ -41,7 +42,7 @@ function Boards() {
         <div className={classes.masonryContainer}>
           <Masonry
             style={{ outline: 'none' }}
-            columnGutter={10}
+            columnGutter={20}
             columnWidth={275}
             overscanBy={2}
             items={collection}
@@ -49,6 +50,8 @@ function Boards() {
           />
         </div>
       )}
+
+      {collection.length > 0 && <ViewPin viewData={collection[0]} />}
     </div>
   );
 }

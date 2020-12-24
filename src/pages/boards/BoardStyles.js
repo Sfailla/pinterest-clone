@@ -14,6 +14,15 @@ export const useStyles = makeStyles(theme => {
       fontStyle: 'italic',
       textAlign: 'center',
     },
+
+    // CARD STYLES
+
+    container: {
+      width: '100%',
+      padding: '10px',
+      backgroundColor: 'white',
+      boxShadow: theme.shadows[8],
+    },
     collectionCard: {
       width: '100%',
       height: props => `${props.height}px`,
